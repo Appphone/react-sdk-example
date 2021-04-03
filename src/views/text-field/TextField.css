@@ -1,0 +1,23 @@
+.text-field {
+    border-radius: var(--radius);
+    display: block;
+    font-size: 1rem;
+    outline: none !important;
+    border: var(--color-black) solid 2px;
+    line-height: 2rem;
+    height: 2rem;
+    padding: 0 0.5rem;
+    width: 100%;
+}
+
+.text-field:hover {
+    border-color: var(--color-accent);
+}
+
+.text-field:focus {
+    border-color: var(--color-accent-dark-2);
+}
+
+.text-field::placeholder {
+    color: var(--color-grey);
+}

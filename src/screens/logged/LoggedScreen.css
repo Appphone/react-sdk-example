@@ -1,0 +1,12 @@
+.logged {
+    display: flex;
+    align-items: stretch;
+}
+
+.logged > :first-child {
+    flex: 0 0 300px;
+}
+
+.logged > :last-child {
+    flex: 1 1 auto;
+}

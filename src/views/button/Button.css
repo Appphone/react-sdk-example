@@ -1,0 +1,32 @@
+.btn {
+    background-color: var(--color-accent);
+    color: white;
+    border-radius: var(--radius);
+    display: inline-block;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none !important;
+    white-space: nowrap;
+    user-select: none;
+    border: none;
+    line-height: 2rem;
+    height: 2rem;
+    padding: 0 1rem;
+}
+
+.btn:hover {
+    background-color: var(--color-accent-dark);
+}
+
+.btn:active {
+    background-color: var(--color-accent-dark-2);
+}
+
+.btn::-moz-focus-inner {
+    border: 0;
+}
+
+.btn + .btn {
+    margin-left: 0.5rem;
+}

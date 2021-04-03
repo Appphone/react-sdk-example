@@ -1,0 +1,7 @@
+.message-list-info {
+    display: inline-block;
+    background-color: var(--color-accent-dark-2);
+    padding: 0.25rem 1rem;
+    border-radius: var(--radius);
+    color: white;
+}

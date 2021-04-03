@@ -1,0 +1,58 @@
+:root {
+    --color-accent: #2270e4;
+    --color-accent-dark: #195fc8;
+    --color-accent-dark-2: #124591;
+
+    --color-black: #141414;
+
+    --color-grey-light: #dedede;
+    --color-grey: #8f8f8f;
+
+    --radius: 3px;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+}
+
+body,
+input {
+    font-family: "Open Sans";
+    color: var(--color-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+.subtitle {
+    font-family: "Overpass Mono";
+    margin: 0;
+}
+
+p {
+    margin: 0.25rem 0;
+}
+
+.text-sm {
+    font-size: 0.8rem;
+}
+
+.font-extra-bold {
+    font-weight: 800;
+}
+
+.field-error {
+    color: red;
+}

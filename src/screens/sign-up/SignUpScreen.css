@@ -1,0 +1,14 @@
+.signup__header {
+    background-color: var(--color-black);
+    color: white;
+    padding: 2.5rem;
+}
+
+.signup__header__headline {
+    color: var(--color-accent);
+    font-size: 4.768rem;
+}
+
+.signup__header__subtitle {
+    font-size: 1.25rem;
+}

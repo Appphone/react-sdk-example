@@ -1,0 +1,11 @@
+.sidebar {
+    background-color: var(--color-black);
+}
+
+.sidebar .sidebar__header {
+    padding: 1.5rem 1rem;
+}
+
+.sidebar .sidebar__header .sidebar__header__title {
+    color: white;
+}

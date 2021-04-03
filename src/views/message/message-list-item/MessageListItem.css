@@ -1,0 +1,27 @@
+.message-list__item {
+    display: inline-block;
+    padding: 0.25rem;
+    color: white;
+    border-radius: var(--radius);
+    min-width: 5rem;
+}
+
+.message-list__item--out {
+    background-color: var(--color-accent);
+}
+
+.message-list__item--in {
+    background-color: var(--color-black);
+}
+
+.message-list__item__content {
+    text-align: right;
+}
+
+.message-list__item__time {
+    opacity: 0.75;
+}
+
+.message-list__item--other .message-list__item__time {
+    text-align: right;
+}
