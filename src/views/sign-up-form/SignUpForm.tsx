@@ -1,31 +1,41 @@
-import React, { useState } from "react";
-import SignUpPayload from "../../models/SignUpPayload";
+import React from "react";
 import SignUpFormRoomOption, {
     SignUpRoomOption,
-} from "../sign-up-form-room-type/SignUpFormRoomOption";
+} from "../sign-up-form-room-option/SignUpFormRoomOption";
 import SignUpFormUsername from "../sign-up-form-username/SignUpFormUsername";
 import "./SignUpForm.css";
 
-export interface SignUpFormProps {
-    onSubmit: (payload: SignUpPayload) => void;
+export enum SignUpFormStep {
+    Username,
+    RoomOption,
+    Room,
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
-    const [username, setUsername] = useState<string | undefined>(undefined);
+export interface SignUpFormProps {
+    step: SignUpFormStep;
+    onUsernameSet: (username: string) => void;
+    onChooseRoomOption: (option: SignUpRoomOption) => void;
+}
 
-    const onChooseRoomOption = (option: SignUpRoomOption) => {
-        if (username && option === "new") onSubmit({ username });
-    };
+const SignUpForm: React.FC<SignUpFormProps> = ({
+    step,
+    onUsernameSet,
+    onChooseRoomOption,
+}) => {
+    let renderedStep = null;
 
-    return (
-        <div className="signup__form">
-            <SignUpFormUsername onInput={setUsername} />
-            <SignUpFormRoomOption
-                disabled={!username}
-                onSubmit={onChooseRoomOption}
-            />
-        </div>
-    );
+    switch (step) {
+        case SignUpFormStep.Username:
+            renderedStep = <SignUpFormUsername onSubmit={onUsernameSet} />;
+            break;
+        case SignUpFormStep.RoomOption:
+            renderedStep = (
+                <SignUpFormRoomOption onSubmit={onChooseRoomOption} />
+            );
+            break;
+    }
+
+    return <div className="signup__form">{renderedStep}</div>;
 };
 
 export default SignUpForm;

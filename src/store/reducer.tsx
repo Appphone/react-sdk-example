@@ -27,11 +27,36 @@ const messagingSlice = createSlice({
         },
         sessionSucess(state, action: PayloadAction<SocketMeta>) {
             state.socket = action.payload;
+            state.rooms = [];
         },
         joinRoom(state, action: PayloadAction<string>) {
             state.rooms?.push({
                 id: action.payload,
                 isConnected: false,
+                unreadCount: 0,
+                events: [],
+            });
+        },
+        joinRoomSuccess(state, action: PayloadAction<string>) {
+            const room = state.rooms?.find(
+                (room) => room.id === action.payload
+            );
+            if (room) {
+                room.isConnected = true;
+            } else {
+                state.rooms?.push({
+                    id: action.payload,
+                    isConnected: true,
+                    unreadCount: 0,
+                    events: [],
+                });
+            }
+        },
+        joinNewRoom() {},
+        joinNewRoomSuccess(state, action: PayloadAction<string>) {
+            state.rooms?.push({
+                id: action.payload,
+                isConnected: true,
                 unreadCount: 0,
                 events: [],
             });
@@ -66,6 +91,9 @@ export const {
     signOut,
     sessionSucess,
     joinRoom,
+    joinRoomSuccess,
+    joinNewRoom,
+    joinNewRoomSuccess,
     goToRoom,
     leaveRoom,
     sendMessage,

@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import TextField from "../text-field/TextField";
 import Field from "@bit/jorgemoreira.react.input.field";
+import Button from "../button/Button";
 
 export interface SignUpFormUsernameProps {
-    onInput: (username?: string) => void;
+    onSubmit: (username: string) => void;
 }
 
-const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({ onInput }) => {
+const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({
+    onSubmit,
+}) => {
+    const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState<string | boolean>(false);
 
     const validateUsername = (username: string) => {
+        setUsername(username);
+
         if (!/^[a-zA-Z0-9-]+$/.test(username)) {
             setUsernameError("Please use only alphanumeric characteres");
-            onInput(undefined);
         } else {
             setUsernameError(false);
-            onInput(username);
         }
+    };
+
+    const onSubmitClick = () => {
+        if (!usernameError) onSubmit(username);
     };
 
     return (
@@ -30,6 +38,7 @@ const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({ onInput }) => {
                 <Field error={usernameError}>
                     <TextField onInput={validateUsername} />
                 </Field>
+                <Button onClick={onSubmitClick}>Next</Button>
             </div>
         </div>
     );

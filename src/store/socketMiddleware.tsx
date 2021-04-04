@@ -1,12 +1,16 @@
 import { io, Socket } from "socket.io-client";
-import { sessionSucess, signOut } from "./reducer";
+import {
+    joinNewRoomSuccess,
+    joinRoomSuccess,
+    sessionSucess,
+    signOut,
+} from "./reducer";
 
-// todo specify types
-const socketMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
+const socketMiddleware = () => {
     const URL = "http://localhost:3000";
     let socket: Socket | null = null;
 
-    const setupSocket = (auth: any) => {
+    const setupSocket = (storeAPI: any, auth: any) => {
         if (!socket) socket = io(URL, { autoConnect: false });
 
         socket.auth = auth;
@@ -18,7 +22,7 @@ const socketMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
             }
         });
 
-        socket.on("session", ({ sessionID, username }) => {
+        socket.on("session", ({ sessionID, username, rooms }) => {
             localStorage.setItem("sessionID", sessionID);
             storeAPI.dispatch(
                 sessionSucess({
@@ -27,22 +31,38 @@ const socketMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
                     isConnected: true,
                 })
             );
+
+            rooms.forEach((room: any) =>
+                storeAPI.dispatch(joinRoomSuccess(room.id))
+            );
         });
     };
 
-    switch (action.type) {
-        case "messaging/login":
-            const sessionID = localStorage.getItem("sessionID");
-            if (sessionID) {
-                setupSocket({ sessionID });
-            }
-            break;
-        case "messaging/signUp":
-            setupSocket({ username: action.payload });
-            break;
-    }
+    // todo specify types
+    return (storeAPI: any) => (next: any) => (action: any) => {
+        switch (action.type) {
+            case "messaging/login":
+                const sessionID = localStorage.getItem("sessionID");
+                if (sessionID) {
+                    setupSocket(storeAPI, { sessionID });
+                }
+                break;
+            case "messaging/signUp":
+                setupSocket(storeAPI, { username: action.payload });
+                break;
+            case "messaging/signOut":
+                if (socket) socket.disconnect();
+                localStorage.removeItem("sessionID");
+                break;
+            case "messaging/joinNewRoom":
+                socket?.emit("rooms:join-new", (room: any) => {
+                    storeAPI.dispatch(joinNewRoomSuccess(room.id));
+                });
+                break;
+        }
 
-    next(action);
+        next(action);
+    };
 };
 
-export default socketMiddleware;
+export default socketMiddleware();

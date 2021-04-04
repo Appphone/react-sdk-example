@@ -1,10 +1,12 @@
 import React from "react";
 import Button from "../button/Button";
 
-export type SignUpRoomOption = "new" | "existing";
+export enum SignUpRoomOption {
+    New,
+    Existing,
+}
 
 export interface SignUpFormRoomOptionProps {
-    disabled: boolean;
     onSubmit: (option: SignUpRoomOption) => void;
 }
 
@@ -20,10 +22,10 @@ const SignUpFormRoomOption: React.FC<SignUpFormRoomOptionProps> = ({
                     You will be able to join multiple rooms later
                 </p>
                 <div>
-                    <Button onClick={() => onSubmit("new")}>
+                    <Button onClick={() => onSubmit(SignUpRoomOption.New)}>
                         Join a new room
                     </Button>
-                    <Button onClick={() => onSubmit("existing")}>
+                    <Button onClick={() => onSubmit(SignUpRoomOption.Existing)}>
                         Join an existing room
                     </Button>
                 </div>

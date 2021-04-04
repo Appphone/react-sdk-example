@@ -1,4 +1,4 @@
-import SignUpForm, { SignUpFormProps } from "./SignUpForm";
+import SignUpForm, { SignUpFormProps, SignUpFormStep } from "./SignUpForm";
 import { Story } from "@storybook/react/types-6-0";
 
 export default {
@@ -9,4 +9,8 @@ export default {
 const Template: Story<SignUpFormProps> = (args) => <SignUpForm {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { onSubmit: () => {} };
+Default.args = {
+    step: SignUpFormStep.Username,
+    onUsernameSet: () => {},
+    onChooseRoomOption: () => {},
+};

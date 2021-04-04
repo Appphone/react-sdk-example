@@ -13,4 +13,4 @@ const Template: Story<SignUpFormUsernameProps> = (
 ) => <SignUpFormUsername {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { onInput: () => {} };
+Default.args = { onSubmit: () => {} };
