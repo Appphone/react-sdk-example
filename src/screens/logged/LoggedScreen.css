@@ -1,6 +1,9 @@
 .logged {
     display: flex;
     align-items: stretch;
+    min-height: calc(100vh - 15rem);
+    overflow: hidden;
+    border-radius: var(--radius);
 }
 
 .logged > :first-child {

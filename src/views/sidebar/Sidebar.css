@@ -1,4 +1,6 @@
 .sidebar {
+    display: flex;
+    flex-direction: column;
     background-color: var(--color-black);
 }
 
@@ -8,4 +10,9 @@
 
 .sidebar .sidebar__header .sidebar__header__title {
     color: white;
+}
+
+.sidebar .sidebar__footer {
+    margin-top: auto;
+    padding: 0.5rem 1rem;
 }
