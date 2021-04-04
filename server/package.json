@@ -1,0 +1,17 @@
+{
+    "name": "server",
+    "version": "0.0.1",
+    "description": "Server for a simple private messaging app",
+    "main": "index.js",
+    "author": "Jorge Moreira",
+    "license": "MIT",
+    "dependencies": {
+        "debug": "^4.3.1",
+        "express": "^4.17.1",
+        "http": "^0.0.1-security",
+        "socket.io": "^4.0.1"
+    },
+    "scripts": {
+        "serve": "set DEBUG=socket.io:client & node index.tsx"
+    }
+}

@@ -1,8 +1,12 @@
 import React from "react";
-import SignUpForm from "../../views/sign-up-form/SignUpForm";
+import SignUpForm, {
+    SignUpFormProps,
+} from "../../views/sign-up-form/SignUpForm";
 import "./SignUpScreen.css";
 
-const SignUpScreen: React.FC = () => {
+export type SignUpScreenProps = SignUpFormProps;
+
+const SignUpScreen: React.FC<SignUpScreenProps> = ({ onSubmit }) => {
     return (
         <div className="signup">
             <div className="signup__header">
@@ -16,7 +20,7 @@ const SignUpScreen: React.FC = () => {
                 </p>
             </div>
             <div className="signup__form">
-                <SignUpForm />
+                <SignUpForm onSubmit={onSubmit} />
             </div>
         </div>
     );

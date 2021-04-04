@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "../button/Button";
 
-type SignUpRoomOption = "new" | "existing";
+export type SignUpRoomOption = "new" | "existing";
 
 export interface SignUpFormRoomOptionProps {
+    disabled: boolean;
     onSubmit: (option: SignUpRoomOption) => void;
 }
 

@@ -17,7 +17,7 @@ const messagingSlice = createSlice({
     initialState,
     reducers: {
         signUp(state, action: PayloadAction<string>) {
-            state.socket = { username: action.payload, isConnected: false };
+            state.socket = { username: action.payload, isConnected: true };
         },
         signOut(state) {
             state.socket = undefined;

@@ -1,9 +1,12 @@
 import { Action, configureStore } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
+import logMiddleware from "./logMiddleware";
 import reducer from "./reducer";
+import socketMiddleware from "./socketMiddleware";
 
 const store = configureStore({
     reducer,
+    middleware: [logMiddleware, socketMiddleware],
 });
 
 if (process.env.NODE_ENV === "development" && module.hot) {
