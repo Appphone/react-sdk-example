@@ -12,7 +12,7 @@ interface MockFactory<T> {
 const getMessage: () => Message = () => ({
     createdAt: new Date(),
     content: faker.lorem.words(),
-    isFromSelf: faker.random.number() % 2 === 0,
+    isFromSelf: faker.datatype.number() % 2 === 0,
 });
 
 export const messageMockFactory: MockFactory<Message> = {
@@ -23,8 +23,10 @@ export const messageMockFactory: MockFactory<Message> = {
 // Room
 
 const getRoom: () => Room = () => ({
-    id: faker.random.number(),
-    unreadCount: faker.random.number(),
+    id: faker.lorem.word(),
+    unreadCount: faker.datatype.number(),
+    isConnected: faker.datatype.number() % 2 === 0,
+    events: [],
 });
 
 export const roomMockFactory: MockFactory<Room> = {

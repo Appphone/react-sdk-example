@@ -1,5 +1,6 @@
 import RoomListItem, { RoomListItemProps } from "./RoomListItem";
 import { Story } from "@storybook/react/types-6-0";
+import { roomMockFactory } from "../../../utils/mocks";
 
 export default {
     title: "Room/RoomListItem",
@@ -11,4 +12,7 @@ const Template: Story<RoomListItemProps> = (args: RoomListItemProps) => (
 );
 
 export const Default = Template.bind({});
-Default.args = { room: { id: "123", unreadCount: 2 }, onClick: () => {} };
+Default.args = {
+    room: roomMockFactory.one(),
+    onClick: () => {},
+};
