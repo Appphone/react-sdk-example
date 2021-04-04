@@ -21,6 +21,9 @@ io.use(async (socket, next) => {
             socket.sessionID = sessionID;
             socket.userID = session.userID;
             socket.username = session.username;
+
+            session.rooms.forEach((roomId) => socket.join(roomId));
+
             return next();
         }
     }
@@ -47,18 +50,39 @@ io.on("connection", (socket) => {
         sessionID: socket.sessionID,
         userID: socket.userID,
         username: socket.username,
+        rooms: [...socket.rooms.values()].filter((id) => id !== socket.id),
     });
 
     socket.join(socket.userID);
 
-    // notify users upon disconnection
+    socket.on("rooms:join-new", (callback) => {
+        const roomId = "room://" + randomId();
+
+        socket.join(roomId);
+
+        callback({ id: roomId });
+    });
+
+    socket.on("disconnecting", () => {
+        const rooms = [...socket.rooms.values()].filter(
+            (id) => id.indexOf("room://") === 0
+        );
+
+        sessionStore.saveSession(socket.sessionID, {
+            userID: socket.userID,
+            username: socket.username,
+            rooms,
+            connected: true,
+        });
+    });
+
     socket.on("disconnect", async () => {
         const matchingSockets = await io.in(socket.userID).allSockets();
         const isDisconnected = matchingSockets.size === 0;
         if (isDisconnected) {
+            const session = sessionStore.findSession(socket.sessionID);
             sessionStore.saveSession(socket.sessionID, {
-                userID: socket.userID,
-                username: socket.username,
+                ...session,
                 connected: false,
             });
         }
