@@ -1,25 +1,44 @@
-import { io } from "socket.io-client";
-import { signOut } from "./reducer";
+import { io, Socket } from "socket.io-client";
+import { sessionSucess, signOut } from "./reducer";
 
 // todo specify types
 const socketMiddleware = (storeAPI: any) => (next: any) => (action: any) => {
     const URL = "http://localhost:3000";
-    const socket = io(URL, { autoConnect: false });
+    let socket: Socket | null = null;
 
-    socket.onAny((event, ...args) => {
-        console.log(event, args);
-    });
+    const setupSocket = (auth: any) => {
+        if (!socket) socket = io(URL, { autoConnect: false });
 
-    socket.on("connect_error", (err) => {
-        if (err.message === "invalid username") {
-            storeAPI.dispatch(signOut());
-        }
-    });
+        socket.auth = auth;
+        socket.connect();
+
+        socket.on("connect_error", (err) => {
+            if (err.message === "invalid username") {
+                storeAPI.dispatch(signOut());
+            }
+        });
+
+        socket.on("session", ({ sessionID, username }) => {
+            localStorage.setItem("sessionID", sessionID);
+            storeAPI.dispatch(
+                sessionSucess({
+                    username,
+                    sessionID,
+                    isConnected: true,
+                })
+            );
+        });
+    };
 
     switch (action.type) {
+        case "messaging/login":
+            const sessionID = localStorage.getItem("sessionID");
+            if (sessionID) {
+                setupSocket({ sessionID });
+            }
+            break;
         case "messaging/signUp":
-            socket.auth = { username: action.payload };
-            socket.connect();
+            setupSocket({ username: action.payload });
             break;
     }
 

@@ -6,12 +6,14 @@
     "author": "Jorge Moreira",
     "license": "MIT",
     "dependencies": {
+        "crypto": "^1.0.1",
         "debug": "^4.3.1",
         "express": "^4.17.1",
         "http": "^0.0.1-security",
         "socket.io": "^4.0.1"
     },
     "scripts": {
-        "serve": "set DEBUG=socket.io:client & node index.tsx"
+        "serve": "node index.js",
+        "debug": "set DEBUG=socket.io:client & node index.js"
     }
 }

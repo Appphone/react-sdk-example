@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Message } from "../models/Message";
 import MessagingEvent from "../models/MessagingEvent";
 import Room from "../models/Room";
-import Socket from "../models/Socket";
+import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
-    socket?: Socket;
+    socket?: SocketMeta;
     activeRoom?: Room;
     rooms?: Room[];
 }
@@ -16,13 +16,17 @@ const messagingSlice = createSlice({
     name: "messaging",
     initialState,
     reducers: {
+        login() {},
         signUp(state, action: PayloadAction<string>) {
-            state.socket = { username: action.payload, isConnected: true };
+            state.socket = { username: action.payload, isConnected: false };
         },
         signOut(state) {
             state.socket = undefined;
             state.activeRoom = undefined;
             state.rooms = undefined;
+        },
+        sessionSucess(state, action: PayloadAction<SocketMeta>) {
+            state.socket = action.payload;
         },
         joinRoom(state, action: PayloadAction<string>) {
             state.rooms?.push({
@@ -57,8 +61,10 @@ const messagingSlice = createSlice({
 export default messagingSlice.reducer;
 
 export const {
+    login,
     signUp,
     signOut,
+    sessionSucess,
     joinRoom,
     goToRoom,
     leaveRoom,
