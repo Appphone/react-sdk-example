@@ -1,22 +1,33 @@
 import React from "react";
-import { Message } from "../../../models/Message";
+import ChatEvent, { ChatDataType } from "../../../models/ChatEvent";
 import RoomMessageSlot from "../message-list-slot/MessageListSlot";
 import "./MessageList.css";
 
 export interface MessageListProps {
-    messages: Message[];
+    userId: string;
+    events: ChatEvent[];
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
-    const renderedMessages = messages.map((message, index) => (
-        <RoomMessageSlot
-            message={message}
-            isLastOfType={
-                index + 1 === messages.length ||
-                message.isFromSelf !== messages[index + 1].isFromSelf
-            }
-        />
-    ));
+const MessageList: React.FC<MessageListProps> = ({ userId, events }) => {
+    const renderedMessages = events.map((event, index) => {
+        switch (event.type) {
+            case ChatDataType.Message:
+                return (
+                    <RoomMessageSlot
+                        key={event.localId}
+                        message={event}
+                        isLastOfType={
+                            index + 1 === events.length ||
+                            event.type !== events[index + 1].type ||
+                            event.senderId !== events[index + 1].senderId
+                        }
+                        isFromSelf={userId === event.senderId}
+                    />
+                );
+            default:
+                return null;
+        }
+    });
 
     return <div className="message-list">{renderedMessages}</div>;
 };

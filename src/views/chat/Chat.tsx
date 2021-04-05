@@ -1,21 +1,16 @@
 import React from "react";
-import { Message } from "../../models/Message";
-import MessageList from "../message/message-list/MessageList";
-import MessageSender from "../message/message-sender/MessageSender";
+import MessageListConnect from "../message/message-list/MessageListConnect";
+import MessageSenderConnect from "../message/message-sender/MessageSenderConnect";
 import "./Chat.css";
 
-export interface ChatProps {
-    messages: Message[];
-}
-
-const Chat: React.FC<ChatProps> = ({ messages }) => {
+const Chat: React.FC = () => {
     return (
         <div className="chat">
             <div className="chat__messages">
-                <MessageList messages={messages} />
+                <MessageListConnect />
             </div>
             <div className="chat__sender">
-                <MessageSender />
+                <MessageSenderConnect />
             </div>
         </div>
     );

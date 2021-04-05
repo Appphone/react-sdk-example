@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Message } from "../models/Message";
-import MessagingEvent from "../models/MessagingEvent";
+import ChatEvent from "../models/ChatEvent";
 import Room from "../models/Room";
 import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
     socket?: SocketMeta;
-    activeRoom?: Room;
+    activeRoomId?: string;
     rooms?: Room[];
 }
 
@@ -22,12 +21,13 @@ const messagingSlice = createSlice({
         },
         signOut(state) {
             state.socket = undefined;
-            state.activeRoom = undefined;
+            state.activeRoomId = undefined;
             state.rooms = undefined;
         },
         sessionSucess(state, action: PayloadAction<SocketMeta>) {
             state.socket = action.payload;
             state.rooms = [];
+            // todo: restore active room
         },
         joinRoom(state, action: PayloadAction<string>) {
             state.rooms?.push({
@@ -61,10 +61,8 @@ const messagingSlice = createSlice({
                 events: [],
             });
         },
-        goToRoom(state, action: PayloadAction<string>) {
-            state.activeRoom = state.rooms?.find(
-                (room) => room.id === action.payload
-            );
+        openRoom(state, action: PayloadAction<{ id: string }>) {
+            state.activeRoomId = action.payload.id;
         },
         leaveRoom(state, action: PayloadAction<string>) {
             const indexToRemove = state.rooms?.findIndex(
@@ -74,11 +72,37 @@ const messagingSlice = createSlice({
                 state.rooms?.splice(indexToRemove, 1);
             }
         },
-        sendMessage(state, action: PayloadAction<Message>) {
-            state.activeRoom?.events.push(action.payload);
+        sendMessage(state, action: PayloadAction<ChatEvent>) {
+            const activeRoom = state.rooms?.find(
+                (room) => room.id === state.activeRoomId
+            );
+            activeRoom?.events.push(action.payload);
         },
-        appendReceivedEvent(state, action: PayloadAction<MessagingEvent>) {
-            state.activeRoom?.events.push(action.payload);
+        sendMessageSuccess(
+            state,
+            action: PayloadAction<{
+                localId: string;
+                id: string;
+                roomId: string;
+            }>
+        ) {
+            const room = state.rooms?.find(
+                (room) => room.id === action.payload.roomId
+            );
+            if (room) {
+                const event = room.events?.find((event) => event.localId);
+                if (event) {
+                    event.id = action.payload.id;
+                }
+            }
+        },
+        appendReceivedEvent(state, action: PayloadAction<ChatEvent>) {
+            const room = state.rooms?.find(
+                (room) => room.id === action.payload.roomId
+            );
+            if (room) {
+                room.events?.push(action.payload);
+            }
         },
     },
 });
@@ -94,7 +118,9 @@ export const {
     joinRoomSuccess,
     joinNewRoom,
     joinNewRoomSuccess,
-    goToRoom,
+    openRoom,
     leaveRoom,
     sendMessage,
+    sendMessageSuccess,
+    appendReceivedEvent,
 } = messagingSlice.actions;

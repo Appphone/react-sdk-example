@@ -1,7 +1,9 @@
 import { io, Socket } from "socket.io-client";
 import {
+    appendReceivedEvent,
     joinNewRoomSuccess,
     joinRoomSuccess,
+    sendMessageSuccess,
     sessionSucess,
     signOut,
 } from "./reducer";
@@ -22,19 +24,24 @@ const socketMiddleware = () => {
             }
         });
 
-        socket.on("session", ({ sessionID, username, rooms }) => {
-            localStorage.setItem("sessionID", sessionID);
+        socket.on("session", ({ sessionId, userId, username, rooms }) => {
+            localStorage.setItem("sessionId", sessionId);
             storeAPI.dispatch(
                 sessionSucess({
                     username,
-                    sessionID,
+                    userId,
+                    sessionId,
                     isConnected: true,
                 })
             );
 
-            rooms.forEach((room: any) =>
-                storeAPI.dispatch(joinRoomSuccess(room.id))
+            rooms.forEach((roomId: any) =>
+                storeAPI.dispatch(joinRoomSuccess(roomId))
             );
+        });
+
+        socket.on("message", (event) => {
+            storeAPI.dispatch(appendReceivedEvent(event));
         });
     };
 
@@ -42,9 +49,9 @@ const socketMiddleware = () => {
     return (storeAPI: any) => (next: any) => (action: any) => {
         switch (action.type) {
             case "messaging/login":
-                const sessionID = localStorage.getItem("sessionID");
-                if (sessionID) {
-                    setupSocket(storeAPI, { sessionID });
+                const sessionId = localStorage.getItem("sessionId");
+                if (sessionId) {
+                    setupSocket(storeAPI, { sessionId });
                 }
                 break;
             case "messaging/signUp":
@@ -52,12 +59,27 @@ const socketMiddleware = () => {
                 break;
             case "messaging/signOut":
                 if (socket) socket.disconnect();
-                localStorage.removeItem("sessionID");
+                localStorage.removeItem("sessionId");
                 break;
             case "messaging/joinNewRoom":
-                socket?.emit("rooms:join-new", (room: any) => {
-                    storeAPI.dispatch(joinNewRoomSuccess(room.id));
+                socket?.emit("rooms:join-new", ({ id }: { id: string }) => {
+                    storeAPI.dispatch(joinNewRoomSuccess(id));
                 });
+                break;
+            case "messaging/sendMessage":
+                socket?.emit(
+                    "message",
+                    action.payload,
+                    ({ id }: { id: string }) => {
+                        storeAPI.dispatch(
+                            sendMessageSuccess({
+                                id,
+                                localId: action.payload.localId,
+                                roomId: action.payload.roomId,
+                            })
+                        );
+                    }
+                );
                 break;
         }
 

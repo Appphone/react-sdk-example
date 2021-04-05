@@ -1,6 +1,6 @@
 import React from "react";
 import Room from "../../../models/Room";
-import RoomListItem from "../room-list-item/RoomListItem";
+import RoomListItemConnect from "../room-list-item/RoomListItemConnect";
 import "./RoomList.css";
 
 export interface RoomListProps {
@@ -9,7 +9,7 @@ export interface RoomListProps {
 
 const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
     const renderedRooms = rooms.map((room) => (
-        <RoomListItem room={room} onClick={() => {}} />
+        <RoomListItemConnect key={room.id} room={room} />
     ));
 
     return <ul className="room-list">{renderedRooms}</ul>;

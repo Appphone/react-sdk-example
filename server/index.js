@@ -14,15 +14,17 @@ const io = require("socket.io")(httpServer, {
 });
 
 io.use(async (socket, next) => {
-    const sessionID = socket.handshake.auth.sessionID;
-    if (sessionID) {
-        const session = sessionStore.findSession(sessionID);
+    const sessionId = socket.handshake.auth.sessionId;
+    if (sessionId) {
+        const session = sessionStore.findSession(sessionId);
         if (session) {
-            socket.sessionID = sessionID;
-            socket.userID = session.userID;
+            socket.sessionId = sessionId;
+            socket.userId = session.userId;
             socket.username = session.username;
 
-            session.rooms.forEach((roomId) => socket.join(roomId));
+            if (session.rooms) {
+                session.rooms.forEach((roomId) => socket.join(roomId));
+            }
 
             return next();
         }
@@ -33,55 +35,61 @@ io.use(async (socket, next) => {
         return next(new Error("invalid username"));
     }
 
-    socket.sessionID = randomId();
-    socket.userID = randomId();
+    socket.sessionId = randomId();
+    socket.userId = randomId();
     socket.username = username;
     next();
 });
 
 io.on("connection", (socket) => {
-    sessionStore.saveSession(socket.sessionID, {
-        userID: socket.userID,
+    sessionStore.saveSession(socket.sessionId, {
+        userId: socket.userId,
         username: socket.username,
         connected: true,
     });
 
     socket.emit("session", {
-        sessionID: socket.sessionID,
-        userID: socket.userID,
+        sessionId: socket.sessionId,
+        userId: socket.userId,
         username: socket.username,
         rooms: [...socket.rooms.values()].filter((id) => id !== socket.id),
     });
 
-    socket.join(socket.userID);
+    socket.join(socket.userId);
 
     socket.on("rooms:join-new", (callback) => {
         const roomId = "room://" + randomId();
-
         socket.join(roomId);
 
-        callback({ id: roomId });
-    });
-
-    socket.on("disconnecting", () => {
         const rooms = [...socket.rooms.values()].filter(
             (id) => id.indexOf("room://") === 0
         );
 
-        sessionStore.saveSession(socket.sessionID, {
-            userID: socket.userID,
+        sessionStore.saveSession(socket.sessionId, {
+            userId: socket.userId,
             username: socket.username,
             rooms,
             connected: true,
         });
+
+        callback({ id: roomId });
+    });
+
+    socket.on("message", (event, callback) => {
+        // todo add type
+        if (event.type === 0) {
+            event.id = randomId();
+            socket.to(event.roomId).emit("message", event);
+            callback({ id: event.id });
+        }
     });
 
     socket.on("disconnect", async () => {
-        const matchingSockets = await io.in(socket.userID).allSockets();
+        const matchingSockets = await io.in(socket.userId).allSockets();
         const isDisconnected = matchingSockets.size === 0;
         if (isDisconnected) {
-            const session = sessionStore.findSession(socket.sessionID);
-            sessionStore.saveSession(socket.sessionID, {
+            const session = sessionStore.findSession(socket.sessionId);
+            sessionStore.saveSession(socket.sessionId, {
                 ...session,
                 connected: false,
             });

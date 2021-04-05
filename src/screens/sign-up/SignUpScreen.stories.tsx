@@ -1,17 +1,10 @@
 import SignUpScreen from "./SignUpScreen";
 import { Story } from "@storybook/react/types-6-0";
-import { action } from "@storybook/addon-actions";
 import { Provider } from "react-redux";
 import { Store } from "redux";
+import { getStoreMock } from "../../utils/mocks";
 
-// Mock of a redux store
-const store = {
-    getState: () => {
-        return {};
-    },
-    subscribe: () => 0,
-    dispatch: action("dispatch"),
-};
+const store = getStoreMock({});
 
 export default {
     title: "Screen/SignUpScreen",

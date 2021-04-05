@@ -1,21 +1,39 @@
+import { action } from "@storybook/addon-actions";
 import faker from "faker";
-import { Message } from "../models/Message";
+import { v4 as uuid } from "uuid";
+import ChatEvent, { ChatDataType } from "../models/ChatEvent";
 import Room from "../models/Room";
+import { RootState } from "../store/store";
 
 interface MockFactory<T> {
     one: () => T;
     many: (count?: number) => Array<T>;
 }
 
-// Message
+// Store
 
-const getMessage: () => Message = () => ({
-    createdAt: new Date(),
-    content: faker.lorem.words(),
-    isFromSelf: faker.datatype.number() % 2 === 0,
+export const getStoreMock = (state: RootState) => ({
+    getState: () => {
+        return state;
+    },
+    subscribe: () => 0,
+    dispatch: action("dispatch"),
 });
 
-export const messageMockFactory: MockFactory<Message> = {
+// Message
+
+const getMessage: () => ChatEvent = () => ({
+    localId: uuid(),
+    createdAt: new Date().toISOString(),
+    roomId: "1",
+    senderId: "1",
+    type: ChatDataType.Message,
+    data: {
+        content: faker.lorem.words(),
+    },
+});
+
+export const messageMockFactory: MockFactory<ChatEvent> = {
     one: getMessage,
     many: (count = 10) => [...new Array(count)].map(getMessage),
 };

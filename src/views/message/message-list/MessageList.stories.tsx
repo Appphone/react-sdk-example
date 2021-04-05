@@ -12,4 +12,4 @@ const Template: Story<MessageListProps> = (args: MessageListProps) => (
 );
 
 export const Default = Template.bind({});
-Default.args = { messages: messageMockFactory.many() };
+Default.args = { events: messageMockFactory.many() };

@@ -3,11 +3,18 @@ import Button from "../../button/Button";
 import TextField from "../../text-field/TextField";
 import "./MessageSender.css";
 
-const MessageSender: React.FC = () => {
+export interface MessageSenderProps {
+    onSubmit: (content: string) => void;
+}
+
+const MessageSender: React.FC<MessageSenderProps> = ({ onSubmit }) => {
     const [content, setContent] = useState("");
 
-    const onSubmit = () => {
-        console.log(content);
+    const onSubmitClick = () => {
+        if (content.length) {
+            onSubmit(content);
+            setContent("");
+        }
     };
 
     return (
@@ -19,7 +26,9 @@ const MessageSender: React.FC = () => {
                     onInput={setContent}
                 />
             </div>
-            <Button onClick={onSubmit}>Send</Button>
+            <Button disabled={!content.length} onClick={onSubmitClick}>
+                Send
+            </Button>
         </div>
     );
 };

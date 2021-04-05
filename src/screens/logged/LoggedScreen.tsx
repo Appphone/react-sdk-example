@@ -7,7 +7,7 @@ const LoggedScreen: React.FC = () => {
     return (
         <div className="logged">
             <SidebarConnect />
-            <Chat messages={[]} />
+            <Chat />
         </div>
     );
 };

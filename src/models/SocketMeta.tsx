@@ -1,5 +1,6 @@
 export default interface SocketMeta {
     username: string;
-    sessionID?: string;
+    userId?: string;
+    sessionId?: string;
     isConnected: boolean;
 }

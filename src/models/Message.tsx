@@ -1,5 +1,3 @@
-export interface Message {
+export default interface Message {
     content: string;
-    isFromSelf: boolean;
-    createdAt: Date;
 }

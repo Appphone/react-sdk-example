@@ -1,18 +1,10 @@
 import LoggedScreen from "./LoggedScreen";
 import { Story } from "@storybook/react/types-6-0";
-import { roomMockFactory } from "../../utils/mocks";
-import { action } from "@storybook/addon-actions";
-import { Provider } from "react-redux";
+import { getStoreMock, roomMockFactory } from "../../utils/mocks";
 import { Store } from "redux";
+import { Provider } from "react-redux";
 
-// Mock of a redux store
-const store = {
-    getState: () => {
-        return { rooms: roomMockFactory.many() };
-    },
-    subscribe: () => 0,
-    dispatch: action("dispatch"),
-};
+const store = getStoreMock({ rooms: roomMockFactory.many() });
 
 export default {
     title: "Screen/LoggedScreen",
