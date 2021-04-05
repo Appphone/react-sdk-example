@@ -29,14 +29,15 @@ const messagingSlice = createSlice({
             state.rooms = [];
             // todo: restore active room
         },
-        joinRoom(state, action: PayloadAction<string>) {
+        joinRoom(state, action: PayloadAction<{ id: string }>) {
             state.rooms?.push({
-                id: action.payload,
+                id: action.payload.id,
                 isConnected: false,
                 unreadCount: 0,
                 events: [],
             });
         },
+        joinNewRoom() {},
         joinRoomSuccess(state, action: PayloadAction<string>) {
             const room = state.rooms?.find(
                 (room) => room.id === action.payload
@@ -51,15 +52,6 @@ const messagingSlice = createSlice({
                     events: [],
                 });
             }
-        },
-        joinNewRoom() {},
-        joinNewRoomSuccess(state, action: PayloadAction<string>) {
-            state.rooms?.push({
-                id: action.payload,
-                isConnected: true,
-                unreadCount: 0,
-                events: [],
-            });
         },
         openRoom(state, action: PayloadAction<{ id: string }>) {
             state.activeRoomId = action.payload.id;
@@ -115,9 +107,8 @@ export const {
     signOut,
     sessionSucess,
     joinRoom,
-    joinRoomSuccess,
     joinNewRoom,
-    joinNewRoomSuccess,
+    joinRoomSuccess,
     openRoom,
     leaveRoom,
     sendMessage,

@@ -6,10 +6,6 @@
     display: flex;
 }
 
-.signup__form__step + .signup__form__step {
-    margin-top: 1rem;
-}
-
 .signup__form__step > :first-child {
     margin-right: 1rem;
 }

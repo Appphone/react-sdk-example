@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { joinNewRoom, signUp } from "../../store/reducer";
+import { joinNewRoom, joinRoom, signUp } from "../../store/reducer";
 import { SignUpRoomOption } from "../sign-up-form-room-option/SignUpFormRoomOption";
 import SignUpForm, { SignUpFormStep } from "./SignUpForm";
 
@@ -20,6 +20,10 @@ const SignUpFormConnect: React.FC = () => {
         }
     };
 
+    const onEnterRoomId = (id: string) => {
+        dispatch(joinRoom({ id }));
+    };
+
     let step: SignUpFormStep | undefined = undefined;
 
     if (!isConnected) {
@@ -37,6 +41,7 @@ const SignUpFormConnect: React.FC = () => {
             step={step}
             onUsernameSet={onUsernameSet}
             onChooseRoomOption={onChooseRoomOption}
+            onEnterRoomId={onEnterRoomId}
         />
     ) : null;
 };

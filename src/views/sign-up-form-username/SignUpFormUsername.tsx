@@ -28,18 +28,15 @@ const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({
     };
 
     return (
-        <div className="signup__form__step">
-            <p className="font-extra-bold">1)</p>
-            <div>
-                <p>Choose a username</p>
-                <p className="text-sm">
-                    Only alphanumeric characteres are allowed, without spaces
-                </p>
-                <Field error={usernameError}>
-                    <TextField onInput={validateUsername} />
-                </Field>
-                <Button onClick={onSubmitClick}>Next</Button>
-            </div>
+        <div>
+            <Field
+                label="Choose a username"
+                hint="Only alphanumeric characteres are allowed, without spaces"
+                error={usernameError}
+            >
+                <TextField onInput={validateUsername} />
+            </Field>
+            <Button onClick={onSubmitClick}>Next</Button>
         </div>
     );
 };

@@ -14,7 +14,7 @@ const MessageList: React.FC<MessageListProps> = ({ userId, events }) => {
             case ChatDataType.Message:
                 return (
                     <RoomMessageSlot
-                        key={event.localId}
+                        key={event.localId || event.id}
                         message={event}
                         isLastOfType={
                             index + 1 === events.length ||

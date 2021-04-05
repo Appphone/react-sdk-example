@@ -1,7 +1,6 @@
 import { io, Socket } from "socket.io-client";
 import {
     appendReceivedEvent,
-    joinNewRoomSuccess,
     joinRoomSuccess,
     sendMessageSuccess,
     sessionSucess,
@@ -47,6 +46,10 @@ const socketMiddleware = () => {
 
     // todo specify types
     return (storeAPI: any) => (next: any) => (action: any) => {
+        // always let the reducers react to actions immediately, to give visual feedback
+        // can use ACKs later to update state when appropriate
+        next(action);
+
         switch (action.type) {
             case "messaging/login":
                 const sessionId = localStorage.getItem("sessionId");
@@ -61,9 +64,14 @@ const socketMiddleware = () => {
                 if (socket) socket.disconnect();
                 localStorage.removeItem("sessionId");
                 break;
+            case "messaging/joinRoom":
+                socket?.emit("rooms:join", action.payload.id, () => {
+                    storeAPI.dispatch(joinRoomSuccess(action.payload.id));
+                });
+                break;
             case "messaging/joinNewRoom":
                 socket?.emit("rooms:join-new", ({ id }: { id: string }) => {
-                    storeAPI.dispatch(joinNewRoomSuccess(id));
+                    storeAPI.dispatch(joinRoomSuccess(id));
                 });
                 break;
             case "messaging/sendMessage":
@@ -82,8 +90,6 @@ const socketMiddleware = () => {
                 );
                 break;
         }
-
-        next(action);
     };
 };
 

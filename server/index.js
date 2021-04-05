@@ -3,6 +3,8 @@ const httpServer = require("http").createServer(app);
 const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
 
+const log = true;
+
 const sessionStore = new SessionStore();
 
 const randomId = () => crypto.randomBytes(8).toString("hex");
@@ -12,6 +14,19 @@ const io = require("socket.io")(httpServer, {
         origin: "http://localhost:8080",
     },
 });
+
+const saveSocketRooms = (socket) => {
+    const rooms = [...socket.rooms.values()].filter(
+        (id) => id.indexOf("room://") === 0
+    );
+
+    sessionStore.saveSession(socket.sessionId, {
+        userId: socket.userId,
+        username: socket.username,
+        rooms,
+        connected: true,
+    });
+};
 
 io.use(async (socket, next) => {
     const sessionId = socket.handshake.auth.sessionId;
@@ -61,23 +76,24 @@ io.on("connection", (socket) => {
         const roomId = "room://" + randomId();
         socket.join(roomId);
 
-        const rooms = [...socket.rooms.values()].filter(
-            (id) => id.indexOf("room://") === 0
-        );
-
-        sessionStore.saveSession(socket.sessionId, {
-            userId: socket.userId,
-            username: socket.username,
-            rooms,
-            connected: true,
-        });
+        saveSocketRooms(socket);
 
         callback({ id: roomId });
+    });
+
+    socket.on("rooms:join", (id, callback) => {
+        const roomId = `${id}`;
+        socket.join(roomId);
+
+        saveSocketRooms(socket);
+
+        callback();
     });
 
     socket.on("message", (event, callback) => {
         // todo add type
         if (event.type === 0) {
+            if (log) console.log("sending message", event.data.content);
             event.id = randomId();
             socket.to(event.roomId).emit("message", event);
             callback({ id: event.id });
