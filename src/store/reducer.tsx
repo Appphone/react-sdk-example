@@ -55,6 +55,13 @@ const messagingSlice = createSlice({
         },
         openRoom(state, action: PayloadAction<{ id: string }>) {
             state.activeRoomId = action.payload.id;
+            const room = state.rooms?.find(
+                (room) => room.id === action.payload.id
+            );
+            if (room && room.isConnected) {
+                room.unreadCount = 0;
+                state.activeRoomId = action.payload.id;
+            }
         },
         leaveRoom(state, action: PayloadAction<string>) {
             const indexToRemove = state.rooms?.findIndex(
@@ -94,6 +101,7 @@ const messagingSlice = createSlice({
             );
             if (room) {
                 room.events?.push(action.payload);
+                room.unreadCount += room.id === state.activeRoomId ? 1 : 0;
             }
         },
     },
