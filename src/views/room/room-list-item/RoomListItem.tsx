@@ -1,6 +1,6 @@
-import classNames from "classnames";
 import React from "react";
 import Room from "../../../models/Room";
+import SidebarListItem from "../../sidebar-list-item/SidebarListItem";
 import "./RoomListItem.css";
 
 export interface RoomListItemProps {
@@ -14,15 +14,15 @@ const RoomListItem: React.FC<RoomListItemProps> = ({
     isActive,
     onClick,
 }) => {
-    const className = classNames("room-list__item text-sm", {
-        "room-list__item--active": isActive,
-    });
-
     return (
-        <li className={className} onClick={onClick}>
-            <div className="room-list__item__label">{id}</div>
-            <div className="room-list__item__badge">{unreadCount}</div>
-        </li>
+        <SidebarListItem isActive={isActive} onClick={onClick}>
+            <div className="sidebar__list__item__room">
+                <div className="sidebar__list__item__room__label">{id}</div>
+                <div className="sidebar__list__item__room__badge">
+                    {unreadCount}
+                </div>
+            </div>
+        </SidebarListItem>
     );
 };
 

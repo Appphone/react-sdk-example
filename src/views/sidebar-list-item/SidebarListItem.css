@@ -1,0 +1,15 @@
+.sidebar__list__item {
+    padding: 0 1rem;
+    color: white;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.sidebar__list__item:hover {
+    background-color: var(--color-accent);
+}
+
+.sidebar__list__item--active,
+.sidebar__list__item:active {
+    background-color: var(--color-accent-dark);
+}

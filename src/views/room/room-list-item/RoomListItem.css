@@ -1,27 +1,13 @@
-.room-list__item {
+.sidebar__list__item__room {
     display: flex;
     align-items: center;
-    background-color: var(--color-black);
-    padding: 0 1rem;
-    color: white;
-    height: 1.5rem;
-    cursor: pointer;
 }
 
-.room-list__item:hover {
-    background-color: var(--color-accent);
-}
-
-.room-list__item--active,
-.room-list__item:active {
-    background-color: var(--color-accent-dark);
-}
-
-.room-list__item__label {
+.sidebar__list__item__room__label {
     flex: 1 0 auto;
 }
 
-.room-list__item__badge {
+.sidebar__list__item__room__badge {
     flex: 0 0 auto;
     background-color: var(--color-accent);
     color: white;

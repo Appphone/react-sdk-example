@@ -3,8 +3,9 @@ import { Story } from "@storybook/react/types-6-0";
 import { Provider } from "react-redux";
 import { Store } from "redux";
 import { getStoreMock } from "../../utils/mocks";
+import LoggedScreenType from "../../models/LoggedScreenType";
 
-const store = getStoreMock({});
+const store = getStoreMock({ activeScreenType: LoggedScreenType.Chat });
 
 export default {
     title: "Screen/SignUpScreen",

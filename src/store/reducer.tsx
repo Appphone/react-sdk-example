@@ -1,20 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ChatEvent from "../models/ChatEvent";
+import LoggedScreenType from "../models/LoggedScreenType";
 import Room from "../models/Room";
 import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
+    activeScreenType: LoggedScreenType;
     socket?: SocketMeta;
     activeRoomId?: string;
     rooms?: Room[];
 }
 
-const initialState: MessagingState = {};
+const initialState: MessagingState = {
+    activeScreenType: LoggedScreenType.Chat,
+};
 
 const messagingSlice = createSlice({
     name: "messaging",
     initialState,
     reducers: {
+        showRoomCreator(state) {
+            state.activeScreenType = LoggedScreenType.RoomCreator;
+            state.activeRoomId = undefined;
+        },
         login() {},
         signUp(state, action: PayloadAction<string>) {
             state.socket = { username: action.payload, isConnected: false };
@@ -54,12 +62,12 @@ const messagingSlice = createSlice({
             }
         },
         openRoom(state, action: PayloadAction<{ id: string }>) {
-            state.activeRoomId = action.payload.id;
             const room = state.rooms?.find(
                 (room) => room.id === action.payload.id
             );
             if (room && room.isConnected) {
                 room.unreadCount = 0;
+                state.activeScreenType = LoggedScreenType.Chat;
                 state.activeRoomId = action.payload.id;
             }
         },
@@ -101,7 +109,7 @@ const messagingSlice = createSlice({
             );
             if (room) {
                 room.events?.push(action.payload);
-                room.unreadCount += room.id === state.activeRoomId ? 1 : 0;
+                room.unreadCount += room.id !== state.activeRoomId ? 1 : 0;
             }
         },
     },
@@ -110,6 +118,7 @@ const messagingSlice = createSlice({
 export default messagingSlice.reducer;
 
 export const {
+    showRoomCreator,
     login,
     signUp,
     signOut,

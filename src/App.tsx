@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import Layout from "./views/layout/Layout";
 import { login } from "./store/reducer";
-import LoggedScreen from "./screens/logged/LoggedScreen";
 import SignUpScreen from "./screens/sign-up/SignUpScreen";
+import LoggedScreenConnect from "./screens/logged/LoggedScreenConnect";
 
 const App: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         dispatch(login());
     }, [dispatch]);
 
-    const content = isLoggedIn ? <LoggedScreen /> : <SignUpScreen />;
+    const content = isLoggedIn ? <LoggedScreenConnect /> : <SignUpScreen />;
 
     return <Layout>{content}</Layout>;
 };

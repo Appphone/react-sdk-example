@@ -1,10 +1,14 @@
-import LoggedScreen from "./LoggedScreen";
+import LoggedScreen, { LoggedScreenProps } from "./LoggedScreen";
 import { Story } from "@storybook/react/types-6-0";
 import { getStoreMock, roomMockFactory } from "../../utils/mocks";
 import { Store } from "redux";
 import { Provider } from "react-redux";
+import LoggedScreenType from "../../models/LoggedScreenType";
 
-const store = getStoreMock({ rooms: roomMockFactory.many() });
+const store = getStoreMock({
+    activeScreenType: LoggedScreenType.Chat,
+    rooms: roomMockFactory.many(),
+});
 
 export default {
     title: "Screen/LoggedScreen",
@@ -16,7 +20,7 @@ export default {
     component: LoggedScreen,
 };
 
-const Template: Story = (args) => <LoggedScreen {...args} />;
+const Template: Story<LoggedScreenProps> = (args) => <LoggedScreen {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = { type: LoggedScreenType.Chat };

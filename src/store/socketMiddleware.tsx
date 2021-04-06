@@ -2,6 +2,7 @@ import { io, Socket } from "socket.io-client";
 import {
     appendReceivedEvent,
     joinRoomSuccess,
+    openRoom,
     sendMessageSuccess,
     sessionSucess,
     signOut,
@@ -67,11 +68,13 @@ const socketMiddleware = () => {
             case "messaging/joinRoom":
                 socket?.emit("rooms:join", action.payload.id, () => {
                     storeAPI.dispatch(joinRoomSuccess(action.payload.id));
+                    storeAPI.dispatch(openRoom({ id: action.payload.id }));
                 });
                 break;
             case "messaging/joinNewRoom":
                 socket?.emit("rooms:join-new", ({ id }: { id: string }) => {
                     storeAPI.dispatch(joinRoomSuccess(id));
+                    storeAPI.dispatch(openRoom({ id }));
                 });
                 break;
             case "messaging/sendMessage":

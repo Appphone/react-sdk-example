@@ -1,7 +1,8 @@
 import React from "react";
 import Room from "../../../models/Room";
+import SidebarList from "../../sidebar-list/SidebarList";
+import RoomCreatorLinkConnect from "../room-creator-link/RoomCreatorLinkConnect";
 import RoomListItemConnect from "../room-list-item/RoomListItemConnect";
-import "./RoomList.css";
 
 export interface RoomListProps {
     rooms: Room[];
@@ -12,7 +13,12 @@ const RoomList: React.FC<RoomListProps> = ({ rooms }) => {
         <RoomListItemConnect key={room.id} room={room} />
     ));
 
-    return <ul className="room-list">{renderedRooms}</ul>;
+    return (
+        <SidebarList>
+            {renderedRooms}
+            <RoomCreatorLinkConnect />
+        </SidebarList>
+    );
 };
 
 export default RoomList;
