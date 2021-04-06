@@ -1,6 +1,6 @@
 import React from "react";
 import Room from "../../../models/Room";
-import SidebarList from "../../sidebar-list/SidebarList";
+import SidebarList from "../../sidebar/sidebar-list/SidebarList";
 import RoomCreatorLinkConnect from "../room-creator-link/RoomCreatorLinkConnect";
 import RoomListItemConnect from "../room-list-item/RoomListItemConnect";
 

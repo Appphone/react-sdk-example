@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import TextField from "../text-field/TextField";
+import TextField from "../../text-field/TextField";
 import Field from "@bit/jorgemoreira.react.input.field";
-import Button from "../button/Button";
+import Button from "../../button/Button";
 
-export interface SignUpFormUsernameProps {
+export interface UsernameFormProps {
     onSubmit: (username: string) => void;
 }
 
-const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({
-    onSubmit,
-}) => {
+const UsernameForm: React.FC<UsernameFormProps> = ({ onSubmit }) => {
     const [username, setUsername] = useState("");
     const [usernameError, setUsernameError] = useState<string | boolean>(false);
 
@@ -41,4 +39,4 @@ const SignUpFormUsername: React.FC<SignUpFormUsernameProps> = ({
     );
 };
 
-export default SignUpFormUsername;
+export default UsernameForm;

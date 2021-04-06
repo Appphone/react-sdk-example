@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../button/Button";
-import RoomListConnect from "../room/room-list/RoomListConnect";
+import Button from "../../button/Button";
+import RoomListConnect from "../../room/room-list/RoomListConnect";
 import "./Sidebar.css";
 
 export interface SidebarProps {

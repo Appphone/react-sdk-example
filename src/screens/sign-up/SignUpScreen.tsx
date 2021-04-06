@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpFormConnect from "../../views/sign-up-form/SignUpFormConnect";
+import SignUpFormConnect from "../../views/user/sign-up-form/SignUpFormConnect";
 import "./SignUpScreen.css";
 
 const SignUpScreen: React.FC = () => {

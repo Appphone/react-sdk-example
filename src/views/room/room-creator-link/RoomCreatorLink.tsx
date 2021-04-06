@@ -1,5 +1,5 @@
 import React from "react";
-import SidebarListItem from "../../sidebar-list-item/SidebarListItem";
+import SidebarListItem from "../../sidebar/sidebar-list-item/SidebarListItem";
 
 export interface RoomCreatorLinkProps {
     isActive: boolean;

@@ -1,19 +1,17 @@
 import Field from "@bit/jorgemoreira.react.input.field";
 import React from "react";
-import Button from "../button/Button";
+import Button from "../../button/Button";
 
-export enum SignUpRoomOption {
+export enum RoomOption {
     New,
     Existing,
 }
 
-export interface SignUpFormRoomOptionProps {
-    onSubmit: (option: SignUpRoomOption) => void;
+export interface RoomOptionFormProps {
+    onSubmit: (option: RoomOption) => void;
 }
 
-const SignUpFormRoomOption: React.FC<SignUpFormRoomOptionProps> = ({
-    onSubmit,
-}) => {
+const RoomOptionForm: React.FC<RoomOptionFormProps> = ({ onSubmit }) => {
     return (
         <div>
             <Field
@@ -21,10 +19,10 @@ const SignUpFormRoomOption: React.FC<SignUpFormRoomOptionProps> = ({
                 hint="You will be able to join multiple rooms later"
             />
             <div>
-                <Button onClick={() => onSubmit(SignUpRoomOption.New)}>
+                <Button onClick={() => onSubmit(RoomOption.New)}>
                     Join a new room
                 </Button>
-                <Button onClick={() => onSubmit(SignUpRoomOption.Existing)}>
+                <Button onClick={() => onSubmit(RoomOption.Existing)}>
                     Join an existing room
                 </Button>
             </div>
@@ -32,4 +30,4 @@ const SignUpFormRoomOption: React.FC<SignUpFormRoomOptionProps> = ({
     );
 };
 
-export default SignUpFormRoomOption;
+export default RoomOptionForm;

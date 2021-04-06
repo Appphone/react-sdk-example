@@ -1,13 +1,13 @@
 import Field from "@bit/jorgemoreira.react.input.field";
 import React, { useState } from "react";
-import Button from "../button/Button";
-import TextField from "../text-field/TextField";
+import Button from "../../button/Button";
+import TextField from "../../text-field/TextField";
 
-export interface SignUpFormRoomIdProps {
+export interface RoomIdFormProps {
     onSubmit: (id: string) => void;
 }
 
-const SignUpFormRoomId: React.FC<SignUpFormRoomIdProps> = ({ onSubmit }) => {
+const RoomIdForm: React.FC<RoomIdFormProps> = ({ onSubmit }) => {
     const [id, setId] = useState<string>();
 
     return (
@@ -20,4 +20,4 @@ const SignUpFormRoomId: React.FC<SignUpFormRoomIdProps> = ({ onSubmit }) => {
     );
 };
 
-export default SignUpFormRoomId;
+export default RoomIdForm;

@@ -1,9 +1,9 @@
 import React from "react";
-import SignUpFormRoomOption, {
-    SignUpRoomOption,
-} from "../sign-up-form-room-option/SignUpFormRoomOption";
-import SignUpFormUsername from "../sign-up-form-username/SignUpFormUsername";
-import SignUpFormRoomId from "../sign-up-room-id/SignUpFormRoomId";
+import RoomIdForm from "../../room/room-id-form/RoomIdForm";
+import RoomOptionForm, {
+    RoomOption,
+} from "../../room/room-option-form/RoomOptionForm";
+import SignUpFormUsername from "../username-form/UsernameForm";
 import "./SignUpForm.css";
 
 export enum SignUpFormStep {
@@ -15,7 +15,7 @@ export enum SignUpFormStep {
 export interface SignUpFormProps {
     step: SignUpFormStep;
     onUsernameSet: (username: string) => void;
-    onChooseRoomOption: (option: SignUpRoomOption) => void;
+    onChooseRoomOption: (option: RoomOption) => void;
     onEnterRoomId: (id: string) => void;
 }
 
@@ -32,12 +32,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             renderedStep = <SignUpFormUsername onSubmit={onUsernameSet} />;
             break;
         case SignUpFormStep.RoomOption:
-            renderedStep = (
-                <SignUpFormRoomOption onSubmit={onChooseRoomOption} />
-            );
+            renderedStep = <RoomOptionForm onSubmit={onChooseRoomOption} />;
             break;
         case SignUpFormStep.Room:
-            renderedStep = <SignUpFormRoomId onSubmit={onEnterRoomId} />;
+            renderedStep = <RoomIdForm onSubmit={onEnterRoomId} />;
             break;
     }
 

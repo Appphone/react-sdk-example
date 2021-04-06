@@ -1,6 +1,6 @@
 import React from "react";
 import Room from "../../../models/Room";
-import SidebarListItem from "../../sidebar-list-item/SidebarListItem";
+import SidebarListItem from "../../sidebar/sidebar-list-item/SidebarListItem";
 import "./RoomListItem.css";
 
 export interface RoomListItemProps {

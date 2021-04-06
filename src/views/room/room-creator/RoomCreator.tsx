@@ -1,8 +1,6 @@
 import React from "react";
-import SignUpFormRoomOption, {
-    SignUpRoomOption,
-} from "../../sign-up-form-room-option/SignUpFormRoomOption";
-import SignUpFormRoomId from "../../sign-up-room-id/SignUpFormRoomId";
+import RoomIdForm from "../room-id-form/RoomIdForm";
+import RoomOptionForm, { RoomOption } from "../room-option-form/RoomOptionForm";
 import "./RoomCreator.css";
 
 export enum RoomCreatorStep {
@@ -12,7 +10,7 @@ export enum RoomCreatorStep {
 
 export interface RoomCreatorProps {
     step: RoomCreatorStep;
-    onChooseRoomOption: (option: SignUpRoomOption) => void;
+    onChooseRoomOption: (option: RoomOption) => void;
     onEnterRoomId: (id: string) => void;
 }
 
@@ -23,9 +21,9 @@ const RoomCreator: React.FC<RoomCreatorProps> = ({
 }) => {
     const renderedStep =
         step === RoomCreatorStep.RoomOption ? (
-            <SignUpFormRoomOption onSubmit={onChooseRoomOption} />
+            <RoomOptionForm onSubmit={onChooseRoomOption} />
         ) : (
-            <SignUpFormRoomId onSubmit={onEnterRoomId} />
+            <RoomIdForm onSubmit={onEnterRoomId} />
         );
 
     return <div className="room-creator">{renderedStep}</div>;

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../store/hooks";
 import { joinNewRoom, joinRoom } from "../../../store/reducer";
-import { SignUpRoomOption } from "../../sign-up-form-room-option/SignUpFormRoomOption";
+import { RoomOption } from "../room-option-form/RoomOptionForm";
 import RoomCreator, { RoomCreatorStep } from "./RoomCreator";
 
 const RoomCreatorConnect: React.FC = () => {
     const dispatch = useAppDispatch();
-    const [roomOption, setRoomOption] = useState<SignUpRoomOption>();
+    const [roomOption, setRoomOption] = useState<RoomOption>();
 
-    const onChooseRoomOption = (option: SignUpRoomOption) => {
+    const onChooseRoomOption = (option: RoomOption) => {
         setRoomOption(option);
-        if (option === SignUpRoomOption.New) {
+        if (option === RoomOption.New) {
             dispatch(joinNewRoom());
         }
     };

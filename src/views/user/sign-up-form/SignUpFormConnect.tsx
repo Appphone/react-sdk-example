@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { joinNewRoom, joinRoom, signUp } from "../../store/reducer";
-import { SignUpRoomOption } from "../sign-up-form-room-option/SignUpFormRoomOption";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { joinNewRoom, joinRoom, signUp } from "../../../store/reducer";
+import { RoomOption } from "../../room/room-option-form/RoomOptionForm";
 import SignUpForm, { SignUpFormStep } from "./SignUpForm";
 
 const SignUpFormConnect: React.FC = () => {
     const dispatch = useAppDispatch();
     const isConnected = useAppSelector((state) => !!state.socket?.isConnected);
-    const [roomOption, setRoomOption] = useState<SignUpRoomOption>();
+    const [roomOption, setRoomOption] = useState<RoomOption>();
 
     const onUsernameSet = (username: string) => {
         dispatch(signUp(username));
     };
 
-    const onChooseRoomOption = (option: SignUpRoomOption) => {
+    const onChooseRoomOption = (option: RoomOption) => {
         setRoomOption(option);
-        if (option === SignUpRoomOption.New) {
+        if (option === RoomOption.New) {
             dispatch(joinNewRoom());
         }
     };
@@ -32,7 +32,7 @@ const SignUpFormConnect: React.FC = () => {
         step = SignUpFormStep.RoomOption;
     }
 
-    if (roomOption === SignUpRoomOption.Existing) {
+    if (roomOption === RoomOption.Existing) {
         step = SignUpFormStep.Room;
     }
 

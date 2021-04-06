@@ -2,7 +2,7 @@ import React from "react";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import Chat from "../../views/chat/Chat";
 import RoomCreatorConnect from "../../views/room/room-creator/RoomCreatorConnect";
-import SidebarConnect from "../../views/sidebar/SidebarConnect";
+import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
 import "./LoggedScreen.css";
 
 export interface LoggedScreenProps {
