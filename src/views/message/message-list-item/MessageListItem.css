@@ -22,6 +22,6 @@
     opacity: 0.75;
 }
 
-.message-list__item--other .message-list__item__time {
+.message-list__item__time {
     text-align: right;
 }

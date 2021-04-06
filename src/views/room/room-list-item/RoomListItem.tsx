@@ -1,7 +1,6 @@
 import React from "react";
 import Room from "../../../models/Room";
 import SidebarListItem from "../../sidebar/sidebar-list-item/SidebarListItem";
-import "./RoomListItem.css";
 
 export interface RoomListItemProps {
     room: Room;
@@ -15,14 +14,12 @@ const RoomListItem: React.FC<RoomListItemProps> = ({
     onClick,
 }) => {
     return (
-        <SidebarListItem isActive={isActive} onClick={onClick}>
-            <div className="sidebar__list__item__room">
-                <div className="sidebar__list__item__room__label">{id}</div>
-                <div className="sidebar__list__item__room__badge">
-                    {unreadCount}
-                </div>
-            </div>
-        </SidebarListItem>
+        <SidebarListItem
+            title={id}
+            unreadCount={unreadCount}
+            isActive={isActive}
+            onClick={onClick}
+        />
     );
 };
 

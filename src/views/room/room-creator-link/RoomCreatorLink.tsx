@@ -11,9 +11,11 @@ const RoomCreatorLink: React.FC<RoomCreatorLinkProps> = ({
     onClick,
 }) => {
     return (
-        <SidebarListItem isActive={isActive} onClick={onClick}>
-            Create a new room
-        </SidebarListItem>
+        <SidebarListItem
+            title="Create a new room"
+            isActive={isActive}
+            onClick={onClick}
+        />
     );
 };
 
