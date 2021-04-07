@@ -1,4 +1,4 @@
-.logged {
+.master-detail {
     display: flex;
     align-items: stretch;
     min-height: calc(100vh - 15rem);
@@ -6,10 +6,10 @@
     border-radius: var(--radius);
 }
 
-.logged > :first-child {
+.master-detail__master {
     flex: 0 0 300px;
 }
 
-.logged > :last-child {
+.master-detail__detail {
     flex: 1 1 auto;
 }

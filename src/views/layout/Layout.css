@@ -9,4 +9,5 @@
     border-radius: var(--radius);
     max-width: 800px;
     margin: 0 auto;
+    overflow: hidden;
 }
