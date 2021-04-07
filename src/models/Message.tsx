@@ -1,3 +1,3 @@
 export default interface Message {
-    content: string;
+    readonly content: string;
 }

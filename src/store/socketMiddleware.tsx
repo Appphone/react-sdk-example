@@ -1,4 +1,5 @@
 import { io, Socket } from "socket.io-client";
+import ChatEvent from "../models/ChatEvent";
 import {
     appendReceivedEvent,
     joinRoomSuccess,
@@ -35,12 +36,12 @@ const socketMiddleware = () => {
                 })
             );
 
-            rooms.forEach((roomId: any) =>
+            rooms.forEach((roomId: string) =>
                 storeAPI.dispatch(joinRoomSuccess(roomId))
             );
         });
 
-        socket.on("message", (event) => {
+        socket.on("message", (event: ChatEvent) => {
             storeAPI.dispatch(appendReceivedEvent(event));
         });
     };
@@ -72,16 +73,19 @@ const socketMiddleware = () => {
                 });
                 break;
             case "messaging/joinNewRoom":
-                socket?.emit("rooms:join-new", ({ id }: { id: string }) => {
-                    storeAPI.dispatch(joinRoomSuccess(id));
-                    storeAPI.dispatch(openRoom({ id }));
-                });
+                socket?.emit(
+                    "rooms:join-new",
+                    ({ id }: { readonly id: string }) => {
+                        storeAPI.dispatch(joinRoomSuccess(id));
+                        storeAPI.dispatch(openRoom({ id }));
+                    }
+                );
                 break;
             case "messaging/sendMessage":
                 socket?.emit(
                     "message",
                     action.payload,
-                    ({ id }: { id: string }) => {
+                    ({ id }: { readonly id: string }) => {
                         storeAPI.dispatch(
                             sendMessageSuccess({
                                 id,

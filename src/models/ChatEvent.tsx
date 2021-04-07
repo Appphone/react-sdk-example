@@ -6,10 +6,10 @@ export enum ChatDataType {
 
 export default interface ChatEvent {
     id?: string;
-    localId: string;
-    createdAt: string;
-    roomId: string;
-    senderId: string;
-    type: ChatDataType;
-    data: Message;
+    readonly localId: string;
+    readonly createdAt: string;
+    readonly roomId: string;
+    readonly senderId: string;
+    readonly type: ChatDataType;
+    readonly data: Message;
 }
