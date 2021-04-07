@@ -14,5 +14,5 @@ export const Default = Template.bind({});
 Default.args = {
     master: <div>Master</div>,
     detail: <div>Detail</div>,
-    hideMaster: false,
+    showMaster: true,
 };

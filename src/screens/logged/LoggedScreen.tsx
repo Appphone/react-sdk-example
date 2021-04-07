@@ -1,4 +1,5 @@
 import React from "react";
+import useToggle from "../../hooks/useToggle";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import Chat from "../../views/chat/Chat";
 import MasterDetail from "../../views/master-detail/MasterDetail";
@@ -10,11 +11,12 @@ export interface LoggedScreenProps {
 }
 
 const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
+    const { isOn, toggle } = useToggle(true);
     let renderedContent: JSX.Element | null = null;
 
     switch (type) {
         case LoggedScreenType.Chat:
-            renderedContent = <Chat />;
+            renderedContent = <Chat onToggleSidebar={toggle} />;
             break;
         case LoggedScreenType.RoomCreator:
             renderedContent = <RoomCreatorConnect />;
@@ -25,7 +27,7 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
         <MasterDetail
             master={<SidebarConnect />}
             detail={renderedContent}
-            hideMaster={false}
+            showMaster={isOn}
         />
     );
 };

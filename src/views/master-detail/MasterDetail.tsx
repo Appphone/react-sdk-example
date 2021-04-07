@@ -5,21 +5,21 @@ import "./MasterDetail.css";
 export interface MasterDetailProps {
     master: JSX.Element;
     detail: JSX.Element;
-    hideMaster: boolean;
+    showMaster: boolean;
 }
 
 const MasterDetail: React.FC<MasterDetailProps> = ({
     master,
     detail,
-    hideMaster,
+    showMaster = true,
 }) => {
     const className = classNames("master-detail", {
-        "master-detail--closed": hideMaster,
+        "master-detail--closed": showMaster,
     });
 
     return (
         <div className={className}>
-            {!hideMaster && (
+            {showMaster && (
                 <div className="master-detail__master">{master}</div>
             )}
             <div className="master-detail__detail">{detail}</div>
