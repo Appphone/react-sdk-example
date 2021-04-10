@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppSelector } from "../../../store/hooks";
-import RoomCreatorConnect from "../../room/room-creator/RoomCreatorConnect";
-import UsernameFormConnect from "../username-form/UsernameFormConnect";
 import SignUpForm from "./SignUpForm";
 
 const SignUpFormConnect: React.FC = () => {
     const isConnected = useAppSelector((state) => !!state.socket?.isConnected);
+    const [roomIdToJoin, setRoomIdToJoin] = useState<string | undefined>(
+        window.location.hash.substr(1)
+    );
+
+    const onDeclineRoomId = () => {
+        window.location.hash = "";
+        setRoomIdToJoin(undefined);
+    };
 
     return (
-        <SignUpForm step={isConnected ? 2 : 1}>
-            {isConnected ? <RoomCreatorConnect /> : <UsernameFormConnect />}
-        </SignUpForm>
+        <SignUpForm
+            isConnected={isConnected}
+            roomIdToJoin={roomIdToJoin}
+            onDeclineRoomId={onDeclineRoomId}
+        />
     );
 };
 

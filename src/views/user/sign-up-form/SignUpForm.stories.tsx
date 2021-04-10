@@ -10,5 +10,5 @@ const Template: Story<SignUpFormProps> = (args) => <SignUpForm {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    step: 1,
+    isConnected: false,
 };
