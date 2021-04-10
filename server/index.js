@@ -73,11 +73,19 @@ io.use(async (socket, next) => {
 });
 
 io.on("connection", (socket) => {
+    if (log) {
+        console.log("socket connected");
+    }
+
     sessionStore.saveSession(socket.sessionId, {
         userId: socket.userId,
         username: socket.username,
         connected: true,
     });
+
+    if (log) {
+        console.log("joined rooms", socket.rooms.values());
+    }
 
     socket.emit("session", {
         sessionId: socket.sessionId,
@@ -119,12 +127,13 @@ io.on("connection", (socket) => {
     socket.on("disconnect", async () => {
         const matchingSockets = await io.in(socket.userId).allSockets();
         const isDisconnected = matchingSockets.size === 0;
+
         if (isDisconnected) {
-            const session = sessionStore.findSession(socket.sessionId);
             sessionStore.saveSession(socket.sessionId, {
-                ...session,
                 connected: false,
             });
+        } else if (log) {
+            console.log("remaining connected sockets", matchingSockets.size);
         }
     });
 });

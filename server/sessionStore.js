@@ -8,7 +8,8 @@ class SessionStore {
     }
 
     saveSession(id, session) {
-        this.sessions.set(id, session);
+        const currentSessionData = this.findSession(id) || {};
+        this.sessions.set(id, { ...currentSessionData, ...session });
     }
 
     findAllSessions() {
