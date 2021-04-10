@@ -4,10 +4,14 @@ import TextField from "../../text-field/TextField";
 import "./MessageSender.css";
 
 export interface MessageSenderProps {
+    isOffline: boolean;
     onSubmit: (content: string) => void;
 }
 
-const MessageSender: React.FC<MessageSenderProps> = ({ onSubmit }) => {
+const MessageSender: React.FC<MessageSenderProps> = ({
+    isOffline,
+    onSubmit,
+}) => {
     const [content, setContent] = useState("");
 
     const onSubmitClick = () => {
@@ -24,9 +28,13 @@ const MessageSender: React.FC<MessageSenderProps> = ({ onSubmit }) => {
                     value={content}
                     placeholder="Type a message"
                     onInput={setContent}
+                    disabled={isOffline}
                 />
             </div>
-            <Button disabled={!content.length} onClick={onSubmitClick}>
+            <Button
+                disabled={!content.length || isOffline}
+                onClick={onSubmitClick}
+            >
                 Send
             </Button>
         </div>

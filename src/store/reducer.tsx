@@ -5,6 +5,7 @@ import Room from "../models/Room";
 import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
+    isOffline: boolean;
     activeScreenType: LoggedScreenType;
     socket?: SocketMeta;
     activeRoomId?: string;
@@ -12,6 +13,7 @@ interface MessagingState {
 }
 
 const initialState: MessagingState = {
+    isOffline: false,
     activeScreenType: LoggedScreenType.Chat,
 };
 
@@ -19,6 +21,9 @@ const messagingSlice = createSlice({
     name: "messaging",
     initialState,
     reducers: {
+        setOffline(state) {
+            state.isOffline = true;
+        },
         showRoomCreator(state) {
             state.activeScreenType = LoggedScreenType.RoomCreator;
             state.activeRoomId = undefined;
@@ -33,6 +38,7 @@ const messagingSlice = createSlice({
             state.rooms = undefined;
         },
         sessionSucess(state, action: PayloadAction<SocketMeta>) {
+            state.isOffline = false;
             state.socket = action.payload;
             state.rooms = [];
             // todo: restore active room
@@ -118,6 +124,7 @@ const messagingSlice = createSlice({
 export default messagingSlice.reducer;
 
 export const {
+    setOffline,
     showRoomCreator,
     login,
     signUp,

@@ -10,6 +10,7 @@ const MessageSenderConnect: React.FC = () => {
     const dispatch = useAppDispatch();
     const userId = useAppSelector(getUserId);
     const room = useAppSelector(getActiveRoom);
+    const isOffline = useAppSelector((state) => state.isOffline);
 
     const onSubmit = (content: string) => {
         if (userId && room) {
@@ -28,7 +29,7 @@ const MessageSenderConnect: React.FC = () => {
         }
     };
 
-    return <MessageSender onSubmit={onSubmit} />;
+    return <MessageSender isOffline={isOffline} onSubmit={onSubmit} />;
 };
 
 export default MessageSenderConnect;

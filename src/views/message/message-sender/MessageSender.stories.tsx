@@ -11,4 +11,4 @@ const Template: Story<MessageSenderProps> = (args) => (
 );
 
 export const Default = Template.bind({});
-Default.args = { onSubmit: () => {} };
+Default.args = { isOffline: false, onSubmit: () => {} };

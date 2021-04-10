@@ -6,6 +6,7 @@ import RoomCreatorLink from "./RoomCreatorLink";
 
 const RoomCreatorLinkConnect: React.FC = () => {
     const dispatch = useAppDispatch();
+    const isOffline = useAppSelector((state) => state.isOffline);
     const isActive = useAppSelector(
         (state) => state.activeScreenType === LoggedScreenType.RoomCreator
     );
@@ -14,7 +15,13 @@ const RoomCreatorLinkConnect: React.FC = () => {
         dispatch(showRoomCreator());
     };
 
-    return <RoomCreatorLink isActive={isActive} onClick={onClick} />;
+    return (
+        <RoomCreatorLink
+            isActive={isActive}
+            isOffline={isOffline}
+            onClick={onClick}
+        />
+    );
 };
 
 export default RoomCreatorLinkConnect;

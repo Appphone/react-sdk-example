@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import LoggedScreenType from "../../models/LoggedScreenType";
 
 const store = getStoreMock({
+    isOffline: false,
     activeScreenType: LoggedScreenType.Chat,
     rooms: roomMockFactory.many(),
 });

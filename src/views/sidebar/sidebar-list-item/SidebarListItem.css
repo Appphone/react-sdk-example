@@ -14,6 +14,11 @@
     background-color: var(--color-accent-dark);
 }
 
+.sidebar__list__item--disabled {
+    color: grey;
+    pointer-events: none;
+}
+
 .sidebar__list__item--unread {
     display: flex;
     align-items: center;

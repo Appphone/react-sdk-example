@@ -5,12 +5,14 @@ import "./TextField.css";
 export interface TextFieldProps {
     value?: string;
     placeholder?: string;
+    disabled?: boolean;
     onInput?: (value: string) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
     value,
     placeholder,
+    disabled,
     onInput,
 }) => {
     return (
@@ -18,6 +20,7 @@ const TextField: React.FC<TextFieldProps> = ({
             className="text-field"
             value={value}
             placeholder={placeholder}
+            disabled={disabled}
             onChange={onInput}
         />
     );

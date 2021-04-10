@@ -6,6 +6,7 @@ import {
     openRoom,
     sendMessageSuccess,
     sessionSucess,
+    setOffline,
     signOut,
 } from "./reducer";
 
@@ -20,8 +21,12 @@ const socketMiddleware = () => {
         socket.connect();
 
         socket.on("connect_error", (err) => {
-            if (err.message === "invalid username") {
-                storeAPI.dispatch(signOut());
+            switch (err.message) {
+                case "invalid username":
+                    storeAPI.dispatch(signOut());
+                    break;
+                default:
+                    storeAPI.dispatch(setOffline());
             }
         });
 
@@ -48,6 +53,10 @@ const socketMiddleware = () => {
 
     // todo specify types
     return (storeAPI: any) => (next: any) => (action: any) => {
+        if (action.type === "messaging/joinRoom") {
+            action.payload.id = `room://${action.payload.id}`;
+        }
+
         // always let the reducers react to actions immediately, to give visual feedback
         // can use ACKs later to update state when appropriate
         next(action);

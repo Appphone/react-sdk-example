@@ -4,8 +4,9 @@ import RoomList from "./RoomList";
 
 const RoomListConnect: React.FC = () => {
     const rooms = useAppSelector((state) => state.rooms);
+    const isOffline = useAppSelector((state) => state.isOffline);
 
-    return rooms ? <RoomList rooms={rooms} /> : null;
+    return rooms ? <RoomList rooms={rooms} isOffline={isOffline} /> : null;
 };
 
 export default RoomListConnect;

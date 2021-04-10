@@ -12,4 +12,4 @@ const Template: Story<RoomListProps> = (args: RoomListProps) => (
 );
 
 export const Default = Template.bind({});
-Default.args = { rooms: roomMockFactory.many() };
+Default.args = { rooms: roomMockFactory.many(), isOffline: false };

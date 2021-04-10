@@ -5,7 +5,10 @@ import { Store } from "redux";
 import { getStoreMock } from "../../utils/mocks";
 import LoggedScreenType from "../../models/LoggedScreenType";
 
-const store = getStoreMock({ activeScreenType: LoggedScreenType.Chat });
+const store = getStoreMock({
+    isOffline: false,
+    activeScreenType: LoggedScreenType.Chat,
+});
 
 export default {
     title: "Screen/SignUpScreen",
