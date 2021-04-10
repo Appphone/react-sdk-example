@@ -1,7 +1,6 @@
 import React from "react";
 import RoomIdForm from "../room-id-form/RoomIdForm";
 import RoomOptionForm, { RoomOption } from "../room-option-form/RoomOptionForm";
-import "./RoomCreator.css";
 
 export enum RoomCreatorStep {
     RoomOption,
