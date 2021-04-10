@@ -9,10 +9,6 @@ const SignUpFormConnect: React.FC = () => {
     const isConnected = useAppSelector((state) => !!state.socket?.isConnected);
     const [roomOption, setRoomOption] = useState<RoomOption>();
 
-    const onUsernameSet = (username: string) => {
-        dispatch(signUp(username));
-    };
-
     const onChooseRoomOption = (option: RoomOption) => {
         setRoomOption(option);
         if (option === RoomOption.New) {
@@ -39,7 +35,6 @@ const SignUpFormConnect: React.FC = () => {
     return step !== undefined ? (
         <SignUpForm
             step={step}
-            onUsernameSet={onUsernameSet}
             onChooseRoomOption={onChooseRoomOption}
             onEnterRoomId={onEnterRoomId}
         />

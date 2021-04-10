@@ -7,7 +7,7 @@ import {
     sendMessageSuccess,
     sessionSucess,
     setOffline,
-    signOut,
+    signUpError,
 } from "./reducer";
 
 const socketMiddleware = () => {
@@ -23,7 +23,16 @@ const socketMiddleware = () => {
         socket.on("connect_error", (err) => {
             switch (err.message) {
                 case "invalid username":
-                    storeAPI.dispatch(signOut());
+                    storeAPI.dispatch(
+                        signUpError({ error: "Please provide a username" })
+                    );
+                    break;
+                case "username exists":
+                    storeAPI.dispatch(
+                        signUpError({
+                            error: "This username is already in use",
+                        })
+                    );
                     break;
                 default:
                     storeAPI.dispatch(setOffline());

@@ -20,6 +20,10 @@ const saveSocketRooms = (socket) => {
         (id) => id.indexOf("room://") === 0
     );
 
+    if (log) {
+        console.log("saving joined rooms", rooms);
+    }
+
     sessionStore.saveSession(socket.sessionId, {
         userId: socket.userId,
         username: socket.username,
@@ -38,6 +42,10 @@ io.use(async (socket, next) => {
             socket.username = session.username;
 
             if (session.rooms) {
+                if (log) {
+                    console.log("joining saved rooms", session.rooms);
+                }
+
                 session.rooms.forEach((roomId) => socket.join(roomId));
             }
 
@@ -48,6 +56,14 @@ io.use(async (socket, next) => {
     const username = socket.handshake.auth.username;
     if (!username) {
         return next(new Error("invalid username"));
+    }
+
+    if (
+        sessionStore
+            .findAllSessions()
+            .find((session) => session.username === username)
+    ) {
+        return next(new Error("username exists"));
     }
 
     socket.sessionId = randomId();

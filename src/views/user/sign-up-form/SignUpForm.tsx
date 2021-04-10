@@ -3,7 +3,7 @@ import RoomIdForm from "../../room/room-id-form/RoomIdForm";
 import RoomOptionForm, {
     RoomOption,
 } from "../../room/room-option-form/RoomOptionForm";
-import SignUpFormUsername from "../username-form/UsernameForm";
+import UsernameFormConnect from "../username-form/UsernameFormConnect";
 import "./SignUpForm.css";
 
 export enum SignUpFormStep {
@@ -14,14 +14,12 @@ export enum SignUpFormStep {
 
 export interface SignUpFormProps {
     step: SignUpFormStep;
-    onUsernameSet: (username: string) => void;
     onChooseRoomOption: (option: RoomOption) => void;
     onEnterRoomId: (id: string) => void;
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({
     step,
-    onUsernameSet,
     onChooseRoomOption,
     onEnterRoomId,
 }) => {
@@ -29,7 +27,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 
     switch (step) {
         case SignUpFormStep.Username:
-            renderedStep = <SignUpFormUsername onSubmit={onUsernameSet} />;
+            renderedStep = <UsernameFormConnect />;
             break;
         case SignUpFormStep.RoomOption:
             renderedStep = <RoomOptionForm onSubmit={onChooseRoomOption} />;

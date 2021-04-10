@@ -6,6 +6,7 @@ import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
     isOffline: boolean;
+    signUpError?: string;
     activeScreenType: LoggedScreenType;
     socket?: SocketMeta;
     activeRoomId?: string;
@@ -28,14 +29,21 @@ const messagingSlice = createSlice({
             state.activeScreenType = LoggedScreenType.RoomCreator;
             state.activeRoomId = undefined;
         },
-        login() {},
+        login(state) {
+            state.signUpError = undefined;
+        },
         signUp(state, action: PayloadAction<string>) {
             state.socket = { username: action.payload, isConnected: false };
+            state.signUpError = undefined;
+        },
+        signUpError(state, action: PayloadAction<{ error: string }>) {
+            state.signUpError = action.payload.error;
         },
         signOut(state) {
             state.socket = undefined;
             state.activeRoomId = undefined;
             state.rooms = undefined;
+            state.signUpError = undefined;
         },
         sessionSucess(state, action: PayloadAction<SocketMeta>) {
             state.isOffline = false;
@@ -128,6 +136,7 @@ export const {
     showRoomCreator,
     login,
     signUp,
+    signUpError,
     signOut,
     sessionSucess,
     joinRoom,
