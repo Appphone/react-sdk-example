@@ -1,6 +1,6 @@
 .btn {
-    background-color: var(--color-accent);
-    color: white;
+    background-color: var(--color-grey-light);
+    color: var(--color-grey-black);
     border-radius: var(--radius);
     display: inline-block;
     text-align: center;
@@ -12,22 +12,7 @@
     line-height: 2rem;
     height: 2rem;
     padding: 0 1rem;
-}
-
-.btn[disabled] {
-    background-color: grey;
-}
-
-.btn:not([disabled]) {
     cursor: pointer;
-}
-
-.btn:hover:not([disabled]) {
-    background-color: var(--color-accent-dark);
-}
-
-.btn:active {
-    background-color: var(--color-accent-dark-2);
 }
 
 .btn::-moz-focus-inner {
@@ -36,4 +21,31 @@
 
 .btn + .btn {
     margin-left: 0.5rem;
+}
+
+.btn:hover {
+    background-color: var(--color-grey-dark);
+    color: var(--color-white);
+}
+
+.btn:active {
+    background-color: var(--color-grey-dark-2);
+}
+
+.btn--primary {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.btn--primary:hover {
+    background-color: var(--color-accent-dark);
+}
+
+.btn--primary:active {
+    background-color: var(--color-accent-dark-2);
+}
+
+.btn[disabled] {
+    background-color: var(--color-grey);
+    color: var(--color-white);
 }

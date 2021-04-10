@@ -1,14 +1,24 @@
+import classNames from "classnames";
 import React from "react";
 import "./Button.css";
 
 export interface ButtonProps {
+    primary?: boolean;
     onClick?: () => void;
     disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ disabled, onClick, children }) => {
+const Button: React.FC<ButtonProps> = ({
+    primary,
+    disabled,
+    onClick,
+    children,
+}) => {
+    const className = classNames("btn", {
+        "btn--primary": primary,
+    });
     return (
-        <button className="btn" onClick={onClick} disabled={disabled}>
+        <button className={className} onClick={onClick} disabled={disabled}>
             {children}
         </button>
     );

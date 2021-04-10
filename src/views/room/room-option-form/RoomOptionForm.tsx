@@ -19,10 +19,10 @@ const RoomOptionForm: React.FC<RoomOptionFormProps> = ({ onSubmit }) => {
                 hint="You will be able to join multiple rooms later"
             />
             <div>
-                <Button onClick={() => onSubmit(RoomOption.New)}>
+                <Button primary onClick={() => onSubmit(RoomOption.New)}>
                     Join a new room
                 </Button>
-                <Button onClick={() => onSubmit(RoomOption.Existing)}>
+                <Button primary onClick={() => onSubmit(RoomOption.Existing)}>
                     Join an existing room
                 </Button>
             </div>

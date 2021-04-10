@@ -15,7 +15,7 @@
 }
 
 .sidebar__list__item--disabled {
-    color: grey;
+    color: var(--color-grey);
     pointer-events: none;
 }
 

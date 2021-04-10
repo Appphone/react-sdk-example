@@ -42,7 +42,9 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
             >
                 <TextField onInput={validateUsername} />
             </Field>
-            <Button onClick={onSubmitClick}>Next</Button>
+            <Button primary onClick={onSubmitClick}>
+                Next
+            </Button>
         </div>
     );
 };

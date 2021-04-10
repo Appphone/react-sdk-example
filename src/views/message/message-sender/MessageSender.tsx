@@ -32,6 +32,7 @@ const MessageSender: React.FC<MessageSenderProps> = ({
                 />
             </div>
             <Button
+                primary
                 disabled={!content.length || isOffline}
                 onClick={onSubmitClick}
             >

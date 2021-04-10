@@ -3,12 +3,14 @@
     --color-accent-dark: #195fc8;
     --color-accent-dark-2: #124591;
 
-    --color-black: #141414;
+    --color-black: #111827;
 
     --color-white: white;
 
-    --color-grey-light: #dedede;
-    --color-grey: #8f8f8f;
+    --color-grey-light: #9ca3af;
+    --color-grey: #4b5563;
+    --color-grey-dark: #374151;
+    --color-grey-dark-2: #1f2937;
 
     --radius: 3px;
 }
