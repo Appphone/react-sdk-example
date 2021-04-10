@@ -3,11 +3,19 @@ import { useState } from "react";
 const useToggle = (initialState: boolean) => {
     const [isOn, setIsOn] = useState<boolean>(initialState);
 
-    const toggle = () => {
+    const setOn = () => {
+        setIsOn(true);
+    };
+
+    const setOff = () => {
+        setIsOn(false);
+    };
+
+    const onToggle = () => {
         setIsOn(!isOn);
     };
 
-    return { isOn, toggle };
+    return { isOn, setOn, setOff, onToggle };
 };
 
 export default useToggle;
