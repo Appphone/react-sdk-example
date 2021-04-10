@@ -13,7 +13,10 @@
         "socket.io": "^4.0.1"
     },
     "scripts": {
-        "serve": "node index.js",
-        "debug": "set DEBUG=socket.io:client & node index.js"
+        "serve": "nodemon index.js",
+        "debug": "set DEBUG=socket.io:client & nodemon index.js"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
     }
 }
