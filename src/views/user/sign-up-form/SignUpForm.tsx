@@ -7,16 +7,16 @@ import "./SignUpForm.css";
 export interface SignUpFormProps {
     isConnected: boolean;
     roomIdToJoin?: string;
-    onDeclineRoomId: () => void
+    onDismissRoomId: () => void
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({
     isConnected,
     roomIdToJoin,
-    onDeclineRoomId
+    onDismissRoomId
 }) => {
     const renderedRoomStep = roomIdToJoin ? (
-        <RoomInviteConfirmationConnect roomId={roomIdToJoin} onCancel={onDeclineRoomId}/>
+        <RoomInviteConfirmationConnect roomId={roomIdToJoin} onDone={onDismissRoomId}/>
     ) : (
         <RoomCreatorConnect />
     );

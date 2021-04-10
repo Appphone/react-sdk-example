@@ -1294,6 +1294,19 @@
   dependencies:
     "@types/react" "^16.9.0"
 
+"@bit/jorgemoreira.react.styles@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/jorgemoreira.react.styles/-/jorgemoreira.react.styles-0.0.1.tgz#25a0fedc94a98118f5c76b80c25285966c54ca58"
+  integrity sha1-JaD+3JSpgRj1x2uAwlKFlmxUylg=
+
+"@bit/jorgemoreira.react.surface.modal@^0.0.1":
+  version "0.0.1"
+  resolved "https://node.bit.dev/jorgemoreira.react.surface.modal/-/jorgemoreira.react.surface.modal-0.0.1.tgz#5f2a031f87bafd342928e0e2f6863649a076dca4"
+  integrity sha1-XyoDH4e6/TQpKODi9oY2SaB23KQ=
+  dependencies:
+    "@types/react" "^16.9.0"
+    "@types/react-dom" "^16.9.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -2867,6 +2880,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-dom@^16.9.0":
+  version "16.9.12"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.12.tgz#55cd6b17e73922edb9545e5355a0016c1734e6f4"
+  integrity sha512-i7NPZZpPte3jtVOoW+eLB7G/jsX5OM6GqQnH+lC0nq0rqwlK0x8WcMEvYDgFWqWhWMlTltTimzdMax6wYfZssA==
+  dependencies:
+    "@types/react" "^16"
+
 "@types/react-dom@^17.0.0":
   version "17.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.3.tgz#7fdf37b8af9d6d40127137865bb3fff8871d7ee1"
@@ -2900,7 +2920,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^16.9.0":
+"@types/react@^16", "@types/react@^16.9.0":
   version "16.14.5"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.5.tgz#2c39b5cadefaf4829818f9219e5e093325979f4d"
   integrity sha512-YRRv9DNZhaVTVRh9Wmmit7Y0UFhEVqXqCSw3uazRWMxa2x85hWQZ5BN24i7GXZbaclaLXEcodEeIHsjBA8eAMw==

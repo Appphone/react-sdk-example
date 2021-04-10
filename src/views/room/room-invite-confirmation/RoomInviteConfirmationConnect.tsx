@@ -5,24 +5,25 @@ import RoomInviteConfirmation from "./RoomInviteConfirmation";
 
 interface RoomInviteConfirmationConnectProps {
     roomId: string;
-    onCancel: () => void;
+    onDone: () => void;
 }
 
 const RoomInviteConfirmationConnect: React.FC<RoomInviteConfirmationConnectProps> = ({
     roomId,
-    onCancel,
+    onDone,
 }) => {
     const dispatch = useAppDispatch();
 
     const onConfirm = () => {
         dispatch(joinRoom({ id: roomId }));
+        onDone();
     };
 
     return (
         <RoomInviteConfirmation
             roomId={roomId}
             onConfirm={onConfirm}
-            onCancel={onCancel}
+            onCancel={onDone}
         />
     );
 };
