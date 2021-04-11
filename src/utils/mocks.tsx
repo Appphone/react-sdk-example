@@ -20,6 +20,7 @@ export const getStoreMock = (state: Partial<RootState> = {}) => ({
         const defaultMockState: RootState = {
             isOffline: false,
             isSigningIn: false,
+            isJoiningRoom: false,
             activeScreenType: LoggedScreenType.Chat,
             activeRoomId: roomsMock[0].id,
             rooms: roomsMock,

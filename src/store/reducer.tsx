@@ -8,6 +8,8 @@ interface MessagingState {
     isOffline: boolean;
     isSigningIn: boolean;
     signUpError?: string;
+    isJoiningRoom: boolean;
+    joinRoomError?: string;
     activeScreenType: LoggedScreenType;
     socket?: SocketMeta;
     activeRoomId?: string;
@@ -17,6 +19,7 @@ interface MessagingState {
 const initialState: MessagingState = {
     isOffline: false,
     isSigningIn: false,
+    isJoiningRoom: false,
     activeScreenType: LoggedScreenType.Chat,
 };
 
@@ -57,6 +60,8 @@ const messagingSlice = createSlice({
             state.isSigningIn = false;
         },
         joinRoom(state, action: PayloadAction<{ id: string }>) {
+            state.isJoiningRoom = true;
+            state.joinRoomError = undefined;
             state.rooms?.push({
                 id: action.payload.id,
                 isConnected: false,
@@ -64,7 +69,10 @@ const messagingSlice = createSlice({
                 events: [],
             });
         },
-        joinNewRoom() {},
+        joinNewRoom(state) {
+            state.isJoiningRoom = true;
+            state.joinRoomError = undefined;
+        },
         joinRoomSuccess(state, action: PayloadAction<string>) {
             const room = state.rooms?.find(
                 (room) => room.id === action.payload
@@ -78,6 +86,23 @@ const messagingSlice = createSlice({
                     unreadCount: 0,
                     events: [],
                 });
+            }
+            state.isJoiningRoom = false;
+        },
+        joinRoomError(
+            state,
+            action: PayloadAction<{ message: string; id?: string }>
+        ) {
+            state.joinRoomError = action.payload.message;
+            state.isJoiningRoom = false;
+
+            if (action.payload.id) {
+                const indexToRemove = state.rooms?.findIndex(
+                    (room) => room.id === action.payload.id
+                );
+                if (indexToRemove) {
+                    state.rooms?.splice(indexToRemove, 1);
+                }
             }
         },
         openRoom(state, action: PayloadAction<{ id: string }>) {
@@ -147,6 +172,7 @@ export const {
     joinRoom,
     joinNewRoom,
     joinRoomSuccess,
+    joinRoomError,
     openRoom,
     leaveRoom,
     sendMessage,

@@ -3,6 +3,7 @@ import ChatEvent from "../models/ChatEvent";
 import {
     appendReceivedEvent,
     joinRoomSuccess,
+    joinRoomError,
     openRoom,
     sendMessageSuccess,
     sessionSucess,
@@ -85,17 +86,58 @@ const socketMiddleware = () => {
                 localStorage.removeItem("sessionId");
                 break;
             case "messaging/joinRoom":
-                socket?.emit("rooms:join", action.payload.id, () => {
-                    storeAPI.dispatch(joinRoomSuccess(action.payload.id));
-                    storeAPI.dispatch(openRoom({ id: action.payload.id }));
-                });
+                socket?.emit(
+                    "rooms:join",
+                    action.payload.id,
+                    ({
+                        success,
+                        error,
+                    }: {
+                        readonly success: boolean;
+                        readonly error: string;
+                    }) => {
+                        if (success) {
+                            storeAPI.dispatch(
+                                joinRoomSuccess(action.payload.id)
+                            );
+                            storeAPI.dispatch(
+                                openRoom({ id: action.payload.id })
+                            );
+                        } else {
+                            storeAPI.dispatch(
+                                joinRoomError({
+                                    message:
+                                        error === "room is full"
+                                            ? "This room is already full"
+                                            : "Failed to join room, try again later",
+                                    id: action.payload.id,
+                                })
+                            );
+                        }
+                    }
+                );
                 break;
             case "messaging/joinNewRoom":
                 socket?.emit(
                     "rooms:join-new",
-                    ({ id }: { readonly id: string }) => {
-                        storeAPI.dispatch(joinRoomSuccess(id));
-                        storeAPI.dispatch(openRoom({ id }));
+                    ({
+                        success,
+                        id,
+                    }: {
+                        readonly success: boolean;
+                        readonly id: string;
+                    }) => {
+                        if (success) {
+                            storeAPI.dispatch(joinRoomSuccess(id));
+                            storeAPI.dispatch(openRoom({ id }));
+                        } else {
+                            storeAPI.dispatch(
+                                joinRoomError({
+                                    message:
+                                        "Failed to join room, try again later",
+                                })
+                            );
+                        }
                     }
                 );
                 break;

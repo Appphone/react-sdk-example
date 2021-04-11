@@ -3,7 +3,6 @@ import { Story } from "@storybook/react/types-6-0";
 import { Provider } from "react-redux";
 import { Store } from "redux";
 import { getStoreMock } from "../../utils/mocks";
-import { action } from "@storybook/addon-actions";
 
 export default {
     title: "Chat/Chat",
