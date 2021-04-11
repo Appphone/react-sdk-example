@@ -1,3 +1,4 @@
+import "@bit/jorgemoreira.react.styles";
 import "../src/index.css";
 
 export const parameters = {

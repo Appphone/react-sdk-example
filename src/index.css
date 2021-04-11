@@ -7,6 +7,7 @@
 
     --color-white: white;
 
+    --color-grey-light-2: #d1d5db;
     --color-grey-light: #9ca3af;
     --color-grey: #4b5563;
     --color-grey-dark: #374151;
@@ -63,4 +64,9 @@ p {
 
 .field-error {
     color: red;
+}
+
+.spinner > .spin {
+    border-color: var(--color-grey-light-2);
+    border-top-color: var(--color-accent);
 }

@@ -1294,10 +1294,10 @@
   dependencies:
     "@types/react" "^16.9.0"
 
-"@bit/jorgemoreira.react.styles@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.react.styles/-/jorgemoreira.react.styles-0.0.1.tgz#25a0fedc94a98118f5c76b80c25285966c54ca58"
-  integrity sha1-JaD+3JSpgRj1x2uAwlKFlmxUylg=
+"@bit/jorgemoreira.react.styles@^0.0.2":
+  version "0.0.2"
+  resolved "https://node.bit.dev/jorgemoreira.react.styles/-/jorgemoreira.react.styles-0.0.2.tgz#204b23e7ec1545234bb74cedf23b5cc5b8387021"
+  integrity sha1-IEsj5+wVRSNLt0zt8jtcxbg4cCE=
 
 "@bit/jorgemoreira.react.surface.modal@^0.0.1":
   version "0.0.1"
