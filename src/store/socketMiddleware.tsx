@@ -9,6 +9,7 @@ import {
     sessionSucess,
     setOffline,
     signUpError,
+    blockSignIn,
 } from "./reducer";
 
 const socketMiddleware = () => {
@@ -34,6 +35,9 @@ const socketMiddleware = () => {
                             error: "This username is already in use",
                         })
                     );
+                    break;
+                case "too many sockets":
+                    storeAPI.dispatch(blockSignIn());
                     break;
                 default:
                     storeAPI.dispatch(setOffline());

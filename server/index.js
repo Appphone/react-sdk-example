@@ -5,6 +5,7 @@ const SessionStore = require("./sessionStore");
 
 const ENABLE_LOG = true;
 const ALLOWED_SOCKETS_PER_ROOM = 10;
+const ALLOWED_SOCKETS_PER_USER = 2;
 
 const sessionStore = new SessionStore();
 
@@ -38,6 +39,14 @@ io.use(async (socket, next) => {
     if (sessionId) {
         const session = sessionStore.findSession(sessionId);
         if (session) {
+            const activeSocketsForUser = await io
+                .in(session.userId)
+                .allSockets();
+
+            if (activeSocketsForUser.size + 1 > ALLOWED_SOCKETS_PER_USER) {
+                return next(new Error("too many sockets"));
+            }
+
             socket.sessionId = sessionId;
             socket.userId = session.userId;
             socket.username = session.username;

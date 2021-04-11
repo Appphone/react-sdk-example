@@ -7,6 +7,7 @@ import SocketMeta from "../models/SocketMeta";
 interface MessagingState {
     isOffline: boolean;
     isSigningIn: boolean;
+    isSignInBlocked: boolean;
     signUpError?: string;
     isJoiningRoom: boolean;
     joinRoomError?: string;
@@ -19,6 +20,7 @@ interface MessagingState {
 const initialState: MessagingState = {
     isOffline: false,
     isSigningIn: false,
+    isSignInBlocked: false,
     isJoiningRoom: false,
     activeScreenType: LoggedScreenType.Chat,
 };
@@ -42,9 +44,14 @@ const messagingSlice = createSlice({
             state.socket = { username: action.payload, isConnected: false };
             state.signUpError = undefined;
             state.isSigningIn = true;
+            state.isSignInBlocked = false;
         },
         signUpError(state, action: PayloadAction<{ error: string }>) {
             state.signUpError = action.payload.error;
+            state.isSigningIn = false;
+        },
+        blockSignIn(state) {
+            state.isSignInBlocked = true;
             state.isSigningIn = false;
         },
         signOut(state) {
@@ -167,6 +174,7 @@ export const {
     login,
     signUp,
     signUpError,
+    blockSignIn,
     signOut,
     sessionSucess,
     joinRoom,
