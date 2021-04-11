@@ -3,7 +3,8 @@ const httpServer = require("http").createServer(app);
 const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
 
-const log = true;
+const ENABLE_LOG = true;
+const ALLOWED_SOCKETS_PER_ROOM = 10;
 
 const sessionStore = new SessionStore();
 
@@ -20,7 +21,7 @@ const saveSocketRooms = (socket) => {
         (id) => id.indexOf("room://") === 0
     );
 
-    if (log) {
+    if (ENABLE_LOG) {
         console.log("saving joined rooms", rooms);
     }
 
@@ -42,7 +43,7 @@ io.use(async (socket, next) => {
             socket.username = session.username;
 
             if (session.rooms) {
-                if (log) {
+                if (ENABLE_LOG) {
                     console.log("joining saved rooms", session.rooms);
                 }
 
@@ -73,7 +74,7 @@ io.use(async (socket, next) => {
 });
 
 io.on("connection", (socket) => {
-    if (log) {
+    if (ENABLE_LOG) {
         console.log("socket connected");
     }
 
@@ -83,7 +84,7 @@ io.on("connection", (socket) => {
         connected: true,
     });
 
-    if (log) {
+    if (ENABLE_LOG) {
         console.log("joined rooms", socket.rooms.values());
     }
 
@@ -102,22 +103,25 @@ io.on("connection", (socket) => {
 
         saveSocketRooms(socket);
 
-        callback({ id: roomId });
+        callback({ success: true, id: roomId });
     });
 
-    socket.on("rooms:join", (id, callback) => {
-        const roomId = `${id}`;
-        socket.join(roomId);
+    socket.on("rooms:join", async (roomId, callback) => {
+        const socketsInRoom = await io.in(roomId).allSockets();
 
-        saveSocketRooms(socket);
-
-        callback();
+        if (socketsInRoom.size < ALLOWED_SOCKETS_PER_ROOM) {
+            socket.join(roomId);
+            saveSocketRooms(socket);
+            callback({ success: true });
+        } else {
+            callback({ success: false, error: "room is full" });
+        }
     });
 
     socket.on("message", (event, callback) => {
         // todo add type
         if (event.type === 0) {
-            if (log) console.log("sending message", event.data.content);
+            if (ENABLE_LOG) console.log("sending message", event.data.content);
             event.id = randomId();
             socket.to(event.roomId).emit("message", event);
             callback({ id: event.id });
@@ -132,7 +136,7 @@ io.on("connection", (socket) => {
             sessionStore.saveSession(socket.sessionId, {
                 connected: false,
             });
-        } else if (log) {
+        } else if (ENABLE_LOG) {
             console.log("remaining connected sockets", matchingSockets.size);
         }
     });
