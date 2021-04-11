@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import TextField from "../../text-field/TextField";
 import Field from "@bit/jorgemoreira.react.input.field";
+import Spinner from "@bit/jorgemoreira.react.progress.spinner";
 import Button from "../../button/Button";
 
 export interface UsernameFormProps {
+    isSigningIn: boolean;
     errorMessage?: string;
     onSubmit: (username: string) => void;
 }
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
+    isSigningIn,
     errorMessage,
     onSubmit,
 }) => {
@@ -33,18 +36,28 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         if (!usernameError) onSubmit(username);
     };
 
+    const hint = isSigningIn
+        ? undefined
+        : "Only alphanumeric characteres are allowed, without spaces";
+
+    const usernameInput = !isSigningIn && (
+        <TextField onInput={validateUsername} />
+    );
+
+    const submitButton = isSigningIn ? (
+        <Spinner inline>Please wait...</Spinner>
+    ) : (
+        <Button primary onClick={onSubmitClick}>
+            Next
+        </Button>
+    );
+
     return (
         <div>
-            <Field
-                label="Choose a username"
-                hint="Only alphanumeric characteres are allowed, without spaces"
-                error={errorToShow}
-            >
-                <TextField onInput={validateUsername} />
+            <Field label="Choose a username" hint={hint} error={errorToShow}>
+                {usernameInput}
             </Field>
-            <Button primary onClick={onSubmitClick}>
-                Next
-            </Button>
+            {submitButton}
         </div>
     );
 };

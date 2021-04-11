@@ -7,6 +7,7 @@ import LoggedScreenType from "../../models/LoggedScreenType";
 
 const store = getStoreMock({
     isOffline: false,
+    isSigningIn: false,
     activeScreenType: LoggedScreenType.Chat,
 });
 

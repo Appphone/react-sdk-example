@@ -7,6 +7,7 @@ import { getStoreMock, roomMockFactory } from "../../utils/mocks";
 
 const store = getStoreMock({
     isOffline: false,
+    isSigningIn: false,
     activeScreenType: LoggedScreenType.Chat,
     rooms: roomMockFactory.many(),
 });

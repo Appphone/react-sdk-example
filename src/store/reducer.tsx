@@ -6,6 +6,7 @@ import SocketMeta from "../models/SocketMeta";
 
 interface MessagingState {
     isOffline: boolean;
+    isSigningIn: boolean;
     signUpError?: string;
     activeScreenType: LoggedScreenType;
     socket?: SocketMeta;
@@ -15,6 +16,7 @@ interface MessagingState {
 
 const initialState: MessagingState = {
     isOffline: false,
+    isSigningIn: false,
     activeScreenType: LoggedScreenType.Chat,
 };
 
@@ -31,13 +33,16 @@ const messagingSlice = createSlice({
         },
         login(state) {
             state.signUpError = undefined;
+            state.isSigningIn = true;
         },
         signUp(state, action: PayloadAction<string>) {
             state.socket = { username: action.payload, isConnected: false };
             state.signUpError = undefined;
+            state.isSigningIn = true;
         },
         signUpError(state, action: PayloadAction<{ error: string }>) {
             state.signUpError = action.payload.error;
+            state.isSigningIn = false;
         },
         signOut(state) {
             state.socket = undefined;
@@ -49,7 +54,7 @@ const messagingSlice = createSlice({
             state.isOffline = false;
             state.socket = action.payload;
             state.rooms = [];
-            // todo: restore active room
+            state.isSigningIn = false;
         },
         joinRoom(state, action: PayloadAction<{ id: string }>) {
             state.rooms?.push({
