@@ -14,6 +14,8 @@
     --color-grey-dark-2: #1f2937;
 
     --radius: 3px;
+
+    --medium-width: 900px;
 }
 
 *,
@@ -52,6 +54,12 @@ p {
 
 .text-sm {
     font-size: 0.8rem;
+}
+
+.medium-content {
+    max-width: var(--medium-width);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .font-extra-bold {

@@ -4,6 +4,11 @@
     height: 100%;
 }
 
+.chat__header {
+    background-color: var(--color-grey-light-2);
+    padding: 1.5rem 0;
+}
+
 .chat__messages {
     flex: 1 1 0;
     overflow: auto;

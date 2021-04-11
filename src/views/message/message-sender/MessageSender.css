@@ -1,8 +1,12 @@
 .message-sender {
-    display: flex;
     background-color: var(--color-black);
-    padding: 0.5rem;
+    padding: 0.5rem 0;
 }
+
+.message-sender__contents {
+    display: flex;
+}
+
 .message-sender__field {
     margin-right: 0.5rem;
     flex: 1 0 auto;

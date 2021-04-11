@@ -12,8 +12,10 @@ const Chat: React.FC<ChatProps> = ({ onToggleSidebar }) => {
     return (
         <div className="chat">
             <div className="chat__header">
-                <Button onClick={onToggleSidebar}>Hide Sidebar</Button>
-                <h2>Room</h2>
+                <div className="medium-content">
+                    <Button onClick={onToggleSidebar}>Hide Sidebar</Button>
+                    <h2>Room</h2>
+                </div>
             </div>
             <div className="chat__messages">
                 <MessageListConnect />

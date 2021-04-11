@@ -23,21 +23,23 @@ const MessageSender: React.FC<MessageSenderProps> = ({
 
     return (
         <div className="message-sender">
-            <div className="message-sender__field">
-                <TextField
-                    value={content}
-                    placeholder="Type a message"
-                    onInput={setContent}
-                    disabled={isOffline}
-                />
+            <div className="message-sender__contents medium-content">
+                <div className="message-sender__field">
+                    <TextField
+                        value={content}
+                        placeholder="Type a message"
+                        onInput={setContent}
+                        disabled={isOffline}
+                    />
+                </div>
+                <Button
+                    primary
+                    disabled={!content.length || isOffline}
+                    onClick={onSubmitClick}
+                >
+                    Send
+                </Button>
             </div>
-            <Button
-                primary
-                disabled={!content.length || isOffline}
-                onClick={onSubmitClick}
-            >
-                Send
-            </Button>
         </div>
     );
 };

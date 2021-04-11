@@ -1,10 +1,10 @@
-.layout {
+.small-frame {
     background-color: var(--color-grey-light);
     padding: 5rem 0;
     min-height: 100vh;
 }
 
-.layout__content {
+.small-frame__content {
     background-color: var(--color-white);
     border-radius: var(--radius);
     max-width: 800px;

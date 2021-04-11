@@ -29,7 +29,9 @@ const MessageList: React.FC<MessageListProps> = ({ userId, events }) => {
         }
     });
 
-    return <div className="message-list">{renderedMessages}</div>;
+    return (
+        <div className="message-list medium-content">{renderedMessages}</div>
+    );
 };
 
 export default MessageList;
