@@ -1,22 +1,17 @@
 import LoggedScreen, { LoggedScreenProps } from "./LoggedScreen";
 import { Story } from "@storybook/react/types-6-0";
-import { getStoreMock, roomMockFactory } from "../../utils/mocks";
+import { getStoreMock } from "../../utils/mocks";
 import { Store } from "redux";
 import { Provider } from "react-redux";
 import LoggedScreenType from "../../models/LoggedScreenType";
-
-const store = getStoreMock({
-    isOffline: false,
-    isSigningIn: false,
-    activeScreenType: LoggedScreenType.Chat,
-    rooms: roomMockFactory.many(),
-});
 
 export default {
     title: "Screen/LoggedScreen",
     decorators: [
         (story: any) => (
-            <Provider store={(store as unknown) as Store}>{story()}</Provider>
+            <Provider store={(getStoreMock() as unknown) as Store}>
+                {story()}
+            </Provider>
         ),
     ],
     component: LoggedScreen,
