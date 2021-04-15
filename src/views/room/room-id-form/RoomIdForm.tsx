@@ -20,7 +20,7 @@ const RoomIdForm: React.FC<RoomIdFormProps> = ({
     return (
         <div>
             <Field label="Enter the room id" error={errorMessage}>
-                {!isJoining && <TextField value={id} onInput={setId} />}
+                {!isJoining && <TextField value={id} onChange={setId} />}
             </Field>
             {isJoining ? (
                 <Spinner inline>Joining room...</Spinner>

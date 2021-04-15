@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../button/Button";
 import TextField from "../../text-field/TextField";
 import "./MessageSender.css";
@@ -12,12 +12,18 @@ const MessageSender: React.FC<MessageSenderProps> = ({
     isOffline,
     onSubmit,
 }) => {
+    const messageInput = useRef<TextField | null>(null);
     const [content, setContent] = useState("");
 
-    const onSubmitClick = () => {
+    const focusMsgInput = () => messageInput.current?.focus();
+
+    useEffect(focusMsgInput, []);
+
+    const onSubmitMessage = () => {
         if (content.length) {
             onSubmit(content);
             setContent("");
+            focusMsgInput();
         }
     };
 
@@ -26,16 +32,18 @@ const MessageSender: React.FC<MessageSenderProps> = ({
             <div className="message-sender__contents medium-content">
                 <div className="message-sender__field">
                     <TextField
+                        ref={messageInput}
                         value={content}
                         placeholder="Type a message"
-                        onInput={setContent}
                         disabled={isOffline}
+                        onChange={setContent}
+                        onEnter={onSubmitMessage}
                     />
                 </div>
                 <Button
                     primary
                     disabled={!content.length || isOffline}
-                    onClick={onSubmitClick}
+                    onClick={onSubmitMessage}
                 >
                     Send
                 </Button>
