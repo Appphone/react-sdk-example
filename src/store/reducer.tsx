@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import ChatEvent from "../models/ChatEvent";
 import LoggedScreenType from "../models/LoggedScreenType";
+import PendingRoom from "../models/PendingRoom";
 import Room from "../models/Room";
 import SocketMeta from "../models/SocketMeta";
 
@@ -15,6 +16,7 @@ interface MessagingState {
     socket?: SocketMeta;
     activeRoomId?: string;
     rooms?: Room[];
+    pendingRooms?: PendingRoom[];
 }
 
 const initialState: MessagingState = {
@@ -72,38 +74,28 @@ const messagingSlice = createSlice({
         joinRoom(state, action: PayloadAction<{ id: string }>) {
             state.isJoiningRoom = true;
             state.joinRoomError = undefined;
-            state.rooms?.push({
+            state.pendingRooms?.push({
                 id: action.payload.id,
-                isConnected: false,
-                isLeaving: false,
-                unreadCount: 0,
-                events: [],
             });
         },
         createRoom(state, action: PayloadAction<{ name: string }>) {
             state.isJoiningRoom = true;
             state.joinRoomError = undefined;
+            state.pendingRooms?.push({
+                name: action.payload.name,
+            });
         },
         joinRoomSuccess(
             state,
             action: PayloadAction<{ id: string; name: string }>
         ) {
-            const room = state.rooms?.find(
-                (room) => room.id === action.payload.id
-            );
-            if (room) {
-                room.isConnected = true;
-                room.name = action.payload.name;
-            } else {
-                state.rooms?.push({
-                    id: action.payload.id,
-                    name: action.payload.name,
-                    isConnected: true,
-                    isLeaving: false,
-                    unreadCount: 0,
-                    events: [],
-                });
-            }
+            state.rooms?.push({
+                id: action.payload.id,
+                name: action.payload.name,
+                isLeaving: false,
+                unreadCount: 0,
+                events: [],
+            });
             state.isJoiningRoom = false;
         },
         joinRoomError(
@@ -137,7 +129,7 @@ const messagingSlice = createSlice({
             const room = state.rooms?.find(
                 (room) => room.id === action.payload.id
             );
-            if (room && room.isConnected) {
+            if (room) {
                 room.unreadCount = 0;
                 state.activeScreenType = LoggedScreenType.Chat;
                 state.activeRoomId = action.payload.id;

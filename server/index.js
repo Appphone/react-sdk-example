@@ -145,6 +145,7 @@ io.on("connection", (socket) => {
                 error: "not found",
                 id: roomId,
             });
+            return;
         }
 
         const socketsInRoom = await io.in(roomId).allSockets();

@@ -82,6 +82,7 @@ const socketMiddleware = () => {
                     "room is full": "This room is already full",
                     "too many rooms":
                         "You've reached the maximum allowed number of rooms",
+                    "not found": "This room doesn't exist",
                 };
 
                 storeAPI.dispatch(
