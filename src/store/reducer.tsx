@@ -83,15 +83,15 @@ const messagingSlice = createSlice({
             state.isJoiningRoom = true;
             state.joinRoomError = undefined;
         },
-        joinRoomSuccess(state, action: PayloadAction<string>) {
+        joinRoomSuccess(state, action: PayloadAction<{ id: string }>) {
             const room = state.rooms?.find(
-                (room) => room.id === action.payload
+                (room) => room.id === action.payload.id
             );
             if (room) {
                 room.isConnected = true;
             } else {
                 state.rooms?.push({
-                    id: action.payload,
+                    id: action.payload.id,
                     isConnected: true,
                     unreadCount: 0,
                     events: [],
@@ -110,7 +110,7 @@ const messagingSlice = createSlice({
                 const indexToRemove = state.rooms?.findIndex(
                     (room) => room.id === action.payload.id
                 );
-                if (indexToRemove) {
+                if (indexToRemove && indexToRemove >= 0) {
                     state.rooms?.splice(indexToRemove, 1);
                 }
             }

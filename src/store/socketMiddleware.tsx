@@ -56,9 +56,40 @@ const socketMiddleware = () => {
             );
 
             rooms.forEach((roomId: string) =>
-                storeAPI.dispatch(joinRoomSuccess(roomId))
+                storeAPI.dispatch(joinRoomSuccess({ id: roomId }))
             );
         });
+
+        socket.on("room:join-success", ({ id }: { readonly id: string }) => {
+            storeAPI.dispatch(joinRoomSuccess({ id }));
+            storeAPI.dispatch(openRoom({ id }));
+        });
+
+        socket.on(
+            "room:join-error",
+            ({
+                error,
+                id,
+            }: {
+                readonly error: string;
+                readonly id?: string;
+            }) => {
+                const errorMessages: { [key: string]: string } = {
+                    "room is full": "This room is already full",
+                    "too many rooms":
+                        "You've reached the maximum allowed number of rooms",
+                };
+
+                storeAPI.dispatch(
+                    joinRoomError({
+                        message:
+                            errorMessages[error] ||
+                            "Failed to join room, try again later",
+                        id: id,
+                    })
+                );
+            }
+        );
 
         socket.on("message", (event: ChatEvent) => {
             storeAPI.dispatch(appendReceivedEvent(event));
@@ -92,60 +123,10 @@ const socketMiddleware = () => {
                 localStorage.removeItem("sessionId");
                 break;
             case "messaging/joinRoom":
-                socket?.emit(
-                    "rooms:join",
-                    action.payload.id,
-                    ({
-                        success,
-                        error,
-                    }: {
-                        readonly success: boolean;
-                        readonly error: string;
-                    }) => {
-                        if (success) {
-                            storeAPI.dispatch(
-                                joinRoomSuccess(action.payload.id)
-                            );
-                            storeAPI.dispatch(
-                                openRoom({ id: action.payload.id })
-                            );
-                        } else {
-                            storeAPI.dispatch(
-                                joinRoomError({
-                                    message:
-                                        error === "room is full"
-                                            ? "This room is already full"
-                                            : "Failed to join room, try again later",
-                                    id: action.payload.id,
-                                })
-                            );
-                        }
-                    }
-                );
+                socket?.emit("rooms:join", action.payload.id);
                 break;
             case "messaging/joinNewRoom":
-                socket?.emit(
-                    "rooms:join-new",
-                    ({
-                        success,
-                        id,
-                    }: {
-                        readonly success: boolean;
-                        readonly id: string;
-                    }) => {
-                        if (success) {
-                            storeAPI.dispatch(joinRoomSuccess(id));
-                            storeAPI.dispatch(openRoom({ id }));
-                        } else {
-                            storeAPI.dispatch(
-                                joinRoomError({
-                                    message:
-                                        "Failed to join room, try again later",
-                                })
-                            );
-                        }
-                    }
-                );
+                socket?.emit("rooms:join-new");
                 break;
             case "messaging/sendMessage":
                 socket?.emit(
