@@ -67,21 +67,23 @@ const socketMiddleware = () => {
 
     // todo specify types
     return (storeAPI: any) => (next: any) => (action: any) => {
-        if (action.type === "messaging/joinRoom") {
-            action.payload.id = `room://${action.payload.id}`;
-        }
-
-        // always let the reducers react to actions immediately, to give visual feedback
-        // can use ACKs later to update state when appropriate
-        next(action);
-
         switch (action.type) {
+            case "messaging/joinRoom":
+                action.payload.id = `room://${action.payload.id}`;
+                break;
             case "messaging/login":
                 const sessionId = localStorage.getItem("sessionId");
                 if (sessionId) {
                     setupSocket(storeAPI, { sessionId });
+                } else {
+                    return;
                 }
                 break;
+        }
+
+        next(action);
+
+        switch (action.type) {
             case "messaging/signUp":
                 setupSocket(storeAPI, action.payload);
                 break;
