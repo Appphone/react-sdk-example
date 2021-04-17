@@ -5,7 +5,3 @@
 .signup__form__step {
     display: flex;
 }
-
-.signup__form__step > :first-child {
-    margin-right: 1rem;
-}
