@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { joinNewRoom, joinRoom } from "../../../store/reducer";
+import { createRoom, joinRoom } from "../../../store/reducer";
 import { RoomOption } from "../room-option-form/RoomOptionForm";
 import RoomCreator, { RoomCreatorStep } from "./RoomCreator";
 
@@ -15,7 +15,7 @@ const RoomCreatorConnect: React.FC = () => {
     };
 
     const onSubmitNewRoomName = (name: string) => {
-        dispatch(joinNewRoom({ name }));
+        dispatch(createRoom({ name }));
     };
 
     let step = RoomCreatorStep.RoomOption;

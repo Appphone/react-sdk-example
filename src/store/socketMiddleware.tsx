@@ -133,8 +133,8 @@ const socketMiddleware = () => {
             case "messaging/joinRoom":
                 socket?.emit("rooms:join", action.payload.id);
                 break;
-            case "messaging/joinNewRoom":
-                socket?.emit("rooms:join-new", action.payload.name);
+            case "messaging/createRoom":
+                socket?.emit("rooms:create", action.payload.name);
                 break;
             case "messaging/leaveRoom":
                 socket?.emit("rooms:leave", action.payload.id);

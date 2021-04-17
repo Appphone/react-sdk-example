@@ -80,7 +80,7 @@ const messagingSlice = createSlice({
                 events: [],
             });
         },
-        joinNewRoom(state, action: PayloadAction<{ name: string }>) {
+        createRoom(state, action: PayloadAction<{ name: string }>) {
             state.isJoiningRoom = true;
             state.joinRoomError = undefined;
         },
@@ -199,7 +199,7 @@ export const {
     signOut,
     sessionSucess,
     joinRoom,
-    joinNewRoom,
+    createRoom,
     joinRoomSuccess,
     joinRoomError,
     openRoom,

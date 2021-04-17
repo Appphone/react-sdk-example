@@ -130,7 +130,7 @@ io.on("connection", (socket) => {
 
     socket.join(socket.userId);
 
-    socket.on("rooms:join-new", (name) => {
+    socket.on("rooms:create", (name) => {
         const roomId = "rooms://" + randomId();
         const roomData = { name };
         roomStore.saveRoom(roomId, roomData);
