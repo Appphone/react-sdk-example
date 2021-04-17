@@ -56,15 +56,18 @@ const socketMiddleware = () => {
                 })
             );
 
-            rooms.forEach((roomId: string) =>
-                storeAPI.dispatch(joinRoomSuccess({ id: roomId }))
+            rooms.forEach(({ id, name }: { id: string; name: string }) =>
+                storeAPI.dispatch(joinRoomSuccess({ id, name }))
             );
         });
 
-        socket.on("rooms:join-success", ({ id }: { readonly id: string }) => {
-            storeAPI.dispatch(joinRoomSuccess({ id }));
-            storeAPI.dispatch(openRoom({ id }));
-        });
+        socket.on(
+            "rooms:join-success",
+            ({ id, name }: { readonly id: string; readonly name: string }) => {
+                storeAPI.dispatch(joinRoomSuccess({ id, name }));
+                storeAPI.dispatch(openRoom({ id }));
+            }
+        );
 
         socket.on(
             "rooms:join-error",
@@ -131,7 +134,7 @@ const socketMiddleware = () => {
                 socket?.emit("rooms:join", action.payload.id);
                 break;
             case "messaging/joinNewRoom":
-                socket?.emit("rooms:join-new");
+                socket?.emit("rooms:join-new", action.payload.name);
                 break;
             case "messaging/leaveRoom":
                 socket?.emit("rooms:leave", action.payload.id);

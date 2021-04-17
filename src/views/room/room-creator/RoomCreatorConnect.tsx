@@ -10,28 +10,29 @@ const RoomCreatorConnect: React.FC = () => {
     const joinErrorMessage = useAppSelector((state) => state.joinRoomError);
     const [roomOption, setRoomOption] = useState<RoomOption>();
 
-    const onChooseRoomOption = (option: RoomOption) => {
-        setRoomOption(option);
-        if (option === RoomOption.New) {
-            dispatch(joinNewRoom());
-        }
-    };
-
-    const onEnterRoomId = (id: string) => {
+    const onSubmitRoomId = (id: string) => {
         dispatch(joinRoom({ id }));
     };
 
+    const onSubmitNewRoomName = (name: string) => {
+        dispatch(joinNewRoom({ name }));
+    };
+
+    let step = RoomCreatorStep.RoomOption;
+    if (roomOption === RoomOption.New) {
+        step = RoomCreatorStep.RoomName;
+    } else if (roomOption === RoomOption.Existing) {
+        step = RoomCreatorStep.RoomId;
+    }
+
     return (
         <RoomCreator
-            step={
-                !!roomOption
-                    ? RoomCreatorStep.RoomId
-                    : RoomCreatorStep.RoomOption
-            }
+            step={step}
             isJoining={isJoining}
             errorMessage={joinErrorMessage}
-            onChooseRoomOption={onChooseRoomOption}
-            onEnterRoomId={onEnterRoomId}
+            onSubmitRoomOption={setRoomOption}
+            onSubmitRoomId={onSubmitRoomId}
+            onSubmitNewRoomName={onSubmitNewRoomName}
         />
     );
 };

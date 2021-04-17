@@ -13,6 +13,6 @@ const Template: Story<RoomCreatorProps> = (args: RoomCreatorProps) => (
 export const Default = Template.bind({});
 Default.args = {
     step: RoomCreatorStep.RoomOption,
-    onChooseRoomOption: () => {},
-    onEnterRoomId: () => {},
+    onSubmitRoomOption: () => {},
+    onSubmitRoomId: () => {},
 };

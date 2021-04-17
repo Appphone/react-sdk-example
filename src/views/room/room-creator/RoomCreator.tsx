@@ -1,41 +1,60 @@
 import React from "react";
 import RoomIdForm from "../room-id-form/RoomIdForm";
 import RoomOptionForm, { RoomOption } from "../room-option-form/RoomOptionForm";
+import RoomNameForm from "../room-name-form/RoomNameForm";
 
 export enum RoomCreatorStep {
     RoomOption,
     RoomId,
+    RoomName,
 }
 
 export interface RoomCreatorProps {
     step: RoomCreatorStep;
     isJoining: boolean;
     errorMessage?: string;
-    onChooseRoomOption: (option: RoomOption) => void;
-    onEnterRoomId: (id: string) => void;
+    onSubmitRoomOption: (option: RoomOption) => void;
+    onSubmitRoomId: (id: string) => void;
+    onSubmitNewRoomName: (name: string) => void;
 }
 
 const RoomCreator: React.FC<RoomCreatorProps> = ({
     step,
     isJoining,
     errorMessage,
-    onChooseRoomOption,
-    onEnterRoomId,
+    onSubmitRoomOption,
+    onSubmitRoomId,
+    onSubmitNewRoomName,
 }) => {
-    const renderedStep =
-        step === RoomCreatorStep.RoomOption ? (
-            <RoomOptionForm
-                isJoining={isJoining}
-                errorMessage={errorMessage}
-                onSubmit={onChooseRoomOption}
-            />
-        ) : (
-            <RoomIdForm
-                isJoining={isJoining}
-                errorMessage={errorMessage}
-                onSubmit={onEnterRoomId}
-            />
-        );
+    let renderedStep;
+    switch (step) {
+        case RoomCreatorStep.RoomId:
+            renderedStep = (
+                <RoomIdForm
+                    isJoining={isJoining}
+                    errorMessage={errorMessage}
+                    onSubmit={onSubmitRoomId}
+                />
+            );
+            break;
+        case RoomCreatorStep.RoomName:
+            renderedStep = (
+                <RoomNameForm
+                    isJoining={isJoining}
+                    errorMessage={errorMessage}
+                    onSubmit={onSubmitNewRoomName}
+                />
+            );
+            break;
+        default:
+            renderedStep = (
+                <RoomOptionForm
+                    isJoining={isJoining}
+                    errorMessage={errorMessage}
+                    onSubmit={onSubmitRoomOption}
+                />
+            );
+    }
 
     return <div className="room-creator">{renderedStep}</div>;
 };

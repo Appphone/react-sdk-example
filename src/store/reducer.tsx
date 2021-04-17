@@ -80,19 +80,24 @@ const messagingSlice = createSlice({
                 events: [],
             });
         },
-        joinNewRoom(state) {
+        joinNewRoom(state, action: PayloadAction<{ name: string }>) {
             state.isJoiningRoom = true;
             state.joinRoomError = undefined;
         },
-        joinRoomSuccess(state, action: PayloadAction<{ id: string }>) {
+        joinRoomSuccess(
+            state,
+            action: PayloadAction<{ id: string; name: string }>
+        ) {
             const room = state.rooms?.find(
                 (room) => room.id === action.payload.id
             );
             if (room) {
                 room.isConnected = true;
+                room.name = action.payload.name;
             } else {
                 state.rooms?.push({
                     id: action.payload.id,
+                    name: action.payload.name,
                     isConnected: true,
                     isLeaving: false,
                     unreadCount: 0,

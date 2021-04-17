@@ -2,6 +2,7 @@ const app = require("express")();
 const httpServer = require("http").createServer(app);
 const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
+const RoomStore = require("./roomStore");
 
 const ENABLE_LOG = true;
 const ALLOWED_SOCKETS_PER_ROOM = 10;
@@ -9,6 +10,7 @@ const ALLOWED_SOCKETS_PER_USER = 2;
 const ALLOWED_ROOMS_PER_SOCKET = 10;
 
 const sessionStore = new SessionStore();
+const roomStore = new RoomStore();
 
 const randomId = () => crypto.randomBytes(8).toString("hex");
 
@@ -35,14 +37,17 @@ const saveSocketRooms = (socket) => {
     });
 };
 
-const joinRoom = (socket, roomId) => {
+const joinRoom = (socket, roomId, roomData) => {
     const joinedRoomsCount = socket.rooms.size;
     console.log("rooms count", joinedRoomsCount);
     // Adds 2 because each user has its own user Id room and its own socket Id room
     if (joinedRoomsCount < ALLOWED_ROOMS_PER_SOCKET + 2) {
         io.in(socket.userId).socketsJoin(roomId);
         saveSocketRooms(socket);
-        io.in(socket.userId).emit("rooms:join-success", { id: roomId });
+        io.in(socket.userId).emit("rooms:join-success", {
+            id: roomId,
+            ...roomData,
+        });
     } else {
         io.in(socket.userId).emit("rooms:join-error", {
             error: "too many rooms",
@@ -118,21 +123,34 @@ io.on("connection", (socket) => {
         sessionId: socket.sessionId,
         userId: socket.userId,
         username: socket.username,
-        rooms: [...socket.rooms.values()].filter((id) => id !== socket.id),
+        rooms: [...socket.rooms.values()]
+            .filter((id) => id !== socket.id)
+            .map((id) => ({ id, ...roomStore.findRoom(id) })),
     });
 
     socket.join(socket.userId);
 
-    socket.on("rooms:join-new", (callback) => {
+    socket.on("rooms:join-new", (name) => {
         const roomId = "rooms://" + randomId();
-        joinRoom(socket, roomId, callback);
+        const roomData = { name };
+        roomStore.saveRoom(roomId, roomData);
+        joinRoom(socket, roomId, roomData);
     });
 
     socket.on("rooms:join", async (roomId) => {
+        const roomData = roomStore.findRoom(roomId);
+
+        if (!roomData) {
+            io.in(socket.userId).emit("rooms:join-error", {
+                error: "not found",
+                id: roomId,
+            });
+        }
+
         const socketsInRoom = await io.in(roomId).allSockets();
 
         if (socketsInRoom.size < ALLOWED_SOCKETS_PER_ROOM) {
-            joinRoom(socket, roomId);
+            joinRoom(socket, roomId, roomData);
         } else {
             io.in(socket.userId).emit("rooms:join-error", {
                 error: "room is full",

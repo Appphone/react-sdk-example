@@ -9,13 +9,13 @@ export interface RoomListItemProps {
 }
 
 const RoomListItem: React.FC<RoomListItemProps> = ({
-    room: { id, unreadCount, isLeaving },
+    room: { id, name, unreadCount, isLeaving },
     isActive,
     onClick,
 }) => {
     return (
         <SidebarListItem
-            title={id}
+            title={name || id}
             unreadCount={unreadCount}
             isActive={isActive}
             disabled={isLeaving}
