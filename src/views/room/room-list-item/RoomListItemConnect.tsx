@@ -1,8 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Room from "../../../models/Room";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import { openRoom } from "../../../store/reducer";
-import { getActiveRoom } from "../../../store/selectors";
+import { getActiveRoomId } from "../../../store/selectors";
 import RoomListItem from "./RoomListItem";
 
 export interface RoomListItemProps {
@@ -11,7 +12,7 @@ export interface RoomListItemProps {
 
 const RoomListItemConnect: React.FC<RoomListItemProps> = ({ room }) => {
     const dispatch = useAppDispatch();
-    const activeRoom = useAppSelector(getActiveRoom);
+    const activeRoomId = useSelector(getActiveRoomId);
 
     const onRoomClick = () => {
         dispatch(openRoom({ id: room.id }));
@@ -20,7 +21,7 @@ const RoomListItemConnect: React.FC<RoomListItemProps> = ({ room }) => {
     return (
         <RoomListItem
             room={room}
-            isActive={activeRoom?.id === room.id}
+            isActive={activeRoomId === room.id}
             onClick={onRoomClick}
         />
     );

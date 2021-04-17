@@ -20,7 +20,7 @@ const io = require("socket.io")(httpServer, {
 
 const saveSocketRooms = (socket) => {
     const rooms = [...socket.rooms.values()].filter(
-        (id) => id.indexOf("room://") === 0
+        (id) => id.indexOf("rooms://") === 0
     );
 
     if (ENABLE_LOG) {
@@ -35,16 +35,16 @@ const saveSocketRooms = (socket) => {
     });
 };
 
-const joinRoom = (socket, roomId, callback) => {
+const joinRoom = (socket, roomId) => {
     const joinedRoomsCount = socket.rooms.size;
     console.log("rooms count", joinedRoomsCount);
     // Adds 2 because each user has its own user Id room and its own socket Id room
     if (joinedRoomsCount < ALLOWED_ROOMS_PER_SOCKET + 2) {
         io.in(socket.userId).socketsJoin(roomId);
         saveSocketRooms(socket);
-        io.in(socket.userId).emit("room:join-success", { id: roomId });
+        io.in(socket.userId).emit("rooms:join-success", { id: roomId });
     } else {
-        io.in(socket.userId).emit("room:join-error", {
+        io.in(socket.userId).emit("rooms:join-error", {
             error: "too many rooms",
             id: roomId,
         });
@@ -124,21 +124,30 @@ io.on("connection", (socket) => {
     socket.join(socket.userId);
 
     socket.on("rooms:join-new", (callback) => {
-        const roomId = "room://" + randomId();
+        const roomId = "rooms://" + randomId();
         joinRoom(socket, roomId, callback);
     });
 
-    socket.on("rooms:join", async (roomId, callback) => {
+    socket.on("rooms:join", async (roomId) => {
         const socketsInRoom = await io.in(roomId).allSockets();
 
         if (socketsInRoom.size < ALLOWED_SOCKETS_PER_ROOM) {
-            joinRoom(socket, roomId, callback);
+            joinRoom(socket, roomId);
         } else {
-            io.in(socket.userId).emit("room:join-error", {
+            io.in(socket.userId).emit("rooms:join-error", {
                 error: "room is full",
                 id: roomId,
             });
         }
+    });
+
+    socket.on("rooms:leave", async (roomId) => {
+        if (ENABLE_LOG) {
+            console.log("leaving room", roomId);
+        }
+
+        io.in(socket.userId).socketsLeave(roomId);
+        io.in(socket.userId).emit("rooms:leave-success", { id: roomId });
     });
 
     socket.on("message", (event, callback) => {

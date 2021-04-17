@@ -7,9 +7,7 @@ import LoggedScreenConnect from "./screens/logged/LoggedScreenConnect";
 const App: React.FC = () => {
     const dispatch = useAppDispatch();
 
-    const isLoggedIn = useAppSelector(
-        (state) => state.socket?.isConnected && state.rooms?.length
-    );
+    const isLoggedIn = useAppSelector((state) => state.socket?.isConnected);
 
     useEffect(() => {
         dispatch(login());

@@ -10,6 +10,7 @@ import {
     setOffline,
     signUpError,
     blockSignIn,
+    leaveRoomSuccess,
 } from "./reducer";
 
 const socketMiddleware = () => {
@@ -60,13 +61,13 @@ const socketMiddleware = () => {
             );
         });
 
-        socket.on("room:join-success", ({ id }: { readonly id: string }) => {
+        socket.on("rooms:join-success", ({ id }: { readonly id: string }) => {
             storeAPI.dispatch(joinRoomSuccess({ id }));
             storeAPI.dispatch(openRoom({ id }));
         });
 
         socket.on(
-            "room:join-error",
+            "rooms:join-error",
             ({
                 error,
                 id,
@@ -91,6 +92,10 @@ const socketMiddleware = () => {
             }
         );
 
+        socket.on("rooms:leave-success", ({ id }: { readonly id: string }) => {
+            storeAPI.dispatch(leaveRoomSuccess({ id }));
+        });
+
         socket.on("message", (event: ChatEvent) => {
             storeAPI.dispatch(appendReceivedEvent(event));
         });
@@ -100,7 +105,7 @@ const socketMiddleware = () => {
     return (storeAPI: any) => (next: any) => (action: any) => {
         switch (action.type) {
             case "messaging/joinRoom":
-                action.payload.id = `room://${action.payload.id}`;
+                action.payload.id = `rooms://${action.payload.id}`;
                 break;
             case "messaging/login":
                 const sessionId = localStorage.getItem("sessionId");
@@ -127,6 +132,9 @@ const socketMiddleware = () => {
                 break;
             case "messaging/joinNewRoom":
                 socket?.emit("rooms:join-new");
+                break;
+            case "messaging/leaveRoom":
+                socket?.emit("rooms:leave", action.payload.id);
                 break;
             case "messaging/sendMessage":
                 socket?.emit(

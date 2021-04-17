@@ -6,14 +6,16 @@ import "./Chat.css";
 
 export interface ChatProps {
     onToggleSidebar: () => void;
+    onLeaveRoomClick: () => void;
 }
 
-const Chat: React.FC<ChatProps> = ({ onToggleSidebar }) => {
+const Chat: React.FC<ChatProps> = ({ onToggleSidebar, onLeaveRoomClick }) => {
     return (
         <div className="chat">
             <div className="chat__header">
                 <div className="medium-content">
                     <Button onClick={onToggleSidebar}>Hide Sidebar</Button>
+                    <Button onClick={onLeaveRoomClick}>Leave Room</Button>
                     <h2>Room</h2>
                 </div>
             </div>

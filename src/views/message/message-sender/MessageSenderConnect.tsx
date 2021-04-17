@@ -2,7 +2,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { sendMessage } from "../../../store/reducer";
 import {
-    getActiveRoom,
+    getActiveRoomId,
     getUserId,
     getUsername,
 } from "../../../store/selectors";
@@ -14,16 +14,16 @@ const MessageSenderConnect: React.FC = () => {
     const dispatch = useAppDispatch();
     const userId = useAppSelector(getUserId);
     const username = useAppSelector(getUsername);
-    const room = useAppSelector(getActiveRoom);
+    const roomId = useAppSelector(getActiveRoomId);
     const isOffline = useAppSelector((state) => state.isOffline);
 
     const onSubmit = (content: string) => {
-        if (userId && username && room) {
+        if (userId && username && roomId) {
             dispatch(
                 sendMessage({
                     localId: uuid(),
                     createdAt: new Date().toISOString(),
-                    roomId: room.id,
+                    roomId: roomId,
                     senderId: userId,
                     senderLabel: username,
                     type: ChatDataType.Message,

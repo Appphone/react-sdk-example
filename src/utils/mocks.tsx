@@ -59,6 +59,7 @@ const getRoom: () => Room = () => ({
     id: faker.datatype.number().toString(),
     unreadCount: faker.datatype.number(),
     isConnected: faker.datatype.number() % 2 === 0,
+    isLeaving: false,
     events: [],
 });
 

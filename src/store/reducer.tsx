@@ -75,6 +75,7 @@ const messagingSlice = createSlice({
             state.rooms?.push({
                 id: action.payload.id,
                 isConnected: false,
+                isLeaving: false,
                 unreadCount: 0,
                 events: [],
             });
@@ -93,6 +94,7 @@ const messagingSlice = createSlice({
                 state.rooms?.push({
                     id: action.payload.id,
                     isConnected: true,
+                    isLeaving: false,
                     unreadCount: 0,
                     events: [],
                 });
@@ -110,8 +112,19 @@ const messagingSlice = createSlice({
                 const indexToRemove = state.rooms?.findIndex(
                     (room) => room.id === action.payload.id
                 );
-                if (indexToRemove && indexToRemove >= 0) {
+                if (indexToRemove !== undefined && indexToRemove >= 0) {
                     state.rooms?.splice(indexToRemove, 1);
+                }
+            }
+        },
+        leaveRoom(state, action: PayloadAction<{ id: string }>) {
+            if (state.rooms) {
+                const room = state.rooms.find(
+                    (room) => room.id === action.payload.id
+                );
+                if (room) {
+                    room.isLeaving = true;
+                    state.activeRoomId = undefined;
                 }
             }
         },
@@ -125,11 +138,11 @@ const messagingSlice = createSlice({
                 state.activeRoomId = action.payload.id;
             }
         },
-        leaveRoom(state, action: PayloadAction<string>) {
+        leaveRoomSuccess(state, action: PayloadAction<{ id: string }>) {
             const indexToRemove = state.rooms?.findIndex(
-                (room) => room.id === action.payload
+                (room) => room.id === action.payload.id
             );
-            if (indexToRemove && indexToRemove >= 0) {
+            if (indexToRemove !== undefined && indexToRemove >= 0) {
                 state.rooms?.splice(indexToRemove, 1);
             }
         },
@@ -186,6 +199,7 @@ export const {
     joinRoomError,
     openRoom,
     leaveRoom,
+    leaveRoomSuccess,
     sendMessage,
     sendMessageSuccess,
     appendReceivedEvent,

@@ -9,7 +9,7 @@ export interface RoomListItemProps {
 }
 
 const RoomListItem: React.FC<RoomListItemProps> = ({
-    room: { id, unreadCount },
+    room: { id, unreadCount, isLeaving },
     isActive,
     onClick,
 }) => {
@@ -18,6 +18,7 @@ const RoomListItem: React.FC<RoomListItemProps> = ({
             title={id}
             unreadCount={unreadCount}
             isActive={isActive}
+            disabled={isLeaving}
             onClick={onClick}
         />
     );
