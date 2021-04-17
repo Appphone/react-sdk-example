@@ -41,7 +41,11 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         : "Only alphanumeric characteres are allowed, without spaces";
 
     const usernameInput = !isSigningIn && (
-        <TextField error={!!errorToShow} onChange={validateUsername} />
+        <TextField
+            error={!!errorToShow}
+            onChange={validateUsername}
+            onEnter={onSubmitClick}
+        />
     );
 
     const submitButton = isSigningIn ? (

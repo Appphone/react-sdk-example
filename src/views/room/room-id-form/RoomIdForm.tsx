@@ -20,12 +20,20 @@ const RoomIdForm: React.FC<RoomIdFormProps> = ({
     return (
         <div>
             <Field label="Enter the room id" error={errorMessage}>
-                {!isJoining && <TextField value={id} onChange={setId} />}
+                {!isJoining && (
+                    <TextField
+                        value={id}
+                        onChange={setId}
+                        onEnter={() => id && onSubmit(id)}
+                    />
+                )}
             </Field>
             {isJoining ? (
                 <Spinner inline>Joining room...</Spinner>
             ) : (
-                <Button onClick={() => id && onSubmit(id)}>Join</Button>
+                <Button primary onClick={() => id && onSubmit(id)}>
+                    Join
+                </Button>
             )}
         </div>
     );
