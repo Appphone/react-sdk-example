@@ -10,6 +10,7 @@ export default interface ChatEvent {
     readonly createdAt: string;
     readonly roomId: string;
     readonly senderId: string;
+    readonly senderLabel: string;
     readonly type: ChatDataType;
     readonly data: Message;
 }

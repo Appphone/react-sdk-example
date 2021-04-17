@@ -40,8 +40,11 @@ const messagingSlice = createSlice({
             state.signUpError = undefined;
             state.isSigningIn = true;
         },
-        signUp(state, action: PayloadAction<string>) {
-            state.socket = { username: action.payload, isConnected: false };
+        signUp(state, action: PayloadAction<{ username: string }>) {
+            state.socket = {
+                username: action.payload.username,
+                isConnected: false,
+            };
             state.signUpError = undefined;
             state.isSigningIn = true;
             state.isSignInBlocked = false;

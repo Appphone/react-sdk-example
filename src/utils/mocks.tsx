@@ -41,6 +41,7 @@ const getMessage: () => ChatEvent = () => ({
     createdAt: new Date().toISOString(),
     roomId: "1",
     senderId: faker.datatype.number() % 2 === 0 ? "1" : "2",
+    senderLabel: faker.internet.userName(),
     type: ChatDataType.Message,
     data: {
         content: faker.lorem.words(),

@@ -10,7 +10,7 @@ const UsernameFormConnect: React.FC = () => {
     const isSigningIn = useAppSelector((state) => state.isSigningIn);
 
     const onUsernameSet = (username: string) => {
-        dispatch(signUp(username));
+        dispatch(signUp({ username }));
     };
 
     const errorMessage = isOffline

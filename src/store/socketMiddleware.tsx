@@ -83,7 +83,7 @@ const socketMiddleware = () => {
                 }
                 break;
             case "messaging/signUp":
-                setupSocket(storeAPI, { username: action.payload });
+                setupSocket(storeAPI, action.payload);
                 break;
             case "messaging/signOut":
                 if (socket) socket.disconnect();

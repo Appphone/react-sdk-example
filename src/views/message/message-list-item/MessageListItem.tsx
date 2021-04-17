@@ -21,6 +21,9 @@ const MessageListItem: React.FC<MessageListItemProps> = ({
 
     return (
         <div className={msgClass}>
+            <div className="message-list__item__sender text-sm">
+                {message.senderLabel}
+            </div>
             <div className="message-list__item__content">
                 {message.data.content}
             </div>
