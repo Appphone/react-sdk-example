@@ -7,7 +7,7 @@
     "license": "MIT",
     "dependencies": {
         "@bit/jorgemoreira.react.input.field": "^0.0.2",
-        "@bit/jorgemoreira.react.input.text-field": "^0.0.8",
+        "@bit/jorgemoreira.react.input.text-field": "^0.0.9",
         "@bit/jorgemoreira.react.progress.spinner": "^0.0.1",
         "@bit/jorgemoreira.react.styles": "^0.0.2",
         "@bit/jorgemoreira.react.surface.modal": "^0.0.1",

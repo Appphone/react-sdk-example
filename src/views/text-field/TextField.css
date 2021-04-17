@@ -21,3 +21,7 @@
 .text-field::placeholder {
     color: var(--color-grey);
 }
+
+.text-field--error {
+    border-color: var(--color-red);
+}
