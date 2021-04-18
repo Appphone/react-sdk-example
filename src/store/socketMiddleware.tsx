@@ -18,91 +18,108 @@ const socketMiddleware = () => {
     let socket: Socket | null = null;
 
     const setupSocket = (storeAPI: any, auth: any) => {
-        if (!socket) socket = io(URL, { autoConnect: false });
+        const isFirstTimeCreatingSocket = socket === null;
+
+        if (isFirstTimeCreatingSocket) {
+            socket = io(URL, { autoConnect: false });
+        }
+
+        socket = socket as Socket;
 
         socket.auth = auth;
         socket.connect();
 
-        socket.on("connect_error", (err) => {
-            switch (err.message) {
-                case "invalid username":
-                    storeAPI.dispatch(
-                        signUpError({ error: "Please provide a username" })
-                    );
-                    break;
-                case "username exists":
-                    storeAPI.dispatch(
-                        signUpError({
-                            error: "This username is already in use",
-                        })
-                    );
-                    break;
-                case "too many sockets":
-                    storeAPI.dispatch(blockSignIn());
-                    break;
-                default:
-                    storeAPI.dispatch(setOffline());
-            }
-        });
+        if (isFirstTimeCreatingSocket) {
+            socket.on("connect_error", (err) => {
+                switch (err.message) {
+                    case "invalid username":
+                        storeAPI.dispatch(
+                            signUpError({ error: "Please provide a username" })
+                        );
+                        break;
+                    case "username exists":
+                        storeAPI.dispatch(
+                            signUpError({
+                                error: "This username is already in use",
+                            })
+                        );
+                        break;
+                    case "too many sockets":
+                        storeAPI.dispatch(blockSignIn());
+                        break;
+                    default:
+                        storeAPI.dispatch(setOffline());
+                }
+            });
 
-        socket.on("session", ({ sessionId, userId, username, rooms }) => {
-            localStorage.setItem("sessionId", sessionId);
-            storeAPI.dispatch(
-                sessionSucess({
-                    username,
-                    userId,
-                    sessionId,
-                    isConnected: true,
-                })
-            );
-
-            rooms.forEach(({ id, name }: { id: string; name: string }) =>
-                storeAPI.dispatch(joinRoomSuccess({ id, name }))
-            );
-        });
-
-        socket.on(
-            "rooms:join-success",
-            ({ id, name }: { readonly id: string; readonly name: string }) => {
-                storeAPI.dispatch(joinRoomSuccess({ id, name }));
-                storeAPI.dispatch(openRoom({ id }));
-            }
-        );
-
-        socket.on(
-            "rooms:join-error",
-            ({
-                error,
-                id,
-            }: {
-                readonly error: string;
-                readonly id?: string;
-            }) => {
-                const errorMessages: { [key: string]: string } = {
-                    "room is full": "This room is already full",
-                    "too many rooms":
-                        "You've reached the maximum allowed number of rooms",
-                    "not found": "This room doesn't exist",
-                };
-
+            socket.on("session", ({ sessionId, userId, username, rooms }) => {
+                localStorage.setItem("sessionId", sessionId);
                 storeAPI.dispatch(
-                    joinRoomError({
-                        message:
-                            errorMessages[error] ||
-                            "Failed to join room, try again later",
-                        id: id,
+                    sessionSucess({
+                        username,
+                        userId,
+                        sessionId,
+                        isConnected: true,
                     })
                 );
-            }
-        );
 
-        socket.on("rooms:leave-success", ({ id }: { readonly id: string }) => {
-            storeAPI.dispatch(leaveRoomSuccess({ id }));
-        });
+                rooms.forEach(({ id, name }: { id: string; name: string }) =>
+                    storeAPI.dispatch(joinRoomSuccess({ id, name }))
+                );
+            });
 
-        socket.on("message", (event: ChatEvent) => {
-            storeAPI.dispatch(appendReceivedEvent(event));
-        });
+            socket.on(
+                "rooms:join-success",
+                ({
+                    id,
+                    name,
+                }: {
+                    readonly id: string;
+                    readonly name: string;
+                }) => {
+                    storeAPI.dispatch(joinRoomSuccess({ id, name }));
+                    storeAPI.dispatch(openRoom({ id }));
+                }
+            );
+
+            socket.on(
+                "rooms:join-error",
+                ({
+                    error,
+                    id,
+                }: {
+                    readonly error: string;
+                    readonly id?: string;
+                }) => {
+                    const errorMessages: { [key: string]: string } = {
+                        "room is full": "This room is already full",
+                        "too many rooms":
+                            "You've reached the maximum allowed number of rooms",
+                        "not found": "This room doesn't exist",
+                    };
+
+                    storeAPI.dispatch(
+                        joinRoomError({
+                            message:
+                                errorMessages[error] ||
+                                "Failed to join room, try again later",
+                            id: id,
+                        })
+                    );
+                }
+            );
+
+            socket.on(
+                "rooms:leave-success",
+                ({ id }: { readonly id: string }) => {
+                    storeAPI.dispatch(leaveRoomSuccess({ id }));
+                }
+            );
+
+            socket.on("message", (event: ChatEvent) => {
+                storeAPI.dispatch(appendReceivedEvent(event));
+            });
+        }
     };
 
     // todo specify types

@@ -44,6 +44,11 @@ const joinRoom = (socket, roomId, roomData) => {
     if (joinedRoomsCount < ALLOWED_ROOMS_PER_SOCKET + 2) {
         io.in(socket.userId).socketsJoin(roomId);
         saveSocketRooms(socket);
+
+        if (ENABLE_LOG) {
+            console.log("joined room", roomId);
+        }
+
         io.in(socket.userId).emit("rooms:join-success", {
             id: roomId,
             ...roomData,
@@ -172,7 +177,13 @@ io.on("connection", (socket) => {
     socket.on("message", (event, callback) => {
         // todo add type
         if (event.type === 0) {
-            if (ENABLE_LOG) console.log("sending message", event.data.content);
+            if (ENABLE_LOG) {
+                console.log(
+                    "message received, broadcasting...",
+                    event.data.content
+                );
+            }
+
             event.id = randomId();
             socket.to(event.roomId).emit("message", event);
             callback({ id: event.id });
