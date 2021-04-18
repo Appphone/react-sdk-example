@@ -7,7 +7,7 @@ export default {
 };
 
 const Template: Story<AlertProps> = (args) => (
-    <div style={{ height: "400px" }}>
+    <div style={{ height: "25rem" }}>
         <Alert {...args} />
     </div>
 );

@@ -8,7 +8,7 @@ export default {
 
 const Template: Story = () => (
     <SmallFrame>
-        <div style={{ height: "400px" }}></div>
+        <div style={{ height: "25rem" }}></div>
     </SmallFrame>
 );
 
