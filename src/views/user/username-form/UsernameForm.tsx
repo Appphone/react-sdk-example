@@ -44,6 +44,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
 
     const usernameInput = !isSigningIn && !isOffline && (
         <TextField
+            value={username}
             error={!!errorToShow}
             disabled={isOffline}
             onChange={validateUsername}

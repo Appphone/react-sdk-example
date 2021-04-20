@@ -15,7 +15,7 @@ const RoomNameForm: React.FC<RoomNameFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
-    const [name, setName] = useState<string>();
+    const [name, setName] = useState<string>("");
 
     return (
         <div>

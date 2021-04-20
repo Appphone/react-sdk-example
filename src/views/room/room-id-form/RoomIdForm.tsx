@@ -15,7 +15,7 @@ const RoomIdForm: React.FC<RoomIdFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
-    const [id, setId] = useState<string>();
+    const [id, setId] = useState<string>("");
 
     return (
         <div>
