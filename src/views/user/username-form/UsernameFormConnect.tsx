@@ -20,6 +20,7 @@ const UsernameFormConnect: React.FC = () => {
     return (
         <UsernameForm
             isSigningIn={isSigningIn}
+            isOffline={isOffline}
             errorMessage={errorMessage}
             onSubmit={onUsernameSet}
         />

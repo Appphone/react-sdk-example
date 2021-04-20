@@ -95,6 +95,8 @@ io.use(async (socket, next) => {
             }
 
             return next();
+        } else {
+            return next(new Error("invalid session"));
         }
     }
 

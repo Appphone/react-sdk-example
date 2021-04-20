@@ -64,6 +64,8 @@ const messagingSlice = createSlice({
             state.activeRoomId = undefined;
             state.rooms = undefined;
             state.signUpError = undefined;
+            state.isOffline = false;
+            state.isSigningIn = false;
         },
         sessionSucess(state, action: PayloadAction<SocketMeta>) {
             state.isOffline = false;

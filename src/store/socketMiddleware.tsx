@@ -11,6 +11,7 @@ import {
     signUpError,
     blockSignIn,
     leaveRoomSuccess,
+    signOut,
 } from "./reducer";
 
 const socketMiddleware = () => {
@@ -32,6 +33,9 @@ const socketMiddleware = () => {
         if (isFirstTimeCreatingSocket) {
             socket.on("connect_error", (err) => {
                 switch (err.message) {
+                    case "invalid session":
+                        storeAPI.dispatch(signOut());
+                        break;
                     case "invalid username":
                         storeAPI.dispatch(
                             signUpError({ error: "Please provide a username" })

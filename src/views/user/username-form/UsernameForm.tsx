@@ -6,12 +6,14 @@ import Button from "../../button/Button";
 
 export interface UsernameFormProps {
     isSigningIn: boolean;
+    isOffline: boolean;
     errorMessage?: string;
     onSubmit: (username: string) => void;
 }
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
     isSigningIn,
+    isOffline,
     errorMessage,
     onSubmit,
 }) => {
@@ -40,20 +42,13 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         ? undefined
         : "Only alphanumeric characteres are allowed, without spaces";
 
-    const usernameInput = !isSigningIn && (
+    const usernameInput = !isSigningIn && !isOffline && (
         <TextField
             error={!!errorToShow}
+            disabled={isOffline}
             onChange={validateUsername}
             onEnter={onSubmitClick}
         />
-    );
-
-    const submitButton = isSigningIn ? (
-        <Spinner inline>Please wait...</Spinner>
-    ) : (
-        <Button primary onClick={onSubmitClick}>
-            Next
-        </Button>
     );
 
     return (
@@ -61,7 +56,14 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
             <Field label="Choose a username" hint={hint} error={errorToShow}>
                 {usernameInput}
             </Field>
-            {submitButton}
+            {isSigningIn && !isOffline && (
+                <Spinner inline>Please wait...</Spinner>
+            )}
+            {!isSigningIn && !isOffline && (
+                <Button primary onClick={onSubmitClick}>
+                    Next
+                </Button>
+            )}
         </div>
     );
 };
