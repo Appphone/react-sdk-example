@@ -1,14 +1,35 @@
-.signup__header {
+.signup {
     background-color: var(--color-black);
     color: white;
-    padding: 2.5rem;
+    min-height: 100vh;
+    padding: max(2vh, 5rem) 2rem 0;
 }
 
-.signup__header__headline {
+.signup__content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+}
+
+.signup__headline {
+    margin-bottom: 3rem;
+    font-size: max(3rem, 7vw);
     color: var(--color-accent);
-    font-size: 4.768rem;
 }
 
-.signup__header__subtitle {
-    font-size: 1.25rem;
+.signup__subtitle {
+    font-size: max(1.25rem, 2vw);
+    margin-bottom: 2.5rem;
+}
+
+@media (min-width: 996px) {
+    .signup {
+        padding-top: 0;
+    }
+
+    .signup__content__centered {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }

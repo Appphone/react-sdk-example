@@ -1,0 +1,11 @@
+.username-form {
+    max-width: 20rem;
+}
+
+.username-form__field {
+    display: flex;
+}
+
+.username-form__field > input {
+    margin-right: 0.5rem;
+}

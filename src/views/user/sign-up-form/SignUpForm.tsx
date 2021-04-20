@@ -13,13 +13,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ isConnected, isBlocked }) => {
             <div>You've reached the maximum number of active connections.</div>
         );
     } else {
-        return (
-            <div className="signup__form">
-                <div className="signup__form__step">
-                    <UsernameFormConnect />
-                </div>
-            </div>
-        );
+        return <UsernameFormConnect />;
     }
 };
 

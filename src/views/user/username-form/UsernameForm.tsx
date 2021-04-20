@@ -3,6 +3,7 @@ import TextField from "../../text-field/TextField";
 import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
 import Button from "../../button/Button";
+import "./UsernameForm.css";
 
 export interface UsernameFormProps {
     isSigningIn: boolean;
@@ -26,7 +27,9 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         setUsername(username);
 
         if (!/^[a-zA-Z0-9-]+$/.test(username)) {
-            setUsernameError("Please use only alphanumeric characters");
+            setUsernameError(
+                "Please use only alphanumeric characters, without spaces"
+            );
         } else if (username.length > 20) {
             setUsernameError("Please don't use more than 20 characters");
         } else {
@@ -38,13 +41,10 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         if (!usernameError) onSubmit(username);
     };
 
-    const hint = isSigningIn
-        ? undefined
-        : "Only alphanumeric characteres are allowed, without spaces";
-
     const usernameInput = !isSigningIn && !isOffline && (
         <TextField
             value={username}
+            placeholder="Username"
             error={!!errorToShow}
             disabled={isOffline}
             onChange={validateUsername}
@@ -52,18 +52,22 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         />
     );
 
+    const submitButton = !isSigningIn && !isOffline && (
+        <Button primary onClick={onSubmitClick}>
+            Next
+        </Button>
+    );
+
     return (
-        <div>
-            <Field label="Choose a username" hint={hint} error={errorToShow}>
-                {usernameInput}
+        <div className="username-form">
+            <Field error={errorToShow}>
+                <div className="username-form__field">
+                    {usernameInput}
+                    {submitButton}
+                </div>
             </Field>
             {isSigningIn && !isOffline && (
                 <Spinner inline>Please wait...</Spinner>
-            )}
-            {!isSigningIn && !isOffline && (
-                <Button primary onClick={onSubmitClick}>
-                    Next
-                </Button>
             )}
         </div>
     );
