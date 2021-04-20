@@ -25,7 +25,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({
                 {message.senderLabel}
             </div>
             <div className="message-list__item__content">
-                {message.data.content}
+                {message.data?.content}
             </div>
             <div className="message-list__item__time text-sm">
                 {format(new Date(message.createdAt), "HH:mm")}

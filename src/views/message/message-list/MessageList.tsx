@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ChatEvent, { ChatDataType } from "../../../models/ChatEvent";
+import EventInfoConnect from "../../event-info/EventInfoConnect";
 import RoomMessageSlot from "../message-list-slot/MessageListSlot";
 import "./MessageList.css";
 
@@ -30,7 +31,7 @@ const MessageList: React.FC<MessageListProps> = ({ userId, events }) => {
                     />
                 );
             default:
-                return null;
+                return <EventInfoConnect event={event} />;
         }
     });
 

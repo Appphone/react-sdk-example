@@ -53,6 +53,22 @@ export const messageMockFactory: MockFactory<ChatEvent> = {
     many: (count = 10) => [...new Array(count)].map(getMessage),
 };
 
+// EventInfo
+
+const getChatEvent: () => ChatEvent = () => ({
+    localId: uuid(),
+    createdAt: new Date().toISOString(),
+    roomId: "1",
+    senderId: faker.datatype.number() % 2 === 0 ? "1" : "2",
+    senderLabel: faker.internet.userName(),
+    type: ChatDataType.UserArrival,
+});
+
+export const chatEventMockFactory: MockFactory<ChatEvent> = {
+    one: getChatEvent,
+    many: (count = 10) => [...new Array(count)].map(getChatEvent),
+};
+
 // Room
 
 const getRoom: () => Room = () => ({
