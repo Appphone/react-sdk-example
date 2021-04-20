@@ -116,7 +116,7 @@ const socketMiddleware = () => {
                 }
             );
 
-            socket.on("message", (event: ChatEvent) => {
+            socket.on("rooms:event", (event: ChatEvent) => {
                 storeAPI.dispatch(appendReceivedEvent(event));
             });
         }
@@ -159,7 +159,7 @@ const socketMiddleware = () => {
                 break;
             case "messaging/sendMessage":
                 socket?.emit(
-                    "message",
+                    "rooms:message",
                     action.payload,
                     ({ id }: { readonly id: string }) => {
                         storeAPI.dispatch(

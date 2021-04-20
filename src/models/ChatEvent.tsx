@@ -2,6 +2,8 @@ import Message from "./Message";
 
 export enum ChatDataType {
     Message,
+    UserArrival,
+    UserExit,
 }
 
 export default interface ChatEvent {
@@ -12,5 +14,5 @@ export default interface ChatEvent {
     readonly senderId: string;
     readonly senderLabel: string;
     readonly type: ChatDataType;
-    readonly data: Message;
+    readonly data?: Message;
 }

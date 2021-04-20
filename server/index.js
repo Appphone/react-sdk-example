@@ -53,6 +53,14 @@ const joinRoom = (socket, roomId, roomData) => {
             id: roomId,
             ...roomData,
         });
+        io.in(roomId).emit("rooms:event", {
+            id: randomId(),
+            type: 1,
+            createdAt: new Date().toISOString(),
+            roomId: roomId,
+            senderId: socket.userId,
+            senderLabel: socket.username,
+        });
     } else {
         io.in(socket.userId).emit("rooms:join-error", {
             error: "too many rooms",
@@ -172,9 +180,17 @@ io.on("connection", (socket) => {
 
         io.in(socket.userId).socketsLeave(roomId);
         io.in(socket.userId).emit("rooms:leave-success", { id: roomId });
+        io.in(roomId).emit("rooms:event", {
+            id: randomId(),
+            type: 2,
+            createdAt: new Date().toISOString(),
+            roomId: roomId,
+            senderId: socket.userId,
+            senderLabel: socket.username,
+        });
     });
 
-    socket.on("message", (event, callback) => {
+    socket.on("rooms:message", (event, callback) => {
         // todo add type
         if (event.type === 0) {
             if (ENABLE_LOG) {
@@ -185,7 +201,7 @@ io.on("connection", (socket) => {
             }
 
             event.id = randomId();
-            socket.to(event.roomId).emit("message", event);
+            socket.to(event.roomId).emit("rooms:event", event);
             callback({ id: event.id });
         }
     });

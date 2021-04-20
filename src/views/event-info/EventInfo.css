@@ -1,0 +1,12 @@
+.event-info {
+    text-align: center;
+}
+
+.event-info__content {
+    display: inline-block;
+    border-radius: var(--radius);
+    background-color: var(--color-accent);
+    padding: .2rem .75rem;
+    color: var(--color-white);
+    padding: .5rem 0;
+}
