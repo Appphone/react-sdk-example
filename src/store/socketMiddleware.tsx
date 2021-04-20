@@ -100,6 +100,7 @@ const socketMiddleware = () => {
                         "too many rooms":
                             "You've reached the maximum allowed number of rooms",
                         "not found": "This room doesn't exist",
+                        "already joined": "You have already joined this room",
                     };
 
                     storeAPI.dispatch(

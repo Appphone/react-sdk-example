@@ -8,3 +8,6 @@ export const getActiveRoomId = (state: RootState) => state.activeRoomId;
 
 export const getActiveRoom = (state: RootState) =>
     state.rooms?.find((room) => room.id === state.activeRoomId);
+
+export const hasJoinedRoom = (roomId: string) => (state: RootState) =>
+    !!state.rooms?.find((room) => room.id === "rooms://" + roomId);

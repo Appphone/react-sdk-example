@@ -13,4 +13,4 @@ const Template: Story<RoomInviteConfirmationProps> = (
 ) => <RoomInviteConfirmation {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { roomId: "1", onConfirm: () => {} };
+Default.args = { roomId: "1", hasAlreadyJoined: false, onConfirm: () => {} };

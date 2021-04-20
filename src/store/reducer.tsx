@@ -108,11 +108,11 @@ const messagingSlice = createSlice({
             state.isJoiningRoom = false;
 
             if (action.payload.id) {
-                const indexToRemove = state.rooms?.findIndex(
+                const indexToRemove = state.pendingRooms?.findIndex(
                     (room) => room.id === action.payload.id
                 );
                 if (indexToRemove !== undefined && indexToRemove >= 0) {
-                    state.rooms?.splice(indexToRemove, 1);
+                    state.pendingRooms?.splice(indexToRemove, 1);
                 }
             }
         },

@@ -163,6 +163,14 @@ io.on("connection", (socket) => {
             return;
         }
 
+        if (socket.rooms.has(roomId)) {
+            io.in(socket.userId).emit("rooms:join-error", {
+                error: "already joined",
+                id: roomId,
+            });
+            return;
+        }
+
         const socketsInRoom = await io.in(roomId).allSockets();
 
         if (socketsInRoom.size < ALLOWED_SOCKETS_PER_ROOM) {
