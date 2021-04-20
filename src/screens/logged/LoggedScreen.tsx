@@ -7,22 +7,16 @@ import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
 import Modal from "@bit/jorgemoreira.react.surface.modal";
 import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirmation/RoomInviteConfirmationConnect";
 import ChatConnect from "../../views/chat/ChatConnect";
+import useUrlHash from "../../hooks/useUrlHash";
+import Card from "../../views/card/Card";
 
 export interface LoggedScreenProps {
     type: LoggedScreenType;
-    roomIdToJoin?: string;
-    onDismissRoomId: () => void;
 }
 
-const LoggedScreen: React.FC<LoggedScreenProps> = ({
-    type,
-    roomIdToJoin,
-    onDismissRoomId,
-}) => {
+const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
+    const { hash: roomIdToJoin, onClear: onDismissRoomId } = useUrlHash();
     const { isOn: showSidebar, onToggle: toggleSidebar } = useToggle(true);
-    const { isOn: showModal, setOff: onDismissModal } = useToggle(
-        !!roomIdToJoin
-    );
     let renderedContent: JSX.Element | null = null;
 
     switch (type) {
@@ -34,11 +28,6 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({
             break;
     }
 
-    const onDismissRoomIdConfirmation = () => {
-        onDismissModal();
-        onDismissRoomId();
-    };
-
     return (
         <div>
             <MasterDetail
@@ -49,13 +38,15 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({
             {roomIdToJoin && (
                 <Modal
                     title=""
-                    show={showModal}
-                    onDismiss={onDismissRoomIdConfirmation}
+                    show={!!roomIdToJoin}
+                    onDismiss={onDismissRoomId}
                 >
-                    <RoomInviteConfirmationConnect
-                        roomId={roomIdToJoin}
-                        onDone={onDismissRoomIdConfirmation}
-                    />
+                    <Card>
+                        <RoomInviteConfirmationConnect
+                            roomId={roomIdToJoin}
+                            onDone={onDismissRoomId}
+                        />
+                    </Card>
                 </Modal>
             )}
         </div>

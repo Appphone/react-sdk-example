@@ -1,10 +1,14 @@
 .alert {
     border-radius: var(--radius);
     padding: 0.5rem;
-    margin: 0.5rem;
+}
+
+.alert--accent {
+    background-color: var(--color-accent);
+    color: var(--color-white);
 }
 
 .alert--warning {
-    background-color: gray;
-    color: black;
+    background-color: var(--color-warning);
+    color: var(--color-white);
 }

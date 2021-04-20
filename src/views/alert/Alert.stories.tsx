@@ -8,9 +8,9 @@ export default {
 
 const Template: Story<AlertProps> = (args) => (
     <div style={{ height: "25rem" }}>
-        <Alert {...args} />
+        <Alert {...args}>Lorem Ipsum</Alert>
     </div>
 );
 
 export const Default = Template.bind({});
-Default.args = { message: "Lorem Ipsum", warning: true };
+Default.args = { warning: true };

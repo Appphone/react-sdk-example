@@ -17,12 +17,13 @@ const ChatConnect: React.FC<ChatConnectProps> = ({ onToggleSidebar }) => {
         activeRoomId && dispatch(leaveRoom({ id: activeRoomId }));
     };
 
-    return (
+    return activeRoomId ? (
         <Chat
+            roomId={activeRoomId}
             onToggleSidebar={onToggleSidebar}
             onLeaveRoomClick={onLeaveRoomClick}
         />
-    );
+    ) : null;
 };
 
 export default ChatConnect;

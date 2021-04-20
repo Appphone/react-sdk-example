@@ -18,10 +18,9 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, isOffline }) => {
     return (
         <SidebarList>
             {isOffline && (
-                <Alert
-                    message="You seem to be offline. Trying to reconnect..."
-                    warning
-                />
+                <Alert warning>
+                    You seem to be offline. Trying to reconnect...
+                </Alert>
             )}
             {renderedRooms}
             <RoomCreatorLinkConnect />
