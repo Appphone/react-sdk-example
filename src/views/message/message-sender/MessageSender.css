@@ -6,6 +6,7 @@
 
 .message-sender__contents {
     display: flex;
+    padding: 0 2rem;
 }
 
 .message-sender__field {

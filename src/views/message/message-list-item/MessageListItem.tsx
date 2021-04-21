@@ -21,14 +21,18 @@ const MessageListItem: React.FC<MessageListItemProps> = ({
 
     return (
         <div className={msgClass}>
-            <div className="message-list__item__sender text-sm">
-                {message.senderLabel}
-            </div>
+            {!isFromSelf && (
+                <div className="message-list__item__sender text-sm">
+                    {message.senderLabel}
+                </div>
+            )}
             <div className="message-list__item__content">
-                {message.data?.content}
-            </div>
-            <div className="message-list__item__time text-sm">
-                {format(new Date(message.createdAt), "HH:mm")}
+                <div className="message-list__item__text">
+                    {message.data?.content}
+                </div>
+                <div className="message-list__item__time">
+                    {format(new Date(message.createdAt), "HH:mm")}
+                </div>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 .message-list__item {
     display: inline-block;
-    padding: 0.25rem;
+    padding: 0.5rem 1rem;
     color: var(--color-white);
     border-radius: var(--radius);
-    min-width: 5rem;
+    min-width: 10rem;
 }
 
 .message-list__item--out {
@@ -19,11 +19,19 @@
 }
 
 .message-list__item__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.message-list__item__text {
     text-align: right;
 }
 
 .message-list__item__time {
     opacity: 0.75;
+    font-size: var(--font-xs);
+    align-self: flex-end;
 }
 
 .message-list__item__time {

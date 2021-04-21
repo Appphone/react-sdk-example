@@ -21,11 +21,7 @@ const RoomOptionForm: React.FC<RoomOptionFormProps> = ({
 }) => {
     return (
         <div>
-            <Field
-                label="Join a room"
-                hint="You will be able to join multiple rooms later"
-                error={errorMessage}
-            />
+            <Field label="Join a room" error={errorMessage} />
             {isJoining ? (
                 <Spinner inline>Joining room...</Spinner>
             ) : (
