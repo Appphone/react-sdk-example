@@ -1,10 +1,14 @@
 import React from "react";
+import Nodes from "../../views/nodes/Nodes";
 import SignUpFormConnect from "../../views/user/sign-up-form/SignUpFormConnect";
 import "./SignUpScreen.css";
 
 const SignUpScreen: React.FC = () => {
     return (
         <div className="signup">
+            <div className="signup__nodes-wrapper">
+                <Nodes />
+            </div>
             <div className="signup__content content content--large">
                 <div className="signup__content__centered">
                     <h1 className="headline signup__headline">

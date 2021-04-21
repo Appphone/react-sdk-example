@@ -2,10 +2,24 @@
     max-width: 20rem;
 }
 
-.username-form__field {
-    display: flex;
+.username-form__field > * {
+    width: 100%;
 }
 
 .username-form__field > input {
-    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 996px) {
+    .username-form__field {
+        display: flex;
+    }
+
+    .username-form__field > * {
+        width: auto;
+    }
+
+    .username-form__field > input {
+        margin-right: 0.5rem;
+    }
 }

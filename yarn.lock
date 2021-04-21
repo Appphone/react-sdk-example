@@ -8767,6 +8767,11 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
+jparticles@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/jparticles/-/jparticles-3.1.0.tgz#a8002657afcc50d96c8093bd571e3c8df9676123"
+  integrity sha512-vYiaID6fcF3tP4iacbImMMp5wsNvn7Gd7zZnSP2qpJf703SPjkNdx1eQz7Wre2dyXP0sWkTmuWTdhSRLoom+MQ==
+
 js-string-escape@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/js-string-escape/-/js-string-escape-1.0.1.tgz#e2625badbc0d67c7533e9edc1068c587ae4137ef"
