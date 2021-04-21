@@ -23,7 +23,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({
         <div className={msgClass}>
             {!isFromSelf && (
                 <div className="message-list__item__sender text-sm">
-                    {message.senderLabel}
+                    @{message.senderLabel}
                 </div>
             )}
             <div className="message-list__item__content">

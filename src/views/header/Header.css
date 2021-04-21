@@ -23,4 +23,5 @@
 .header__sign-out {
     text-decoration: underline;
     margin-left: 2rem;
+    cursor: pointer;
 }

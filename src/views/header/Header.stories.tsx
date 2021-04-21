@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header, { HeaderProps } from "./Header";
 import { Story } from "@storybook/react/types-6-0";
 
 export default {
@@ -6,6 +6,9 @@ export default {
     component: Header,
 };
 
-const Template: Story = () => <Header />;
+const Template: Story<HeaderProps> = (args: HeaderProps) => (
+    <Header {...args} />
+);
 
 export const Default = Template.bind({});
+Default.args = { username: "Lorem", onSignOut: () => {} };

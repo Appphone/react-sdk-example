@@ -9,8 +9,8 @@ import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirma
 import ChatConnect from "../../views/chat/ChatConnect";
 import useUrlHash from "../../hooks/useUrlHash";
 import Card from "../../views/card/Card";
-import Toolbar from "../../views/header/Header";
 import "./LoggedScreen.css";
+import HeaderConnect from "../../views/header/HeaderConnect";
 
 export interface LoggedScreenProps {
     type: LoggedScreenType;
@@ -33,7 +33,7 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
     return (
         <div className="logged-screen">
             <div className="logged-screen__header">
-                <Toolbar />
+                <HeaderConnect />
             </div>
             <div className="logged-screen__content">
                 <MasterDetail
