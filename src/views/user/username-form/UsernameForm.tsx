@@ -7,6 +7,7 @@ import "./UsernameForm.css";
 import Alert from "../../alert/Alert";
 
 export interface UsernameFormProps {
+    isBlocked: boolean;
     isSigningIn: boolean;
     isOffline: boolean;
     errorMessage?: string;
@@ -14,6 +15,7 @@ export interface UsernameFormProps {
 }
 
 const UsernameForm: React.FC<UsernameFormProps> = ({
+    isBlocked,
     isSigningIn,
     isOffline,
     errorMessage,
@@ -44,7 +46,11 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
 
     let content;
 
-    if (isOffline) {
+    if (isBlocked) {
+        content = (
+            <div>You've reached the maximum number of active connections.</div>
+        );
+    } else if (isOffline) {
         content = <Alert danger>{errorMessage}</Alert>;
     } else if (isSigningIn) {
         content = <Spinner inline>Please wait...</Spinner>;

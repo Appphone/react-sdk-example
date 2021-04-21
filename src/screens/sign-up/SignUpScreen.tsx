@@ -1,6 +1,6 @@
 import React from "react";
 import Nodes from "../../views/nodes/Nodes";
-import SignUpFormConnect from "../../views/user/sign-up-form/SignUpFormConnect";
+import UsernameFormConnect from "../../views/user/username-form/UsernameFormConnect";
 import "./SignUpScreen.css";
 
 const SignUpScreen: React.FC = () => {
@@ -21,7 +21,7 @@ const SignUpScreen: React.FC = () => {
                         <p>Start chatting.</p>
                     </div>
                     <div className="signup__form">
-                        <SignUpFormConnect />
+                        <UsernameFormConnect />
                     </div>
                 </div>
             </div>
