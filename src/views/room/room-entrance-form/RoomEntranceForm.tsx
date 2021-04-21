@@ -32,7 +32,11 @@ const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
                         />
                     }
                     button={
-                        <Button primary onClick={() => id && onSubmit(id)}>
+                        <Button
+                            primary
+                            disabled={!id.length}
+                            onClick={() => id && onSubmit(id)}
+                        >
                             Join
                         </Button>
                     }

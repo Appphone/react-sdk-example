@@ -1,6 +1,7 @@
 import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
-import React, { useState } from "react";
+import React from "react";
+import useResourceName from "../../../hooks/useResourceName";
 import Button from "../../button/Button";
 import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
 import TextField from "../../text-field/TextField";
@@ -16,13 +17,12 @@ const RoomCreatorForm: React.FC<RoomCreatorFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
-    const [name, setName] = useState<string>("");
+    const { name, setAndValidateName, error: nameError } = useResourceName();
+
+    const errorToShow = isJoining ? undefined : nameError || errorMessage;
 
     return (
-        <Field
-            label="Enter a name for your new room:"
-            error={isJoining ? undefined : errorMessage}
-        >
+        <Field label="Enter a name for your new room:" error={errorToShow}>
             {isJoining ? (
                 <Spinner inline>Creating room...</Spinner>
             ) : (
@@ -30,12 +30,16 @@ const RoomCreatorForm: React.FC<RoomCreatorFormProps> = ({
                     textField={
                         <TextField
                             value={name}
-                            onChange={setName}
+                            onChange={setAndValidateName}
                             onEnter={() => name && onSubmit(name)}
                         />
                     }
                     button={
-                        <Button primary onClick={() => name && onSubmit(name)}>
+                        <Button
+                            primary
+                            disabled={!!nameError}
+                            onClick={() => name && onSubmit(name)}
+                        >
                             Create
                         </Button>
                     }

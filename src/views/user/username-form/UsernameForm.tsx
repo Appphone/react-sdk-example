@@ -6,6 +6,7 @@ import Button from "../../button/Button";
 import "./UsernameForm.css";
 import Alert from "../../alert/Alert";
 import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
+import useResourceName from "../../../hooks/useResourceName";
 
 export interface UsernameFormProps {
     isBlocked: boolean;
@@ -22,24 +23,13 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
-    const [username, setUsername] = useState("");
-    const [usernameError, setUsernameError] = useState<string>();
+    const {
+        name: username,
+        setAndValidateName: setAndValidateUsername,
+        error: usernameError,
+    } = useResourceName();
 
     const errorToShow = usernameError || errorMessage;
-
-    const validateUsername = (username: string) => {
-        setUsername(username);
-
-        if (!/^[a-zA-Z0-9-]+$/.test(username)) {
-            setUsernameError(
-                "Please use only alphanumeric characters, without spaces"
-            );
-        } else if (username.length > 20) {
-            setUsernameError("Please don't use more than 20 characters");
-        } else {
-            setUsernameError(undefined);
-        }
-    };
 
     const onSubmitClick = () => {
         if (!usernameError) onSubmit(username);
@@ -49,7 +39,9 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
 
     if (isBlocked) {
         content = (
-            <div>You've reached the maximum number of active connections.</div>
+            <Alert warning>
+                You've reached the maximum number of active connections.
+            </Alert>
         );
     } else if (isOffline) {
         content = <Alert danger>{errorMessage}</Alert>;
@@ -65,12 +57,16 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                             placeholder="Username"
                             error={!!errorToShow}
                             disabled={isOffline}
-                            onChange={validateUsername}
+                            onChange={setAndValidateUsername}
                             onEnter={onSubmitClick}
                         />
                     }
                     button={
-                        <Button primary onClick={onSubmitClick}>
+                        <Button
+                            primary
+                            disabled={!!usernameError}
+                            onClick={onSubmitClick}
+                        >
                             Next
                         </Button>
                     }
