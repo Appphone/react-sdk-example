@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-accent-dark);
+    color: var(--color-white);
+    height: 4.5rem;
+    padding: 0 4rem;
+}
+
+.header__title {
+    margin-right: auto;
+}
+
+.header__logged-label {
+    font-size: var(--font-sm);
+    opacity: 0.75;
+}
+
+.header__logged-username {
+    margin-left: 1rem;
+}
+
+.header__sign-out {
+    text-decoration: underline;
+    margin-left: 2rem;
+}

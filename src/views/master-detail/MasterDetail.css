@@ -1,8 +1,7 @@
 .master-detail {
     display: flex;
     align-items: stretch;
-    min-height: calc(100vh - 15rem);
-    height: 100vh;
+    height: 100%;
 }
 
 .master-detail__master {

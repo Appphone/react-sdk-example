@@ -1,6 +1,7 @@
 .message-sender {
-    background-color: var(--color-black);
-    padding: 0.5rem 0;
+    background-color: var(--color-grey-light-2);
+    padding: 1rem 0 1.5rem;
+    border-top: 1px solid var(--color-grey-light);
 }
 
 .message-sender__contents {

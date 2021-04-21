@@ -40,7 +40,7 @@ const MessageList: React.FC<MessageListProps> = ({ userId, events }) => {
     }, [dummyElToScroll, events]);
 
     return (
-        <div className="message-list medium-content">
+        <div className="message-list content content--medium">
             <div>
                 {renderedMessages}
                 <div

@@ -29,7 +29,7 @@ const MessageSender: React.FC<MessageSenderProps> = ({
 
     return (
         <div className="message-sender">
-            <div className="message-sender__contents medium-content">
+            <div className="message-sender__contents content content--medium">
                 <div className="message-sender__field">
                     <TextField
                         ref={messageInput}

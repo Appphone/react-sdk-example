@@ -7,6 +7,16 @@
 .chat__header {
     background-color: var(--color-grey-light-2);
     padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-grey-light);
+}
+
+.chat__header__content {
+    display: flex;
+    align-items: center;
+}
+
+.chat__header__content__title {
+    margin-right: auto;
 }
 
 .chat__messages {

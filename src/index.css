@@ -17,10 +17,12 @@
 
     --color-red: red;
 
-    --radius: 0.2rem;
+    --radius: 0.3rem;
 
-    --medium-width: 56rem;
+    --medium-width: 44rem;
     --large-width: 78rem;
+
+    --font-sm: 0.8rem;
 }
 
 *,
@@ -72,7 +74,7 @@ p {
     margin-right: auto;
 }
 
-.content-medium {
+.content--medium {
     max-width: var(--medium-width);
 }
 

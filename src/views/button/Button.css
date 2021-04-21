@@ -49,3 +49,10 @@
     background-color: var(--color-grey);
     color: var(--color-white);
 }
+
+.btn--sm {
+    line-height: 1.5rem;
+    height: 1.5rem;
+    font-size: var(--font-sm);
+    padding: 0 0.75rem;
+}

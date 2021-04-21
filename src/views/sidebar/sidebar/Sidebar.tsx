@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../button/Button";
 import RoomListConnect from "../../room/room-list/RoomListConnect";
 import "./Sidebar.css";
 
@@ -11,11 +10,10 @@ const Sidebar: React.FC<SidebarProps> = ({ onSignOut }) => {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <h1 className="sidebar__header__title">Rooms</h1>
+                <h2 className="sidebar__header__title">Rooms</h2>
             </div>
-            <RoomListConnect />
-            <div className="sidebar__footer">
-                <Button onClick={onSignOut}>Sign out</Button>
+            <div className="sidebar__list">
+                <RoomListConnect />
             </div>
         </div>
     );

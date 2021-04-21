@@ -1,0 +1,13 @@
+.logged-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.logged-screen__header {
+    flex: 0 0 auto;
+}
+
+.logged-screen__content {
+    flex-grow: 1;
+}

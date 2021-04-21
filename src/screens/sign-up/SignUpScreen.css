@@ -1,6 +1,6 @@
 .signup {
     background-color: var(--color-black);
-    color: white;
+    color: var(--color-white);
     min-height: 100vh;
     padding: max(2vh, 5rem) 2rem 0;
 }

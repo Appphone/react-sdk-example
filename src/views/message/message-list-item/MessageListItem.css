@@ -1,7 +1,7 @@
 .message-list__item {
     display: inline-block;
     padding: 0.25rem;
-    color: white;
+    color: var(--color-white);
     border-radius: var(--radius);
     min-width: 5rem;
 }

@@ -3,6 +3,7 @@
     flex-direction: column;
     background-color: var(--color-black);
     height: 100%;
+    padding-left: 3rem;
 }
 
 .sidebar__header {
@@ -10,10 +11,10 @@
 }
 
 .sidebar__header__title {
-    color: white;
+    color: var(--color-white);
 }
 
-.sidebar__footer {
-    margin-top: auto;
-    padding: 0.5rem 1rem;
+.sidebar__list {
+    flex: 1 1 0;
+    overflow: auto;
 }

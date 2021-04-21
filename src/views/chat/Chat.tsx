@@ -25,11 +25,14 @@ const Chat: React.FC<ChatProps> = ({
         <React.Fragment>
             <div className="chat">
                 <div className="chat__header">
-                    <div className="medium-content">
-                        <Button onClick={onToggleSidebar}>Hide Sidebar</Button>
-                        <Button onClick={onLeaveRoomClick}>Leave Room</Button>
-                        <Button onClick={setOn}>Invite Others</Button>
-                        <h2>Room</h2>
+                    <div className="chat__header__content content content--medium">
+                        <h2 className="chat__header__content__title">Room</h2>
+                        <Button small onClick={onLeaveRoomClick}>
+                            Leave Room
+                        </Button>
+                        <Button small onClick={setOn}>
+                            Invite Others
+                        </Button>
                     </div>
                 </div>
                 <div className="chat__messages">
