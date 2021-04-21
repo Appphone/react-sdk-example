@@ -76,5 +76,8 @@
         "babel-loader": "8.1.0",
         "faker": "^5.5.2",
         "prettier": "2.2.1"
+    },
+    "prettier": {
+        "tabWidth": 4
     }
 }
