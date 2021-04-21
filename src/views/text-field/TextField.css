@@ -3,19 +3,20 @@
     display: block;
     font-size: 1rem;
     outline: none !important;
-    border: var(--color-black) solid 0.15rem;
-    line-height: 2rem;
-    height: 2rem;
+    border: var(--color-grey) solid 0.15rem;
+    line-height: var(--input-height);
+    height: var(--input-height);
     padding: 0 0.5rem;
     width: 100%;
+    transition: border-color var(--transition);
 }
 
 .text-field:hover {
-    border-color: var(--color-accent);
+    border-color: var(--color-accent-dark-2);
 }
 
 .text-field:focus {
-    border-color: var(--color-accent-dark-2);
+    border-color: var(--color-accent);
 }
 
 .text-field::placeholder {

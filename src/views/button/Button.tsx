@@ -4,13 +4,15 @@ import "./Button.css";
 
 export interface ButtonProps {
     primary?: boolean;
+    transparent?: boolean;
     small?: boolean;
-    onClick?: () => void;
     disabled?: boolean;
+    onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
     primary,
+    transparent,
     small,
     disabled,
     onClick,
@@ -18,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
     const className = classNames("btn", {
         "btn--primary": primary,
+        "btn--transparent": transparent,
         "btn--sm": small,
     });
     return (

@@ -2,27 +2,19 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store/hooks";
 import { leaveRoom } from "../../store/reducer";
-import { getActiveRoomId } from "../../store/selectors";
+import { getActiveRoom } from "../../store/selectors";
 import Chat from "./Chat";
 
-interface ChatConnectProps {
-    onToggleSidebar: () => void;
-}
-
-const ChatConnect: React.FC<ChatConnectProps> = ({ onToggleSidebar }) => {
+const ChatConnect: React.FC = () => {
     const dispatch = useAppDispatch();
-    const activeRoomId = useSelector(getActiveRoomId);
+    const activeRoom = useSelector(getActiveRoom);
 
     const onLeaveRoomClick = () => {
-        activeRoomId && dispatch(leaveRoom({ id: activeRoomId }));
+        activeRoom && dispatch(leaveRoom({ id: activeRoom.id }));
     };
 
-    return activeRoomId ? (
-        <Chat
-            roomId={activeRoomId}
-            onToggleSidebar={onToggleSidebar}
-            onLeaveRoomClick={onLeaveRoomClick}
-        />
+    return activeRoom ? (
+        <Chat room={activeRoom} onLeaveRoomClick={onLeaveRoomClick} />
     ) : null;
 };
 

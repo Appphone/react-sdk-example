@@ -11,3 +11,7 @@
 .logged-screen__content {
     flex-grow: 1;
 }
+
+.logged-screen__content__centered {
+    padding: 4rem 2rem 0;
+}

@@ -1,5 +1,4 @@
 import React from "react";
-import useToggle from "../../hooks/useToggle";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import MasterDetail from "../../views/master-detail/MasterDetail";
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
@@ -19,12 +18,11 @@ export interface LoggedScreenProps {
 
 const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
     const { hash: roomIdToJoin, onClear: onDismissRoomId } = useUrlHash();
-    const { isOn: showSidebar, onToggle: toggleSidebar } = useToggle(true);
     let renderedContent: JSX.Element | null = null;
 
     switch (type) {
         case LoggedScreenType.Chat:
-            renderedContent = <ChatConnect onToggleSidebar={toggleSidebar} />;
+            renderedContent = <ChatConnect />;
             break;
         case LoggedScreenType.RoomCreator:
             renderedContent = <RoomCreatorFormConnect />;
@@ -32,6 +30,14 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
         case LoggedScreenType.RoomEntrance:
             renderedContent = <RoomEntranceFormConnect />;
             break;
+    }
+
+    if (type !== LoggedScreenType.Chat) {
+        renderedContent = (
+            <div className="logged-screen__content__centered content content--medium">
+                {renderedContent}
+            </div>
+        );
     }
 
     return (
@@ -43,23 +49,23 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
                 <MasterDetail
                     master={<SidebarConnect />}
                     detail={renderedContent}
-                    showMaster={showSidebar}
+                    showMaster
                 />
-                {roomIdToJoin && (
-                    <Modal
-                        title=""
-                        show={!!roomIdToJoin}
-                        onDismiss={onDismissRoomId}
-                    >
-                        <Card>
-                            <RoomInviteConfirmationConnect
-                                roomId={roomIdToJoin}
-                                onDone={onDismissRoomId}
-                            />
-                        </Card>
-                    </Modal>
-                )}
             </div>
+            {roomIdToJoin && (
+                <Modal
+                    title=""
+                    show={!!roomIdToJoin}
+                    onDismiss={onDismissRoomId}
+                >
+                    <Card>
+                        <RoomInviteConfirmationConnect
+                            roomId={roomIdToJoin}
+                            onDone={onDismissRoomId}
+                        />
+                    </Card>
+                </Modal>
+            )}
         </div>
     );
 };

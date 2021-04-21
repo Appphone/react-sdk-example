@@ -24,6 +24,10 @@
 
     --font-sm: 0.8rem;
     --font-xs: 0.7rem;
+
+    --transition: 150ms ease-in-out;
+
+    --input-height: 2rem;
 }
 
 *,
