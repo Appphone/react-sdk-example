@@ -42,7 +42,7 @@ const Chat: React.FC<ChatProps> = ({ room, onLeaveRoomClick }) => {
                     <MessageSenderConnect />
                 </div>
             </div>
-            <Modal title="Invite others" show={isOn} onDismiss={setOff}>
+            <Modal show={isOn} onDismiss={setOff}>
                 <Card>
                     <RoomInvite roomId={room.id} />
                 </Card>

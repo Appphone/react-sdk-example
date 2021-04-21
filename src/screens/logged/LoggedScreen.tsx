@@ -53,11 +53,7 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
                 />
             </div>
             {roomIdToJoin && (
-                <Modal
-                    title=""
-                    show={!!roomIdToJoin}
-                    onDismiss={onDismissRoomId}
-                >
+                <Modal show={!!roomIdToJoin} onDismiss={onDismissRoomId}>
                     <Card>
                         <RoomInviteConfirmationConnect
                             roomId={roomIdToJoin}

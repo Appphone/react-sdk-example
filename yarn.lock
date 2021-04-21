@@ -1273,25 +1273,25 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bit/jorgemoreira.react.input.field@^0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/jorgemoreira.react.input.field/-/jorgemoreira.react.input.field-0.0.2.tgz#9cbb16d60b1842b37afcf4ce546a38102fc2009e"
-  integrity sha1-nLsW1gsYQrN6/PTOVGo4EC/CAJ4=
+"@bit/jorgemoreira.react.input.field@^0.0.4":
+  version "0.0.4"
+  resolved "https://node.bit.dev/jorgemoreira.react.input.field/-/jorgemoreira.react.input.field-0.0.4.tgz#2d3ca78dc7df7c72cdc608d95013b933a12e2ac0"
+  integrity sha1-LTynjcfffHLNxgjZUBO5M6EuKsA=
   dependencies:
     "@types/react" "^16.9.0"
 
-"@bit/jorgemoreira.react.input.text-field@^0.0.10":
-  version "0.0.10"
-  resolved "https://node.bit.dev/jorgemoreira.react.input.text-field/-/jorgemoreira.react.input.text-field-0.0.10.tgz#2ae5cc5b43fbacd36a486f4677c260fcb5691130"
-  integrity sha1-KuXMW0P7rNNqSG9Gd8Jg/LVpETA=
+"@bit/jorgemoreira.react.input.text-field@^0.0.12":
+  version "0.0.12"
+  resolved "https://node.bit.dev/jorgemoreira.react.input.text-field/-/jorgemoreira.react.input.text-field-0.0.12.tgz#a1363225e62f14b32e6090b6295f10e23e5870b8"
+  integrity sha1-oTYyJeYvFLMuYJC2KV8Q4j5YcLg=
   dependencies:
     "@types/react" "^16.9.0"
     classnames "^2.3.1"
 
-"@bit/jorgemoreira.react.progress.spinner@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.react.progress.spinner/-/jorgemoreira.react.progress.spinner-0.0.1.tgz#22d334922ba3608102cc7eaab04c059ffb2d45c1"
-  integrity sha1-ItM0kiujYIECzH6qsEwFn/stRcE=
+"@bit/jorgemoreira.react.progress.spinner@^0.0.3":
+  version "0.0.3"
+  resolved "https://node.bit.dev/jorgemoreira.react.progress.spinner/-/jorgemoreira.react.progress.spinner-0.0.3.tgz#4d2b1db8a1b8685ecd7abaf4852c85266b77434e"
+  integrity sha1-TSsduKG4aF7Nerr0hSyFJmt3Q04=
   dependencies:
     "@types/react" "^16.9.0"
 
@@ -1300,10 +1300,10 @@
   resolved "https://node.bit.dev/jorgemoreira.react.styles/-/jorgemoreira.react.styles-0.0.2.tgz#204b23e7ec1545234bb74cedf23b5cc5b8387021"
   integrity sha1-IEsj5+wVRSNLt0zt8jtcxbg4cCE=
 
-"@bit/jorgemoreira.react.surface.modal@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.react.surface.modal/-/jorgemoreira.react.surface.modal-0.0.1.tgz#5f2a031f87bafd342928e0e2f6863649a076dca4"
-  integrity sha1-XyoDH4e6/TQpKODi9oY2SaB23KQ=
+"@bit/jorgemoreira.react.surface.modal@^0.0.3":
+  version "0.0.3"
+  resolved "https://node.bit.dev/jorgemoreira.react.surface.modal/-/jorgemoreira.react.surface.modal-0.0.3.tgz#7a167fb212e0d6c6fd675e365e720af588c1e139"
+  integrity sha1-ehZ/shLg1sb9Z142XnIK9YjB4Tk=
   dependencies:
     "@types/react" "^16.9.0"
     "@types/react-dom" "^16.9.0"

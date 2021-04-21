@@ -21,7 +21,7 @@ const RoomCreatorForm: React.FC<RoomCreatorFormProps> = ({
     return (
         <Field
             label="Enter a name for your new room:"
-            error={!isJoining && errorMessage}
+            error={isJoining ? undefined : errorMessage}
         >
             {isJoining ? (
                 <Spinner inline>Creating room...</Spinner>

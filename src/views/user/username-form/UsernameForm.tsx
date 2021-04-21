@@ -23,7 +23,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
     onSubmit,
 }) => {
     const [username, setUsername] = useState("");
-    const [usernameError, setUsernameError] = useState<string | boolean>(false);
+    const [usernameError, setUsernameError] = useState<string>();
 
     const errorToShow = usernameError || errorMessage;
 
@@ -37,7 +37,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         } else if (username.length > 20) {
             setUsernameError("Please don't use more than 20 characters");
         } else {
-            setUsernameError(false);
+            setUsernameError(undefined);
         }
     };
 
