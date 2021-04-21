@@ -1,5 +1,6 @@
 .event-info {
     text-align: center;
+    padding: .5rem 0;
 }
 
 .event-info__content {
@@ -8,5 +9,4 @@
     background-color: var(--color-accent);
     padding: .2rem .75rem;
     color: var(--color-white);
-    padding: .5rem 0;
 }

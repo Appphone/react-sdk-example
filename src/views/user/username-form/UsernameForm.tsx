@@ -4,6 +4,7 @@ import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
 import Button from "../../button/Button";
 import "./UsernameForm.css";
+import Alert from "../../alert/Alert";
 
 export interface UsernameFormProps {
     isSigningIn: boolean;
@@ -41,36 +42,33 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
         if (!usernameError) onSubmit(username);
     };
 
-    const usernameInput = !isSigningIn && !isOffline && (
-        <TextField
-            value={username}
-            placeholder="Username"
-            error={!!errorToShow}
-            disabled={isOffline}
-            onChange={validateUsername}
-            onEnter={onSubmitClick}
-        />
-    );
+    let content;
 
-    const submitButton = !isSigningIn && !isOffline && (
-        <Button primary onClick={onSubmitClick}>
-            Next
-        </Button>
-    );
-
-    return (
-        <div className="username-form">
+    if (isOffline) {
+        content = <Alert danger>{errorMessage}</Alert>;
+    } else if (isSigningIn) {
+        content = <Spinner inline>Please wait...</Spinner>;
+    } else {
+        content = (
             <Field error={errorToShow}>
                 <div className="username-form__field">
-                    {usernameInput}
-                    {submitButton}
+                    <TextField
+                        value={username}
+                        placeholder="Username"
+                        error={!!errorToShow}
+                        disabled={isOffline}
+                        onChange={validateUsername}
+                        onEnter={onSubmitClick}
+                    />
+                    <Button primary onClick={onSubmitClick}>
+                        Next
+                    </Button>
                 </div>
             </Field>
-            {isSigningIn && !isOffline && (
-                <Spinner inline>Please wait...</Spinner>
-            )}
-        </div>
-    );
+        );
+    }
+
+    return <div className="username-form">{content}</div>;
 };
 
 export default UsernameForm;

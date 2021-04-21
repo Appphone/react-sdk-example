@@ -5,12 +5,14 @@ import "./Alert.css";
 export interface AlertProps {
     accent?: boolean;
     warning?: boolean;
+    danger?: boolean;
 }
 
-const Alert: React.FC<AlertProps> = ({ children, accent, warning }) => {
+const Alert: React.FC<AlertProps> = ({ children, accent, warning, danger }) => {
     const className = classNames("alert", {
         "alert--accent": accent,
         "alert--warning": warning,
+        "alert--danger": danger,
     });
     return <div className={className}>{children}</div>;
 };
