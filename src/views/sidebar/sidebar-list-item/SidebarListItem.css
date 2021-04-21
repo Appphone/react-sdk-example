@@ -20,7 +20,7 @@
 }
 
 .sidebar__list__item--disabled {
-    color: var(--color-grey);
+    color: var(--color-grey-light-2);
     pointer-events: none;
 }
 

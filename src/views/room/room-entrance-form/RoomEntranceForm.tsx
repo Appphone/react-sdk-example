@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import Button from "../../button/Button";
 import TextField from "../../text-field/TextField";
 
-export interface RoomIdFormProps {
+export interface RoomEntranceFormProps {
     isJoining: boolean;
     errorMessage?: string;
     onSubmit: (id: string) => void;
 }
 
-const RoomIdForm: React.FC<RoomIdFormProps> = ({
+const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
     isJoining,
     errorMessage,
     onSubmit,
@@ -39,4 +39,4 @@ const RoomIdForm: React.FC<RoomIdFormProps> = ({
     );
 };
 
-export default RoomIdForm;
+export default RoomEntranceForm;

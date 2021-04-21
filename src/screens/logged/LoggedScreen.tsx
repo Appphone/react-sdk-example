@@ -2,7 +2,6 @@ import React from "react";
 import useToggle from "../../hooks/useToggle";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import MasterDetail from "../../views/master-detail/MasterDetail";
-import RoomCreatorConnect from "../../views/room/room-creator/RoomCreatorConnect";
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
 import Modal from "@bit/jorgemoreira.react.surface.modal";
 import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirmation/RoomInviteConfirmationConnect";
@@ -11,6 +10,8 @@ import useUrlHash from "../../hooks/useUrlHash";
 import Card from "../../views/card/Card";
 import "./LoggedScreen.css";
 import HeaderConnect from "../../views/header/HeaderConnect";
+import RoomEntranceFormConnect from "../../views/room/room-entrance-form/RoomEntranceFormConnect";
+import RoomCreatorFormConnect from "../../views/room/room-creator-form/RoomCreatorFormConnect";
 
 export interface LoggedScreenProps {
     type: LoggedScreenType;
@@ -26,7 +27,10 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
             renderedContent = <ChatConnect onToggleSidebar={toggleSidebar} />;
             break;
         case LoggedScreenType.RoomCreator:
-            renderedContent = <RoomCreatorConnect />;
+            renderedContent = <RoomCreatorFormConnect />;
+            break;
+        case LoggedScreenType.RoomEntrance:
+            renderedContent = <RoomEntranceFormConnect />;
             break;
     }
 

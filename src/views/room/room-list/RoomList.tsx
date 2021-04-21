@@ -3,6 +3,7 @@ import Room from "../../../models/Room";
 import Alert from "../../alert/Alert";
 import SidebarList from "../../sidebar/sidebar-list/SidebarList";
 import RoomCreatorLinkConnect from "../room-creator-link/RoomCreatorLinkConnect";
+import RoomEntranceLinkConnect from "../room-entrance-link/RoomEntranceLinkConnect";
 import RoomListItemConnect from "../room-list-item/RoomListItemConnect";
 
 export interface RoomListProps {
@@ -24,6 +25,7 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, isOffline }) => {
             )}
             {renderedRooms}
             <RoomCreatorLinkConnect />
+            <RoomEntranceLinkConnect />
         </SidebarList>
     );
 };

@@ -38,6 +38,10 @@ const messagingSlice = createSlice({
             state.activeScreenType = LoggedScreenType.RoomCreator;
             state.activeRoomId = undefined;
         },
+        showRoomEntrance(state) {
+            state.activeScreenType = LoggedScreenType.RoomEntrance;
+            state.activeRoomId = undefined;
+        },
         login(state) {
             state.signUpError = undefined;
             state.isSigningIn = true;
@@ -186,6 +190,7 @@ export default messagingSlice.reducer;
 export const {
     setOffline,
     showRoomCreator,
+    showRoomEntrance,
     login,
     signUp,
     signUpError,
