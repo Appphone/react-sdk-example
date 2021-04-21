@@ -73,10 +73,11 @@ export const chatEventMockFactory: MockFactory<ChatEvent> = {
 
 const getRoom: () => Room = () => ({
     id: faker.datatype.number().toString(),
+    name: faker.internet.userName(),
     unreadCount: faker.datatype.number(),
     isConnected: faker.datatype.number() % 2 === 0,
     isLeaving: false,
-    events: [],
+    events: messageMockFactory.many(),
 });
 
 export const roomMockFactory: MockFactory<Room> = {
