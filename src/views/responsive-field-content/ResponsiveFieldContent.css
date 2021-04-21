@@ -1,0 +1,21 @@
+.responsive-field-content > * {
+    width: 100%;
+}
+
+.responsive-field-content > input {
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 996px) {
+    .responsive-field-content {
+        display: flex;
+    }
+
+    .responsive-field-content > * {
+        width: auto;
+    }
+
+    .responsive-field-content > input {
+        margin-right: 0.5rem;
+    }
+}

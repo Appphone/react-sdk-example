@@ -5,6 +5,7 @@ import Spinner from "@bit/jorgemoreira.react.progress.spinner";
 import Button from "../../button/Button";
 import "./UsernameForm.css";
 import Alert from "../../alert/Alert";
+import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
 
 export interface UsernameFormProps {
     isBlocked: boolean;
@@ -57,19 +58,23 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
     } else {
         content = (
             <Field error={errorToShow}>
-                <div className="username-form__field">
-                    <TextField
-                        value={username}
-                        placeholder="Username"
-                        error={!!errorToShow}
-                        disabled={isOffline}
-                        onChange={validateUsername}
-                        onEnter={onSubmitClick}
-                    />
-                    <Button primary onClick={onSubmitClick}>
-                        Next
-                    </Button>
-                </div>
+                <ResponsiveFieldContent
+                    textField={
+                        <TextField
+                            value={username}
+                            placeholder="Username"
+                            error={!!errorToShow}
+                            disabled={isOffline}
+                            onChange={validateUsername}
+                            onEnter={onSubmitClick}
+                        />
+                    }
+                    button={
+                        <Button primary onClick={onSubmitClick}>
+                            Next
+                        </Button>
+                    }
+                />
             </Field>
         );
     }

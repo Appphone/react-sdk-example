@@ -2,6 +2,7 @@ import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
 import React, { useState } from "react";
 import Button from "../../button/Button";
+import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
 import TextField from "../../text-field/TextField";
 
 export interface RoomEntranceFormProps {
@@ -18,24 +19,26 @@ const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
     const [id, setId] = useState<string>("");
 
     return (
-        <div>
-            <Field label="Enter the room id" error={errorMessage}>
-                {!isJoining && (
-                    <TextField
-                        value={id}
-                        onChange={setId}
-                        onEnter={() => id && onSubmit(id)}
-                    />
-                )}
-            </Field>
+        <Field label="Enter the room id:" error={errorMessage}>
             {isJoining ? (
                 <Spinner inline>Joining room...</Spinner>
             ) : (
-                <Button primary onClick={() => id && onSubmit(id)}>
-                    Join
-                </Button>
+                <ResponsiveFieldContent
+                    textField={
+                        <TextField
+                            value={id}
+                            onChange={setId}
+                            onEnter={() => id && onSubmit(id)}
+                        />
+                    }
+                    button={
+                        <Button primary onClick={() => id && onSubmit(id)}>
+                            Join
+                        </Button>
+                    }
+                />
             )}
-        </div>
+        </Field>
     );
 };
 
