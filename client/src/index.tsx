@@ -1,9 +1,9 @@
+import "@bit/jorgemoreira.react.styles";
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 //import reportWebVitals from "./reportWebVitals";
-import "@bit/jorgemoreira.react.styles";
-import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 

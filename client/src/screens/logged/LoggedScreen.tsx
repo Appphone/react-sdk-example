@@ -2,11 +2,9 @@ import React from "react";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import MasterDetail from "../../views/master-detail/MasterDetail";
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
-import Modal from "@bit/jorgemoreira.react.surface.modal";
 import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirmation/RoomInviteConfirmationConnect";
 import ChatConnect from "../../views/chat/ChatConnect";
 import useUrlHash from "../../hooks/useUrlHash";
-import Card from "../../views/card/Card";
 import "./LoggedScreen.css";
 import HeaderConnect from "../../views/header/HeaderConnect";
 import RoomEntranceFormConnect from "../../views/room/room-entrance-form/RoomEntranceFormConnect";
@@ -53,14 +51,10 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
                 />
             </div>
             {roomIdToJoin && (
-                <Modal show={!!roomIdToJoin} onDismiss={onDismissRoomId}>
-                    <Card>
-                        <RoomInviteConfirmationConnect
-                            roomId={roomIdToJoin}
-                            onDone={onDismissRoomId}
-                        />
-                    </Card>
-                </Modal>
+                <RoomInviteConfirmationConnect
+                    roomId={roomIdToJoin}
+                    onDone={onDismissRoomId}
+                />
             )}
         </div>
     );

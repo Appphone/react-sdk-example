@@ -1,9 +1,7 @@
-import Modal from "@bit/jorgemoreira.react.surface.modal";
 import React from "react";
 import useToggle from "../../hooks/useToggle";
 import Room from "../../models/Room";
 import Button from "../button/Button";
-import Card from "../card/Card";
 import MessageListConnect from "../message/message-list/MessageListConnect";
 import MessageSenderConnect from "../message/message-sender/MessageSenderConnect";
 import RoomInvite from "../room/room-invite/RoomInvite";
@@ -15,7 +13,11 @@ export interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ room, onLeaveRoomClick }) => {
-    const { isOn, setOn, setOff } = useToggle(false);
+    const {
+        isOn: isShowingInvite,
+        setOn: showInvite,
+        setOff: hideInvite,
+    } = useToggle(false);
 
     if (!room) return null;
 
@@ -30,7 +32,7 @@ const Chat: React.FC<ChatProps> = ({ room, onLeaveRoomClick }) => {
                         <Button small onClick={onLeaveRoomClick}>
                             Leave Room
                         </Button>
-                        <Button small onClick={setOn}>
+                        <Button small onClick={showInvite}>
                             Invite Others
                         </Button>
                     </div>
@@ -42,11 +44,11 @@ const Chat: React.FC<ChatProps> = ({ room, onLeaveRoomClick }) => {
                     <MessageSenderConnect />
                 </div>
             </div>
-            <Modal show={isOn} onDismiss={setOff}>
-                <Card>
-                    <RoomInvite roomId={room.id} />
-                </Card>
-            </Modal>
+            <RoomInvite
+                roomId={room.id}
+                show={isShowingInvite}
+                onCancel={hideInvite}
+            />
         </React.Fragment>
     );
 };

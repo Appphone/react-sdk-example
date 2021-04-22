@@ -1,0 +1,15 @@
+.room-invite__contents {
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius);
+    padding: 0.5rem;
+    background-color: var(--color-grey-light-2);
+}
+
+.room-invite__contents .btn {
+    margin-left: auto;
+}
+
+.room-invite__method {
+    margin-top: 1rem;
+}

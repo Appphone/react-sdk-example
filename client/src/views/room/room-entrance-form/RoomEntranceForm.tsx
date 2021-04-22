@@ -26,7 +26,7 @@ const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
     }, [dispatch]);
 
     return (
-        <Field label="Enter the room id:" error={errorMessage}>
+        <Field label="Enter the room ID:" error={errorMessage}>
             {isJoining ? (
                 <Spinner inline>Joining room...</Spinner>
             ) : (

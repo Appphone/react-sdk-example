@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "../../text-field/TextField";
 import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
