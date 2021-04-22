@@ -1,24 +1,25 @@
-const app = require("express")();
-const httpServer = require("http").createServer(app);
+const express = require("express");
 const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
 const RoomStore = require("./roomStore");
+
+const PORT = process.env.PORT || 3000;
 
 const ENABLE_LOG = true;
 const ALLOWED_SOCKETS_PER_ROOM = 10;
 const ALLOWED_SOCKETS_PER_USER = 2;
 const ALLOWED_ROOMS_PER_SOCKET = 10;
 
+const server = express()
+    .use(express.static("../client/build"))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
 const sessionStore = new SessionStore();
 const roomStore = new RoomStore();
 
 const randomId = () => crypto.randomBytes(8).toString("hex");
 
-const io = require("socket.io")(httpServer, {
-    cors: {
-        origin: "http://localhost:8080",
-    },
-});
+const io = require("socket.io")(server);
 
 const saveSocketRooms = (socket) => {
     const rooms = [...socket.rooms.values()].filter(
@@ -228,8 +229,4 @@ io.on("connection", (socket) => {
             console.log("remaining connected sockets", matchingSockets.size);
         }
     });
-});
-
-httpServer.listen(3000, () => {
-    console.log("listening on *:3000");
 });
