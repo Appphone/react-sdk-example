@@ -149,6 +149,9 @@ const messagingSlice = createSlice({
                 state.rooms?.splice(indexToRemove, 1);
             }
         },
+        resetJoinRoomError(state) {
+            state.joinRoomError = undefined;
+        },
         sendMessage(state, action: PayloadAction<ChatEvent>) {
             const activeRoom = state.rooms?.find(
                 (room) => room.id === state.activeRoomId
@@ -204,6 +207,7 @@ export const {
     openRoom,
     leaveRoom,
     leaveRoomSuccess,
+    resetJoinRoomError,
     sendMessage,
     sendMessageSuccess,
     appendReceivedEvent,

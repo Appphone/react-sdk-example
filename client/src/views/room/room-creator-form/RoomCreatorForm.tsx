@@ -1,7 +1,9 @@
 import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
-import React from "react";
+import React, { useEffect } from "react";
 import useResourceName from "../../../hooks/useResourceName";
+import { useAppDispatch } from "../../../store/hooks";
+import { resetJoinRoomError } from "../../../store/reducer";
 import Button from "../../button/Button";
 import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
 import TextField from "../../text-field/TextField";
@@ -17,9 +19,14 @@ const RoomCreatorForm: React.FC<RoomCreatorFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
+    const dispatch = useAppDispatch();
     const { name, setAndValidateName, error: nameError } = useResourceName();
 
     const errorToShow = isJoining ? undefined : nameError || errorMessage;
+
+    useEffect(() => {
+        dispatch(resetJoinRoomError());
+    }, [dispatch]);
 
     return (
         <Field label="Enter a name for your new room:" error={errorToShow}>

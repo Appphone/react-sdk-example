@@ -1,6 +1,8 @@
 import Field from "@bit/jorgemoreira.react.input.field";
 import Spinner from "@bit/jorgemoreira.react.progress.spinner";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch } from "../../../store/hooks";
+import { resetJoinRoomError } from "../../../store/reducer";
 import Button from "../../button/Button";
 import ResponsiveFieldContent from "../../responsive-field-content/ResponsiveFieldContent";
 import TextField from "../../text-field/TextField";
@@ -16,7 +18,12 @@ const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
     errorMessage,
     onSubmit,
 }) => {
+    const dispatch = useAppDispatch();
     const [id, setId] = useState<string>("");
+
+    useEffect(() => {
+        dispatch(resetJoinRoomError());
+    }, [dispatch]);
 
     return (
         <Field label="Enter the room id:" error={errorMessage}>
