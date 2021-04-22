@@ -15,7 +15,7 @@ import {
 } from "./reducer";
 
 const socketMiddleware = () => {
-    const URL = "http://localhost:3000";
+    const URL = `${window.location.protocol}//${window.location.hostname}:3000`;
     let socket: Socket | null = null;
 
     const setupSocket = (storeAPI: any, auth: any) => {
