@@ -52,7 +52,7 @@ const saveSocketRooms = (socket) => {
 
 const joinRoom = (socket, roomId, roomData) => {
     const joinedRoomsCount = socket.rooms.size;
-    console.log("rooms count", joinedRoomsCount);
+
     // Adds 2 because each user has its own user Id room and its own socket Id room
     if (joinedRoomsCount < ALLOWED_ROOMS_PER_SOCKET + 2) {
         io.in(socket.userId).socketsJoin(roomId);

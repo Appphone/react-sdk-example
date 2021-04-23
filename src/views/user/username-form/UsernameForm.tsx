@@ -67,7 +67,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                             disabled={!!usernameError}
                             onClick={onSubmitClick}
                         >
-                            Next
+                            Join
                         </Button>
                     }
                 />
