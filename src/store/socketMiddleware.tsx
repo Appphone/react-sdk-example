@@ -15,14 +15,17 @@ import {
 } from "./reducer";
 
 const socketMiddleware = () => {
-    const URL = `${window.location.protocol}//${window.location.hostname}:3000`;
     let socket: Socket | null = null;
 
     const setupSocket = (storeAPI: any, auth: any) => {
         const isFirstTimeCreatingSocket = socket === null;
 
         if (isFirstTimeCreatingSocket) {
-            socket = io(URL, { autoConnect: false });
+            if (process.env.NODE_ENV === "development") {
+                socket = io("http://localhost:3000", { autoConnect: false });
+            } else {
+                socket = io({ autoConnect: false });
+            }
         }
 
         socket = socket as Socket;

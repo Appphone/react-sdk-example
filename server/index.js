@@ -1,18 +1,20 @@
+const path = require("path");
 const express = require("express");
 const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
 const RoomStore = require("./roomStore");
 
-const ALLOW_CORS = process.env.NODE_ENV !== "production";
+const CLIENT_ORIGIN =
+    process.env.NODE_ENV !== "production" ? "http://localhost:8080" : null;
 const ENABLE_LOG = process.env.NODE_ENV !== "production";
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const ALLOWED_SOCKETS_PER_ROOM = 10;
 const ALLOWED_SOCKETS_PER_USER = 2;
 const ALLOWED_ROOMS_PER_SOCKET = 10;
 
 const server = express()
-    .use(express.static("../build"))
+    .use(express.static(path.join(__dirname, "../build")))
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const sessionStore = new SessionStore();
@@ -22,13 +24,13 @@ const randomId = () => crypto.randomBytes(8).toString("hex");
 
 const io = require("socket.io")(
     server,
-    ALLOW_CORS
+    CLIENT_ORIGIN
         ? {
               cors: {
-                  origin: "http://localhost:8080",
+                  origin: CLIENT_ORIGIN,
               },
           }
-        : null
+        : undefined
 );
 
 const saveSocketRooms = (socket) => {

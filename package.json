@@ -40,9 +40,10 @@
         "client-start": "react-scripts start",
         "client-build": "react-scripts build",
         "client-eject": "react-scripts eject",
-        "serve": "cd ./server & node index.js",
-        "serve-dev": "cd ./server & nodemon index.js",
-        "debug": "cd ./server & set DEBUG=socket.io:client & nodemon index.js"
+        "serve": "node ./server/index.js",
+        "serve-dev": "nodemon ./server/index.js",
+        "debug": "set DEBUG=socket.io:client & nodemon ./server/index.js",
+        "build-serve": "npm run client-build && npm run serve"
     },
     "eslintConfig": {
         "extends": [
@@ -87,5 +88,8 @@
     },
     "prettier": {
         "tabWidth": 4
+    },
+    "engines": {
+        "node": "14.x"
     }
 }

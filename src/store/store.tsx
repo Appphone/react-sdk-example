@@ -9,8 +9,8 @@ const store = configureStore({
     middleware: [logMiddleware, socketMiddleware],
 });
 
-if (process.env.NODE_ENV === "development" && module.hot) {
-    module.hot.accept("./reducer", () => {
+if (process.env.NODE_ENV === "development" && (module as any).hot) {
+    (module as any).hot.accept("./reducer", () => {
         const newRootReducer = require("./reducer").default;
         store.replaceReducer(newRootReducer);
     });
