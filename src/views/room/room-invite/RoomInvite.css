@@ -1,15 +1,39 @@
-.room-invite__contents {
-    display: flex;
-    align-items: center;
+.room-invite__method {
+    margin-top: 1rem;
+}
+
+.room-invite__method__contents {
     border-radius: var(--radius);
     padding: 0.5rem;
     background-color: var(--color-grey-light-2);
 }
 
-.room-invite__contents .btn {
+.room-invite__method__contents .btn {
     margin-left: auto;
 }
 
-.room-invite__method {
-    margin-top: 1rem;
+.room-invite__method__contents > * {
+    width: 100%;
+}
+
+.room-invite__method__contents > :first-child {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 996px) {
+    .room-invite__method__contents {
+        display: flex;
+        align-items: center;
+    }
+
+    .room-invite__method__contents > * {
+        width: auto;
+    }
+
+    .room-invite__method__contents > :first-child {
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+    }
 }

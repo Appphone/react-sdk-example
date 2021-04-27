@@ -24,8 +24,8 @@ const RoomInvite: React.FC<RoomInviteProps> = ({ roomId, show, onCancel }) => {
                 <p>
                     <strong>1)</strong> Sharing the room ID:
                 </p>
-                <div className="room-invite__contents">
-                    {friendlyId}
+                <div className="room-invite__method__contents">
+                    <div>{friendlyId}</div>
                     <Button primary onClick={copyRoomId}>
                         Copy to clipboard
                     </Button>
@@ -35,8 +35,8 @@ const RoomInvite: React.FC<RoomInviteProps> = ({ roomId, show, onCancel }) => {
                 <p>
                     <strong>2)</strong> Sharing the room link:
                 </p>
-                <div className="room-invite__contents">
-                    {inviteLink}
+                <div className="room-invite__method__contents">
+                    <div>{inviteLink}</div>
                     <Button primary onClick={copyRoomId}>
                         Copy to clipboard
                     </Button>
