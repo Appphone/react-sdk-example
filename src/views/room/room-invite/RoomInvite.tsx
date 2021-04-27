@@ -14,7 +14,8 @@ const RoomInvite: React.FC<RoomInviteProps> = ({ roomId, show, onCancel }) => {
     const friendlyId = roomId.substr(8);
     const inviteLink = window.location.origin + "#" + friendlyId;
 
-    const copyRoomId = () => copyToClipboard(inviteLink);
+    const copyRoomId = () => copyToClipboard(friendlyId);
+    const copyRoomLink = () => copyToClipboard(inviteLink);
 
     const modalContent = (
         <div className="room-invite">
@@ -37,7 +38,7 @@ const RoomInvite: React.FC<RoomInviteProps> = ({ roomId, show, onCancel }) => {
                 </p>
                 <div className="room-invite__method__contents">
                     <div>{inviteLink}</div>
-                    <Button primary onClick={copyRoomId}>
+                    <Button primary onClick={copyRoomLink}>
                         Copy to clipboard
                     </Button>
                 </div>
