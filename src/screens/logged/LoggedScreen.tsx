@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoggedScreenType from "../../models/LoggedScreenType";
 import MasterDetail from "../../views/master-detail/MasterDetail";
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
@@ -9,14 +9,26 @@ import "./LoggedScreen.css";
 import HeaderConnect from "../../views/header/HeaderConnect";
 import RoomEntranceFormConnect from "../../views/room/room-entrance-form/RoomEntranceFormConnect";
 import RoomCreatorFormConnect from "../../views/room/room-creator-form/RoomCreatorFormConnect";
+import useToggle from "../../hooks/useToggle";
 
 export interface LoggedScreenProps {
     type: LoggedScreenType;
+    activeRoomId?: string;
 }
 
-const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
+const LoggedScreen: React.FC<LoggedScreenProps> = ({ type, activeRoomId }) => {
     const { hash: roomIdToJoin, onClear: onDismissRoomId } = useUrlHash();
+    const {
+        isOn: isShowingSidebar,
+        onToggle: onSidebarToggle,
+        setOff: hideSidebar,
+    } = useToggle(window.innerWidth >= 996);
     let renderedContent: JSX.Element | null = null;
+
+    useEffect(() => {
+        hideSidebar();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [type, activeRoomId]);
 
     switch (type) {
         case LoggedScreenType.Chat:
@@ -41,13 +53,14 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type }) => {
     return (
         <div className="logged-screen">
             <div className="logged-screen__header">
-                <HeaderConnect />
+                <HeaderConnect onMenuClick={onSidebarToggle} />
             </div>
             <div className="logged-screen__content">
                 <MasterDetail
                     master={<SidebarConnect />}
                     detail={renderedContent}
-                    showMaster
+                    showMaster={isShowingSidebar}
+                    onHideMaster={onSidebarToggle}
                 />
             </div>
             {roomIdToJoin && (

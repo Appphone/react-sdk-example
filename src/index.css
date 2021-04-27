@@ -66,6 +66,24 @@ h4,
     font-family: "Overpass Mono";
 }
 
+h1 {
+    font-size: 1.563rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+@media (min-width: 996px) {
+    h1 {
+        font-size: 1.777rem;
+    }
+
+    h2 {
+        font-size: 1.333rem;
+    }
+}
+
 p {
     margin: 0.25rem 0;
 }

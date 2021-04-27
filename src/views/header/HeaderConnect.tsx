@@ -6,7 +6,11 @@ import { getUsername } from "../../store/selectors";
 import Header from "./Header";
 import "./Header.css";
 
-const HeaderConnect: React.FC = () => {
+interface HeaderConnectProps {
+    onMenuClick: () => void;
+}
+
+const HeaderConnect: React.FC<HeaderConnectProps> = ({ onMenuClick }) => {
     const dispatch = useAppDispatch();
     const username = useSelector(getUsername);
 
@@ -15,7 +19,11 @@ const HeaderConnect: React.FC = () => {
     };
 
     return username ? (
-        <Header username={username} onSignOut={onSignOut} />
+        <Header
+            username={username}
+            onMenuClick={onMenuClick}
+            onSignOut={onSignOut}
+        />
     ) : null;
 };
 
