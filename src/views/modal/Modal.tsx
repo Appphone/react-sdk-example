@@ -3,6 +3,7 @@ import LibModal, {
 } from "@bit/jorgemoreira.react.surface.modal";
 import React from "react";
 import Card from "../card/Card";
+import CloseIcon from "../icons/CloseIcon";
 import "./Modal.css";
 
 export interface ModalProps extends LibModalProps {
@@ -23,6 +24,9 @@ const Modal: React.FC<ModalProps> = ({
             <Card>
                 <div className="modal__header">
                     <div className="modal__header__title">{title}</div>
+                    <div className="modal__header__close" onClick={onDismiss}>
+                        <CloseIcon />
+                    </div>
                 </div>
                 {content}
                 {footer && <div className="modal__footer">{footer}</div>}
