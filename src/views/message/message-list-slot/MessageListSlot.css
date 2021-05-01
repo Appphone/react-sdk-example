@@ -4,10 +4,6 @@
     padding: 0.25rem 0;
 }
 
-.message-list__slot .message-list__item--out {
-    margin-left: auto;
-}
-
 .message-list__slot__arrow_right::before {
     position: absolute;
     content: "";

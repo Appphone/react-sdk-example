@@ -4,10 +4,12 @@
     color: var(--color-white);
     border-radius: var(--radius);
     min-width: 10rem;
+    max-width: 80%;
 }
 
 .message-list__item--out {
     background-color: var(--color-accent);
+    margin-left: auto;
 }
 
 .message-list__item--in {
