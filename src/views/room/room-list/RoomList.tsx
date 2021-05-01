@@ -5,6 +5,7 @@ import SidebarList from "../../sidebar/sidebar-list/SidebarList";
 import RoomCreatorLinkConnect from "../room-creator-link/RoomCreatorLinkConnect";
 import RoomEntranceLinkConnect from "../room-entrance-link/RoomEntranceLinkConnect";
 import RoomListItemConnect from "../room-list-item/RoomListItemConnect";
+import "./RoomList.css";
 
 export interface RoomListProps {
     rooms: Room[];
@@ -19,9 +20,11 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, isOffline }) => {
     return (
         <SidebarList>
             {isOffline && (
-                <Alert warning>
-                    You seem to be offline. Trying to reconnect...
-                </Alert>
+                <div className="room-list__alert">
+                    <Alert warning>
+                        You seem to be offline. Trying to reconnect...
+                    </Alert>
+                </div>
             )}
             {renderedRooms}
             <RoomCreatorLinkConnect />

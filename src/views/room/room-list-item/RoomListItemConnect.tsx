@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Room from "../../../models/Room";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { openRoom } from "../../../store/reducer";
 import { getActiveRoomId } from "../../../store/selectors";
 import RoomListItem from "./RoomListItem";
@@ -13,6 +13,7 @@ export interface RoomListItemProps {
 const RoomListItemConnect: React.FC<RoomListItemProps> = ({ room }) => {
     const dispatch = useAppDispatch();
     const activeRoomId = useSelector(getActiveRoomId);
+    const isOffline = useAppSelector((state) => state.isOffline);
 
     const onRoomClick = () => {
         dispatch(openRoom({ id: room.id }));
@@ -22,6 +23,7 @@ const RoomListItemConnect: React.FC<RoomListItemProps> = ({ room }) => {
         <RoomListItem
             room={room}
             isActive={activeRoomId === room.id}
+            isOffline={isOffline}
             onClick={onRoomClick}
         />
     );

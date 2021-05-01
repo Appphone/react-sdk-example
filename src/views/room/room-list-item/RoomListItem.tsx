@@ -5,12 +5,14 @@ import SidebarListItem from "../../sidebar/sidebar-list-item/SidebarListItem";
 export interface RoomListItemProps {
     room: Room;
     isActive: boolean;
+    isOffline: boolean;
     onClick: () => void;
 }
 
 const RoomListItem: React.FC<RoomListItemProps> = ({
     room: { id, name, unreadCount, isLeaving },
     isActive,
+    isOffline,
     onClick,
 }) => {
     return (
@@ -18,7 +20,7 @@ const RoomListItem: React.FC<RoomListItemProps> = ({
             title={name || id}
             unreadCount={unreadCount}
             isActive={isActive}
-            disabled={isLeaving}
+            disabled={isLeaving || isOffline}
             onClick={onClick}
         />
     );
