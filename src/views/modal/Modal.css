@@ -19,6 +19,21 @@
     font-weight: bold;
 }
 
+.modal__header__close {
+    height: 1.5rem;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.modal__header__close:hover {
+    border-radius: var(--radius);
+    background-color: var(--color-grey-light-2);
+}
+
+.modal__header__close:active {
+    background-color: var(--color-grey-light);
+}
+
 .modal__footer {
     border-top: 1px solid var(--color-grey-light-2);
     padding-top: 0.75rem;
