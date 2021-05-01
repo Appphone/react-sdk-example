@@ -3,9 +3,11 @@
     --color-accent-dark: #195fc8;
     --color-accent-dark-2: #124591;
 
-    --color-warning: yellow;
+    --color-warning-light: #fef3c7;
+    --color-warning-dark: #78350f;
 
-    --color-danger: red;
+    --color-danger-light: #fee2e2;
+    --color-danger-dark: #7f1d1d;
 
     --color-black: #111827;
 
