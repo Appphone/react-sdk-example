@@ -2,7 +2,7 @@ import Chat, { ChatProps } from "./Chat";
 import { Story } from "@storybook/react/types-6-0";
 import { Provider } from "react-redux";
 import { Store } from "redux";
-import { getStoreMock, roomMockFactory } from "../../utils/mocks";
+import { getStoreMock, roomMockFactory } from "../../../utils/mocks";
 
 export default {
     title: "Chat/Chat",

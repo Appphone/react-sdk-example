@@ -1,10 +1,10 @@
 import React from "react";
-import useToggle from "../../hooks/useToggle";
-import Room from "../../models/Room";
-import Button from "../button/Button";
-import MessageListConnect from "../message/message-list/MessageListConnect";
-import MessageSenderConnect from "../message/message-sender/MessageSenderConnect";
-import RoomInvite from "../room/room-invite/RoomInvite";
+import useToggle from "../../../hooks/useToggle";
+import Room from "../../../models/Room";
+import Button from "../../button/Button";
+import MessageListConnect from "../chat-events-list/ChatEventsListConnect";
+import MessageSenderConnect from "../../message/message-sender/MessageSenderConnect";
+import RoomInvite from "../../room/room-invite/RoomInvite";
 import "./Chat.css";
 
 export interface ChatProps {

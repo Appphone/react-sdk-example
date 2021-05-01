@@ -1,23 +1,27 @@
 import React from "react";
-import ChatEvent, { ChatDataType } from "../../models/ChatEvent";
-import "./EventInfo.css";
+import ChatEvent, { ChatDataType } from "../../../models/ChatEvent";
+import "./ChatEventInfo.css";
 
-export interface EventInfoProps {
+export interface ChatEventInfoProps {
     event: ChatEvent;
     isFromSelf: boolean;
 }
 
-const EventInfo: React.FC<EventInfoProps> = ({
+const ChatEventInfo: React.FC<ChatEventInfoProps> = ({
     event: { type, senderLabel },
     isFromSelf,
 }) => {
     let description;
     switch (type) {
         case ChatDataType.UserArrival:
-            description = `${isFromSelf ? "You" : senderLabel} joined the room`;
+            description = `${
+                isFromSelf ? "You" : `@${senderLabel}`
+            } joined the room`;
             break;
         case ChatDataType.UserExit:
-            description = `${isFromSelf ? "You" : senderLabel} left the room`;
+            description = `${
+                isFromSelf ? "You" : `@${senderLabel}`
+            } left the room`;
             break;
     }
 
@@ -32,4 +36,4 @@ const EventInfo: React.FC<EventInfoProps> = ({
     );
 };
 
-export default EventInfo;
+export default ChatEventInfo;
