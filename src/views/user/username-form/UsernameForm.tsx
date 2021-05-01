@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "../../text-field/TextField";
-import Field from "@bit/jorgemoreira.react.input.field";
-import Spinner from "@bit/jorgemoreira.react.progress.spinner";
+import Field from "@bit/jorgemoreira.headless-react.input.field";
+import Spinner from "@bit/jorgemoreira.headless-react.progress.spinner";
 import Button from "../../button/Button";
 import "./UsernameForm.css";
 import Alert from "../../alert/Alert";

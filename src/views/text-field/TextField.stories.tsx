@@ -1,6 +1,6 @@
 import TextField from "./TextField";
 import { Story } from "@storybook/react/types-6-0";
-import { TextFieldProps } from "@bit/jorgemoreira.react.input.text-field";
+import { TextFieldProps } from "@bit/jorgemoreira.headless-react.input.text-field";
 
 export default {
     title: "Input/TextField",

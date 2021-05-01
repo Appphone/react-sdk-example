@@ -1,5 +1,5 @@
-import Field from "@bit/jorgemoreira.react.input.field";
-import Spinner from "@bit/jorgemoreira.react.progress.spinner";
+import Field from "@bit/jorgemoreira.headless-react.input.field";
+import Spinner from "@bit/jorgemoreira.headless-react.progress.spinner";
 import React, { useEffect } from "react";
 import useResourceName from "../../../hooks/useResourceName";
 import { useAppDispatch } from "../../../store/hooks";

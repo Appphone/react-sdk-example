@@ -1,4 +1,4 @@
-import LibTextField from "@bit/jorgemoreira.react.input.text-field";
+import LibTextField from "@bit/jorgemoreira.headless-react.input.text-field";
 import "./TextField.css";
 
 class TextField extends LibTextField {}

@@ -1,6 +1,6 @@
 import LibModal, {
     ModalProps as LibModalProps,
-} from "@bit/jorgemoreira.react.surface.modal";
+} from "@bit/jorgemoreira.headless-react.surface.modal";
 import React from "react";
 import Card from "../card/Card";
 import CloseIcon from "../icons/CloseIcon";

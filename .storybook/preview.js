@@ -1,4 +1,4 @@
-import "@bit/jorgemoreira.react.styles";
+import "@bit/jorgemoreira.headless.styles";
 import "../src/index.css";
 
 export const parameters = {
