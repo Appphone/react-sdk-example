@@ -6,6 +6,7 @@ export interface ButtonProps {
     primary?: boolean;
     transparent?: boolean;
     small?: boolean;
+    large?: boolean;
     disabled?: boolean;
     onClick?: () => void;
 }
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
     primary,
     transparent,
     small,
+    large,
     disabled,
     onClick,
     children,
@@ -22,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
         "btn--primary": primary,
         "btn--transparent": transparent,
         "btn--sm": small,
+        "btn--lg": large,
     });
     return (
         <button className={className} onClick={onClick} disabled={disabled}>

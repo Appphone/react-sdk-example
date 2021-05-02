@@ -1,4 +1,6 @@
 :root {
+    --color-accent-light-2: #6ea1ed;
+    --color-accent-light: #4989e9;
     --color-accent: #2270e4;
     --color-accent-dark: #195fc8;
     --color-accent-dark-2: #124591;
@@ -26,10 +28,11 @@
 
     --font-sm: 0.8rem;
     --font-xs: 0.7rem;
+    --font-lg: 1.2rem;
 
     --transition: 150ms ease-in-out;
 
-    --input-height: 2rem;
+    --input-height: 2em;
 }
 
 *,

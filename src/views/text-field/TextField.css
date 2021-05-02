@@ -3,24 +3,29 @@
     display: block;
     font-size: 1rem;
     outline: none !important;
-    border: var(--color-grey) solid 0.15rem;
+    border: var(--color-accent) solid 0.15rem;
     line-height: var(--input-height);
     height: var(--input-height);
     padding: 0 0.5rem;
     width: 100%;
     transition: border-color var(--transition);
+    outline: none;
 }
 
 .text-field:hover {
-    border-color: var(--color-accent-dark-2);
+    border-color: var(--color-accent-light);
 }
 
 .text-field:focus {
-    border-color: var(--color-accent);
+    border-color: var(--color-accent-light-2);
 }
 
 .text-field::placeholder {
     color: var(--color-grey);
+}
+
+.text-field--lg {
+    font-size: var(--font-lg);
 }
 
 .text-field--error {
