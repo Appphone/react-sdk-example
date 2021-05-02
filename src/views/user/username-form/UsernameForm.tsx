@@ -53,6 +53,8 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                 <ResponsiveFieldContent
                     textField={
                         <TextField
+                            autoFocus
+                            large
                             value={username}
                             placeholder="Username"
                             error={!!errorToShow}
@@ -64,6 +66,7 @@ const UsernameForm: React.FC<UsernameFormProps> = ({
                     button={
                         <Button
                             primary
+                            large
                             disabled={!!usernameError}
                             onClick={onSubmitClick}
                         >

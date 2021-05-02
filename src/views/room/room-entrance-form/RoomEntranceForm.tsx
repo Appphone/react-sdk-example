@@ -33,6 +33,7 @@ const RoomEntranceForm: React.FC<RoomEntranceFormProps> = ({
                 <ResponsiveFieldContent
                     textField={
                         <TextField
+                            autoFocus
                             value={id}
                             onChange={setId}
                             onEnter={() => id && onSubmit(id)}

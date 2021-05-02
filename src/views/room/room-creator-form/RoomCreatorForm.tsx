@@ -36,6 +36,7 @@ const RoomCreatorForm: React.FC<RoomCreatorFormProps> = ({
                 <ResponsiveFieldContent
                     textField={
                         <TextField
+                            autoFocus
                             value={name}
                             onChange={setAndValidateName}
                             onEnter={() => name && onSubmit(name)}
