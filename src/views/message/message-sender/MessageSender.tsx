@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../../button/Button";
 import TextField from "../../text-field/TextField";
+import LibTextField from "@bit/jorgemoreira.headless-react.input.text-field";
 import "./MessageSender.css";
 
 export interface MessageSenderProps {
@@ -12,12 +13,10 @@ const MessageSender: React.FC<MessageSenderProps> = ({
     isOffline,
     onSubmit,
 }) => {
-    const messageInput = useRef<TextField | null>(null);
+    const messageInput = useRef<LibTextField | null>(null);
     const [content, setContent] = useState("");
 
     const focusMsgInput = () => messageInput.current?.focus();
-
-    useEffect(focusMsgInput, []);
 
     const onSubmitMessage = () => {
         if (content.length) {
@@ -32,7 +31,7 @@ const MessageSender: React.FC<MessageSenderProps> = ({
             <div className="message-sender__contents content content--medium">
                 <div className="message-sender__field">
                     <TextField
-                        ref={messageInput}
+                        innerRef={messageInput}
                         value={content}
                         placeholder="Type a message"
                         disabled={isOffline}

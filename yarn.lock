@@ -1315,10 +1315,10 @@
   dependencies:
     "@types/react" "^16.9.0"
 
-"@bit/jorgemoreira.headless-react.input.text-field@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.text-field/-/jorgemoreira.headless-react.input.text-field-0.0.1.tgz#ec43e89d944af1966e530724e35c3dc77f3a4fb3"
-  integrity sha1-7EPonZRK8ZZuUwck41w9x386T7M=
+"@bit/jorgemoreira.headless-react.input.text-field@^0.0.2":
+  version "0.0.2"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.text-field/-/jorgemoreira.headless-react.input.text-field-0.0.2.tgz#228c0e44e5faf28c177df15946eace7acdf32c40"
+  integrity sha1-IowOROX68owXffFZRurOes3zLEA=
   dependencies:
     "@types/react" "^16.9.0"
     classnames "^2.3.1"
