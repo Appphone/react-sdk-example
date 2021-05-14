@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import LoggedScreenType from "../../models/LoggedScreenType";
-import MasterDetail from "../../views/master-detail/MasterDetail";
+import MasterDetail from "@bit/jorgemoreira.headless-react.surface.master-detail";
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
 import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirmation/RoomInviteConfirmationConnect";
 import ChatConnect from "../../views/chat/chat/ChatConnect";
