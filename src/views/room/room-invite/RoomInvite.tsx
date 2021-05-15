@@ -51,6 +51,7 @@ const RoomInvite: React.FC<RoomInviteProps> = ({ roomId, show, onCancel }) => {
             title="Invite others"
             content={modalContent}
             show={show}
+            width="45rem"
             onDismiss={onCancel}
         />
     );

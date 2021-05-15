@@ -12,15 +12,15 @@ export interface ModalProps extends LibModalProps {
     footer?: JSX.Element;
 }
 
-const Modal: React.FC<ModalProps> = ({
-    show,
+const Modal: React.FC<LibModalProps & ModalProps> = ({
     title,
     content,
     footer,
     onDismiss,
+    ...modalProps
 }) => {
     return (
-        <LibModal show={show} onDismiss={onDismiss}>
+        <LibModal onDismiss={onDismiss} {...modalProps}>
             <Card>
                 <div className="modal__header">
                     <div className="modal__header__title">{title}</div>

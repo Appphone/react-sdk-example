@@ -1330,26 +1330,26 @@
   dependencies:
     "@types/react" "^16.9.0"
 
-"@bit/jorgemoreira.headless-react.surface.master-detail@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.master-detail/-/jorgemoreira.headless-react.surface.master-detail-0.0.1.tgz#625c546d0821e8347d8f230a22d631ffe66fa384"
-  integrity sha1-YlxUbQgh6DR9jyMKItYx/+Zvo4Q=
+"@bit/jorgemoreira.headless-react.surface.master-detail@^0.0.3":
+  version "0.0.3"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.master-detail/-/jorgemoreira.headless-react.surface.master-detail-0.0.3.tgz#f7850e4f3091ee7bf021632b43c192ed567fc292"
+  integrity sha1-94UOTzCR7nvwIWMrQ8GS7VZ/wpI=
   dependencies:
     "@types/react" "^16.9.0"
     classnames "^2.3.1"
 
-"@bit/jorgemoreira.headless-react.surface.modal@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.modal/-/jorgemoreira.headless-react.surface.modal-0.0.1.tgz#f5e6decaf6b62299ca2ab88653c71fdd93299c9c"
-  integrity sha1-9ebeyva2IpnKKriGU8cf3ZMpnJw=
+"@bit/jorgemoreira.headless-react.surface.modal@^0.0.2":
+  version "0.0.2"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.modal/-/jorgemoreira.headless-react.surface.modal-0.0.2.tgz#6be65bfca224c54471b6294263919ff5b4528e82"
+  integrity sha1-a+Zb/KIkxURxtilCY5Gf9bRSjoI=
   dependencies:
     "@types/react" "^16.9.0"
     "@types/react-dom" "^16.9.0"
 
-"@bit/jorgemoreira.headless.styles@^0.0.3":
-  version "0.0.3"
-  resolved "https://node.bit.dev/jorgemoreira.headless.styles/-/jorgemoreira.headless.styles-0.0.3.tgz#45a2fd39e41ac200279a6764c14ff1b480585191"
-  integrity sha1-RaL9OeQawgAnmmdkwU/xtIBYUZE=
+"@bit/jorgemoreira.headless.styles@^0.0.6":
+  version "0.0.6"
+  resolved "https://node.bit.dev/jorgemoreira.headless.styles/-/jorgemoreira.headless.styles-0.0.6.tgz#7802a20fc54b1518753f54b15e6cce99cd3dd8df"
+  integrity sha1-eAKiD8VLFRh1P1SxXmzOmc092N8=
 
 "@chromaui/localtunnel@^2.0.2":
   version "2.0.3"

@@ -1,11 +1,3 @@
-@media (min-width: 996px) {
-    .modal .modal-content {
-        width: 37rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
 .modal__header {
     display: flex;
     align-items: center;
