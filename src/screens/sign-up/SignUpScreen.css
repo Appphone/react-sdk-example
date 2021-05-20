@@ -21,10 +21,6 @@
     pointer-events: none;
 }
 
-.signup__form {
-    pointer-events: all;
-}
-
 .signup__headline {
     margin-bottom: 3rem;
     font-size: max(3rem, 7vw);
@@ -34,6 +30,21 @@
 .signup__subtitle {
     font-size: max(1.25rem, 2vw);
     margin-bottom: 2.5rem;
+}
+
+.signup__form,
+.signup__help {
+    pointer-events: all;
+}
+
+.signup__form {
+    margin-bottom: 1.5rem;
+}
+
+.signup__help {
+    display: inline-block;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media (min-height: 700px) {
