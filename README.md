@@ -1,11 +1,6 @@
 # react-private-messaging
 
-A messaging app I made with Socket.io to learn some stuff. This is a work in progress.
-
-## See it working
-
--   Open the [live demo](https://react-private-messaging.herokuapp.com/).
--   Open the [Storybook](https://607c4a493059ff0021f3ab03-bctzuxaxyq.chromatic.com).
+A messaging app that I developed to learn some stuff. This is not meant to be a real product. It's just an experiment and still with some work in progress.
 
 ## What I used?
 
@@ -14,6 +9,25 @@ A messaging app I made with Socket.io to learn some stuff. This is a work in pro
 -   [Storybook](https://storybook.js.org/)
 -   [Express](http://expressjs.com/)
 -   [Socket.io](https://socket.io/)
+
+## How to use
+
+Create a username and click the Join button on the home page.
+
+When you join, your username is stored in your local browser. If you try to join on another browser or another device with the same username, it will not work. That's why you don't need a password (as long as your device is secure).
+
+To chat with someone, create a new room and then click the Invite Others button to share the link.
+
+When someone visits your link, they will be asked to create a username (if it has not been already created) and then they will be able to chat with you.
+
+No messages are persisted on the server. Therefore, users can only see messages that are exchanged when they are online.
+
+If you sign out, it will not be possible to use your previous username again.
+
+## See it working
+
+-   Open the [website](https://react-private-messaging.herokuapp.com/).
+-   Open the [Storybook](https://607c4a493059ff0021f3ab03-bctzuxaxyq.chromatic.com).
 
 ## Local setup
 
