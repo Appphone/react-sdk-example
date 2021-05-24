@@ -1,3 +1,5 @@
-.username-form {
-    max-width: 20rem;
+@media (min-height: 700px) and (min-width: 576px) {
+    .username-form {
+        max-width: 20rem;
+    }
 }

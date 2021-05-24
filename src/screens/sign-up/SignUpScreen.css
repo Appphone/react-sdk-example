@@ -47,7 +47,7 @@
     cursor: pointer;
 }
 
-@media (min-height: 700px) {
+@media (min-height: 700px) and (min-width: 576px) {
     .signup {
         padding-top: 0;
     }

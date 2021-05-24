@@ -33,13 +33,13 @@ const SignUpScreen: React.FC = () => {
                         <UsernameFormConnect />
                     </div>
                     <p className="signup__help" onClick={showHelp}>
-                        How it works
+                        How it works?
                     </p>
                 </div>
             </div>
 
             <Modal
-                title="How it works"
+                title="How it works?"
                 show={isShowingHelp}
                 onDismiss={hideHelp}
                 content={<Help />}
