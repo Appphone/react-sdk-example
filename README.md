@@ -4,11 +4,12 @@ A messaging app that I developed to learn some stuff. This is not meant to be a 
 
 ## What I used?
 
+-   [Express](http://expressjs.com/)
 -   [React](https://reactjs.org/)
 -   [React Redux](https://react-redux.js.org/)
--   [Storybook](https://storybook.js.org/)
--   [Express](http://expressjs.com/)
 -   [Socket.io](https://socket.io/)
+-   [Storybook](https://storybook.js.org/)
+-   [TypeScript](https://www.typescriptlang.org/)
 
 ## How to use
 
