@@ -1,5 +1,5 @@
 import React from "react";
-import useToggle from "../../hooks/useToggle";
+import { useToggle } from "@bit/jorgemoreira.headless-react.hooks";
 import Help from "../../views/help/Help";
 import Modal from "../../views/modal/Modal";
 import Nodes from "../../views/nodes/Nodes";

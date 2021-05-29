@@ -1,5 +1,5 @@
 import React from "react";
-import useToggle from "../../../hooks/useToggle";
+import { useToggle } from "@bit/jorgemoreira.headless-react.hooks";
 import Room from "../../../models/Room";
 import Button from "../../button/Button";
 import MessageListConnect from "../chat-events-list/ChatEventsListConnect";

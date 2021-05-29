@@ -4,12 +4,11 @@ import MasterDetail from "@bit/jorgemoreira.headless-react.surface.master-detail
 import SidebarConnect from "../../views/sidebar/sidebar/SidebarConnect";
 import RoomInviteConfirmationConnect from "../../views/room/room-invite-confirmation/RoomInviteConfirmationConnect";
 import ChatConnect from "../../views/chat/chat/ChatConnect";
-import useUrlHash from "../../hooks/useUrlHash";
 import "./LoggedScreen.css";
 import HeaderConnect from "../../views/header/HeaderConnect";
 import RoomEntranceFormConnect from "../../views/room/room-entrance-form/RoomEntranceFormConnect";
 import RoomCreatorFormConnect from "../../views/room/room-creator-form/RoomCreatorFormConnect";
-import useToggle from "../../hooks/useToggle";
+import { useToggle, useUrlHash } from "@bit/jorgemoreira.headless-react.hooks";
 
 export interface LoggedScreenProps {
     type: LoggedScreenType;
