@@ -60,6 +60,7 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type, activeRoomId }) => {
                     detail={renderedContent}
                     showMaster={isShowingSidebar}
                     onHideMaster={onSidebarToggle}
+                    maxContentZIndex={5}
                 />
             </div>
             {roomIdToJoin && (
