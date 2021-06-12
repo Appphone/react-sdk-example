@@ -1,4 +1,5 @@
 import React from "react";
+import SidebarFooter from "../sidebar-footer/SidebarFooter";
 import RoomListConnect from "../../room/room-list/RoomListConnect";
 import "./Sidebar.css";
 
@@ -14,6 +15,9 @@ const Sidebar: React.FC<SidebarProps> = ({ onSignOut }) => {
             </div>
             <div className="sidebar__list">
                 <RoomListConnect />
+            </div>
+            <div className="sidebar__footer text-sm">
+                <SidebarFooter />
             </div>
         </div>
     );

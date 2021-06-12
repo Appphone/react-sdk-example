@@ -5,19 +5,28 @@
     flex-direction: column;
     background-color: var(--color-black);
     height: 100%;
-    padding-left: 3rem;
+    padding-left: 1rem;
     box-shadow: 3px 0 6px rgb(0 0 0 / 16%), 3px 0 6px rgb(0 0 0 / 23%);
+    color: var(--color-white);
+}
+
+@media (min-width: 796px) {
+    .sidebar {
+        padding-left: 3rem;
+    }
 }
 
 .sidebar__header {
     padding: 1.5rem 1rem;
 }
 
-.sidebar__header__title {
-    color: var(--color-white);
-}
-
 .sidebar__list {
     flex: 1 1 0;
     overflow: auto;
+}
+
+.sidebar__footer {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
 }
