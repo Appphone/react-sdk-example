@@ -18,7 +18,7 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, isOffline }) => {
     ));
 
     return (
-        <SidebarList>
+        <div>
             {isOffline && (
                 <div className="room-list__alert">
                     <Alert warning>
@@ -26,10 +26,14 @@ const RoomList: React.FC<RoomListProps> = ({ rooms, isOffline }) => {
                     </Alert>
                 </div>
             )}
-            {renderedRooms}
-            <RoomCreatorLinkConnect />
-            <RoomEntranceLinkConnect />
-        </SidebarList>
+            <nav>
+                <SidebarList>{renderedRooms}</SidebarList>
+                <SidebarList>
+                    <RoomCreatorLinkConnect />
+                    <RoomEntranceLinkConnect />
+                </SidebarList>
+            </nav>
+        </div>
     );
 };
 

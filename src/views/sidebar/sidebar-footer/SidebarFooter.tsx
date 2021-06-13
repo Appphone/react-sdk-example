@@ -2,7 +2,7 @@ import React from "react";
 import "./SidebarFooter.css";
 
 const SidebarFooter: React.FC = () => (
-    <footer>
+    <footer className="sidebar__footer text-sm">
         <p>
             Designed and developed by{" "}
             <a

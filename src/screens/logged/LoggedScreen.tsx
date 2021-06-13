@@ -21,11 +21,19 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type, activeRoomId }) => {
         isOn: isShowingSidebar,
         onToggle: onSidebarToggle,
         setOff: hideSidebar,
-    } = useToggle(window.innerWidth >= 996);
+    } = useToggle(
+        window.innerWidth >= 996 ||
+            (type === LoggedScreenType.Chat && !activeRoomId)
+    );
     let renderedContent: JSX.Element | null = null;
 
     useEffect(() => {
-        hideSidebar();
+        if (
+            window.innerWidth < 996 &&
+            (type !== LoggedScreenType.Chat || !!activeRoomId)
+        ) {
+            hideSidebar();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, activeRoomId]);
 
@@ -60,7 +68,7 @@ const LoggedScreen: React.FC<LoggedScreenProps> = ({ type, activeRoomId }) => {
                     detail={renderedContent}
                     showMaster={isShowingSidebar}
                     onHideMaster={onSidebarToggle}
-                    maxContentZIndex={5}
+                    masterMinZIndex={6}
                 />
             </div>
             {roomIdToJoin && (

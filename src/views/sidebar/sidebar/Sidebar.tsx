@@ -16,9 +16,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSignOut }) => {
             <div className="sidebar__list">
                 <RoomListConnect />
             </div>
-            <div className="sidebar__footer text-sm">
-                <SidebarFooter />
-            </div>
+            <SidebarFooter />
         </div>
     );
 };
