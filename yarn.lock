@@ -1345,13 +1345,14 @@
     "@types/react" "^17.0.0"
     classnames "^2.3.1"
 
-"@bit/jorgemoreira.headless-react.surface.modal@^0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.modal/-/jorgemoreira.headless-react.surface.modal-0.0.2.tgz#6be65bfca224c54471b6294263919ff5b4528e82"
-  integrity sha1-a+Zb/KIkxURxtilCY5Gf9bRSjoI=
+"@bit/jorgemoreira.headless-react.surface.modal@^0.0.6":
+  version "0.0.6"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.surface.modal/-/jorgemoreira.headless-react.surface.modal-0.0.6.tgz#d07e36a1cccfa94e0929aa65da7c38472bb19da0"
+  integrity sha1-0H42oczPqU4JKapl2nw4RyuxnaA=
   dependencies:
-    "@types/react" "^16.9.0"
-    "@types/react-dom" "^16.9.0"
+    "@types/react" "^17.0.0"
+    "@types/react-dom" "^17.0.0"
+    classnames "^2.3.1"
 
 "@bit/jorgemoreira.headless.styles@^0.0.9":
   version "0.0.9"
@@ -3061,13 +3062,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@^16.9.0":
-  version "16.9.12"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.12.tgz#55cd6b17e73922edb9545e5355a0016c1734e6f4"
-  integrity sha512-i7NPZZpPte3jtVOoW+eLB7G/jsX5OM6GqQnH+lC0nq0rqwlK0x8WcMEvYDgFWqWhWMlTltTimzdMax6wYfZssA==
-  dependencies:
-    "@types/react" "^16"
-
 "@types/react-dom@^17.0.0":
   version "17.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.3.tgz#7fdf37b8af9d6d40127137865bb3fff8871d7ee1"
@@ -3101,7 +3095,7 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^16", "@types/react@^16.9.0":
+"@types/react@^16.9.0":
   version "16.14.5"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.5.tgz#2c39b5cadefaf4829818f9219e5e093325979f4d"
   integrity sha512-YRRv9DNZhaVTVRh9Wmmit7Y0UFhEVqXqCSw3uazRWMxa2x85hWQZ5BN24i7GXZbaclaLXEcodEeIHsjBA8eAMw==
