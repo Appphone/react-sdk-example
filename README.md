@@ -1,6 +1,6 @@
 # react-private-messaging
 
-A messaging app that I developed to learn some stuff. This is not meant to be a real product. It's just an experiment and still with some work in progress.
+> A messaging app in React using [socket.io](https://socket.io/).
 
 ## What I used?
 
