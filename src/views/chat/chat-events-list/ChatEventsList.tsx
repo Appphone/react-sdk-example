@@ -31,7 +31,12 @@ const ChatEventsList: React.FC<ChatEventsListProps> = ({ userId, events }) => {
                     />
                 );
             default:
-                return <EventInfoConnect event={event} />;
+                return (
+                    <EventInfoConnect
+                        key={event.localId || event.id}
+                        event={event}
+                    />
+                );
         }
     });
 
