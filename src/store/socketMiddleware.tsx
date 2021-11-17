@@ -21,11 +21,9 @@ const socketMiddleware = () => {
         const isFirstTimeCreatingSocket = socket === null;
 
         if (isFirstTimeCreatingSocket) {
-            if (process.env.NODE_ENV === "development") {
-                socket = io("http://localhost:3000", { autoConnect: false });
-            } else {
-                socket = io({ autoConnect: false });
-            }
+            socket = io(process.env.REACT_APP_SERVER_URI as string, {
+                autoConnect: false,
+            });
         }
 
         socket = socket as Socket;

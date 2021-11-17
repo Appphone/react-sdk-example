@@ -4,10 +4,13 @@ const crypto = require("crypto");
 const SessionStore = require("./sessionStore");
 const RoomStore = require("./roomStore");
 
-const CLIENT_ORIGIN =
-    process.env.NODE_ENV !== "production" ? "http://localhost:8080" : null;
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
+
 const ENABLE_LOG = process.env.NODE_ENV !== "production";
-const PORT = process.env.PORT || 3000;
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN;
+const PORT = process.env.SERVER_PORT || 3000;
 
 const ALLOWED_SOCKETS_PER_ROOM = 10;
 const ALLOWED_SOCKETS_PER_USER = 2;
