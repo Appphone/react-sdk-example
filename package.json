@@ -7,9 +7,9 @@
     "license": "MIT",
     "dependencies": {
         "@bit/jorgemoreira.headless-react.hooks": "^0.0.6",
-        "@bit/jorgemoreira.headless-react.input.field": "^0.0.1",
-        "@bit/jorgemoreira.headless-react.input.text-field": "^0.0.2",
-        "@bit/jorgemoreira.headless-react.progress.spinner": "^0.0.1",
+        "@bit/jorgemoreira.headless-react.input.field": "^1.0.0",
+        "@bit/jorgemoreira.headless-react.input.text-field": "^1.0.0",
+        "@bit/jorgemoreira.headless-react.progress.spinner": "^0.0.4",
         "@bit/jorgemoreira.headless-react.surface.master-detail": "^1.1.1",
         "@bit/jorgemoreira.headless-react.surface.modal": "^0.0.6",
         "@bit/jorgemoreira.headless.styles": "^0.0.9",

@@ -1315,27 +1315,28 @@
   dependencies:
     "@types/react" "^16.9.0"
 
-"@bit/jorgemoreira.headless-react.input.field@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.field/-/jorgemoreira.headless-react.input.field-0.0.1.tgz#28208a40979e7d37ad1350a17115820fc45355c3"
-  integrity sha1-KCCKQJeefTetE1ChcRWCD8RTVcM=
+"@bit/jorgemoreira.headless-react.input.field@^1.0.0":
+  version "1.0.0"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.field/-/jorgemoreira.headless-react.input.field-1.0.0.tgz#043155aff52c5319851962d2ff7f94d7e8786b72"
+  integrity sha1-BDFVr/UsUxmFGWLS/3+U1+h4a3I=
   dependencies:
-    "@types/react" "^16.9.0"
+    "@types/react" "^17.0.0"
 
-"@bit/jorgemoreira.headless-react.input.text-field@^0.0.2":
-  version "0.0.2"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.text-field/-/jorgemoreira.headless-react.input.text-field-0.0.2.tgz#228c0e44e5faf28c177df15946eace7acdf32c40"
-  integrity sha1-IowOROX68owXffFZRurOes3zLEA=
+"@bit/jorgemoreira.headless-react.input.text-field@^1.0.0":
+  version "1.0.0"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.input.text-field/-/jorgemoreira.headless-react.input.text-field-1.0.0.tgz#5fc2d91ebf715b12ff4220d74a111297f6b8b0e6"
+  integrity sha1-X8LZHr9xWxL/QiDXShESl/a4sOY=
   dependencies:
-    "@types/react" "^16.9.0"
+    "@types/react" "^17.0.0"
     classnames "^2.3.1"
 
-"@bit/jorgemoreira.headless-react.progress.spinner@^0.0.1":
-  version "0.0.1"
-  resolved "https://node.bit.dev/jorgemoreira.headless-react.progress.spinner/-/jorgemoreira.headless-react.progress.spinner-0.0.1.tgz#2f6edc6c86f2edc96144cc5ad2aff7cee67db946"
-  integrity sha1-L27cbIby7clhRMxa0q/3zuZ9uUY=
+"@bit/jorgemoreira.headless-react.progress.spinner@^0.0.4":
+  version "0.0.4"
+  resolved "https://node.bit.dev/jorgemoreira.headless-react.progress.spinner/-/jorgemoreira.headless-react.progress.spinner-0.0.4.tgz#8fcf4b1b95b96e7de30cea0ec27b609fa16a700e"
+  integrity sha1-j89LG5W5bn3jDOoOwntgn6FqcA4=
   dependencies:
-    "@types/react" "^16.9.0"
+    "@types/react" "^17.0.0"
+    classnames "^2.3.1"
 
 "@bit/jorgemoreira.headless-react.surface.master-detail@^1.1.1":
   version "1.1.1"
