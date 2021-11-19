@@ -27,7 +27,7 @@ If you sign out, it will not be possible to use your previous username again.
 
 ## See it working
 
--   Open the [website](https://react-private-messaging.herokuapp.com/).
+-   Open the [website](https://react-private-messaging-front.vercel.app/).
 -   Open the [Storybook](https://607c4a493059ff0021f3ab03-bctzuxaxyq.chromatic.com).
 
 ## Local setup
